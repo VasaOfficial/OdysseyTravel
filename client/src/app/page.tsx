@@ -1,7 +1,9 @@
-import Navbar from "./Conponents/Navbar/Navbar";
+import Landing from "./Conponents/PageSections/Landing";
 
 export default function HomePage() {
   return (
-    <Navbar />
+    <>
+      <Landing />
+    </>
   );
 }
