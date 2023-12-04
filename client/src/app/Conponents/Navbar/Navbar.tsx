@@ -6,7 +6,7 @@ function Navbar() {
     return ( 
       <nav className="w-full max-w-[90%] mx-auto">
         <div className="flex justify-between items-center mt-4">
-          <Image src={Logo} alt="logo" width={200} height={200}/>
+          <Image src={Logo} alt="logo" width={250} height={250}/>
           <div className="flex gap-5">
             <button className="border border-black p-3">
               <Link href='/'>Sign in</Link>
