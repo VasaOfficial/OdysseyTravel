@@ -189,7 +189,7 @@ function Landing() {
             {calendar && (
               <div
                 ref={calendarRef}
-                className="absolute top-full mt-2 bg-black -right-3.5"
+                className="absolute top-full mt-2 bg-black p-10 -right-3.5"
               >
                 <DayPicker
                   mode="range"
