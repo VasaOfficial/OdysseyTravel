@@ -14,7 +14,7 @@ import NorthAmerica from "~/../public/assets/continets/NorthAmerica.webp";
 import Oceania from "~/../public/assets/continets/Oceania.webp";
 import SouthAmerica from "~/../public/assets/continets/SouthAmerica.webp";
 
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navbar";
 
 const pastMonth = new Date(2024, 1, 15);
 
