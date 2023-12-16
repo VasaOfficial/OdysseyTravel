@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Logo from '~/../public/assets/logoWhite.webp'
+import Logo from '@/public/assets/logoWhite.webp'
 import Link from "next/link";
 
-import phoneIcon from '~/../public/assets/footer/phone.webp'
-import emailIcon from '~/../public/assets/footer/email.webp'
-import instagramIcon from '~/../public/assets/footer/instagram.webp'
-import xIcon from '~/../public/assets/footer/X.webp'
-import facebookIcon from '~/../public/assets/footer/facebook.webp'
+import phoneIcon from '@/public/assets/footer/phone.webp'
+import emailIcon from '@/public/assets/footer/email.webp'
+import instagramIcon from '@/public/assets/footer/instagram.webp'
+import xIcon from '@/public/assets/footer/X.webp'
+import facebookIcon from '@/public/assets/footer/facebook.webp'
 
 function Footer() {
     return ( 
@@ -21,7 +21,7 @@ function Footer() {
               <Link href='/' className="linkWithLine mb-2 cursor-pointer font-extrabold hover:text-[darkRed]">Africa</Link>
               <Link href='/' className="linkWithLine mb-2 cursor-pointer font-extrabold hover:text-[darkRed]">North America</Link>
               <Link href='/' className="linkWithLine mb-2 cursor-pointer font-extrabold hover:text-[darkRed]">South America</Link>
-              <Link href='/' className="linkWithLine mb-2 cursor-pointer font-extrabold hover:text-[darkRed]">Australia</Link>
+              <Link href='/' className="linkWithLine mb-2 cursor-pointer font-extrabold hover:text-[darkRed]">Oceania</Link>
             </div>
             <div>
               <h1 className="font-bold text-3xl mb-3">Contact</h1>

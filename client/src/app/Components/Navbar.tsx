@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from '~/../public/assets/logo.webp'
+import Logo from '@/public/assets/logo.webp'
 
 function Navbar() {
     return ( 

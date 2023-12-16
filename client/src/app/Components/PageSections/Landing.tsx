@@ -5,14 +5,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { addDays } from 'date-fns';
 import { type DateRange, DayPicker } from 'react-day-picker';
 
-import MachuPicchu from "~/../public/assets/machu-picchu.webp";
-import SearchIcon from "~/../public/assets/search.webp";
-import Africa from "~/../public/assets/continets/Africa.webp";
-import Asia from "~/../public/assets/continets/Asia.webp";
-import Europe from "~/../public/assets/continets/Europe.webp";
-import NorthAmerica from "~/../public/assets/continets/NorthAmerica.webp";
-import Oceania from "~/../public/assets/continets/Oceania.webp";
-import SouthAmerica from "~/../public/assets/continets/SouthAmerica.webp";
+import MachuPicchu from "@/public/assets/machu-picchu.webp";
+import SearchIcon from "@/public/assets/search.webp";
+import Africa from "@/public/assets/search_continents/Africa.webp";
+import Asia from "@/public/assets/search_continents/Asia.webp";
+import Europe from "@/public/assets/search_continents/Europe.webp";
+import NorthAmerica from "@/public/assets/search_continents/NorthAmerica.webp";
+import Oceania from "@/public/assets/search_continents/Oceania.webp";
+import SouthAmerica from "@/public/assets/search_continents/SouthAmerica.webp";
 
 import Navbar from "../Navbar";
 
@@ -66,6 +66,7 @@ function Landing() {
             alt="machu picchu"
             className="h-screen brightness-75 filter"
             quality={100}
+            priority={true}
           />
         </div>
         <div className="absolute left-0 top-0 z-20 w-full">
