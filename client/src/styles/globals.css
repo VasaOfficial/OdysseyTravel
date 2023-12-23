@@ -4,21 +4,21 @@
 
 /* Define the link hover effect */
 .linkWithLine {
-    position: relative;
-    cursor: pointer;
-  }
+  position: relative;
+  cursor: pointer;
+}
+
+.linkWithLine::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background-color: #AE2024;
+  transition: width 0.3s ease-in-out;
+}
   
-  .linkWithLine::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 1px;
-    background-color: #AE2024;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .linkWithLine:hover::before {
-    width: 100%;
-  }
+.linkWithLine:hover::before {
+  width: 100%;
+}

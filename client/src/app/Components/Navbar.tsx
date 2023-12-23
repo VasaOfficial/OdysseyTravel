@@ -8,12 +8,8 @@ function Navbar() {
         <div className="flex justify-between items-center mt-4">
           <Image src={Logo} alt="logo" width={250} height={250}/>
           <div className="flex gap-5">
-            <button className="border border-black p-3">
-              <Link href='/'>Sign in</Link>
-            </button>
-            <button className="bg-black text-white p-3">
-              <Link href='/'>Register</Link>
-            </button>
+            <Link className="border border-black p-3" href='/sign-in'>Sign in</Link>
+            <Link className="bg-black text-white p-3" href='/sign-up'>Register</Link>
           </div>  
         </div>
       </nav>
