@@ -1,18 +1,28 @@
 'use client'
 
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
 import { useForm, type SubmitHandler } from "react-hook-form";
 
-type IFormInput = {
-  email: string;
-  password: string;
-}
+
+const signUpSchema = z.object({
+  email: z.string().min(5, { message: "Email is required" }).email({ message: "Must be a valid email"}),
+  password: z.string().min(8, { message: "Password must be atleast 8 characters" }).max(25),
+  confirmPassword: z.string().min(8, { message: "Confirm Password is required" }).max(25),
+})
+.refine((data) => data.password === data.confirmPassword, {
+  path: ["confirmPassword"],
+  message: "Password don't match",
+});
+
+type IFormInput = z.infer<typeof signUpSchema>;
 
 export default function SignUp() {
-  const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>();
+  const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
   const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
 
   return (
@@ -59,20 +69,35 @@ export default function SignUp() {
               />
               {errors.email && <p className="mb-2">{errors.email.message}</p>}
             </div>
-            <input
-              {...register('password', {
-                required: 'Password is required',
-                minLength: {
-                  value: 8,
-                  message: 'Password must have at least 8 characters',
-                },
-                maxLength: 25,
-              })}
-              type="password"
-              placeholder="Password"
-              className="text-black p-4 rounded-lg mb-1"
-            />
-            {errors.password && <p className="mb-2">{errors.password.message}</p>}
+            <div className='flex mb-5 gap-8'>
+              <div>
+                <input
+                  {...register('password', {
+                    required: 'Password is required',
+                    minLength: {
+                      value: 8,
+                      message: 'Password must have at least 8 characters',
+                    },
+                    maxLength: 25,
+                  })}
+                  type="password"
+                  placeholder="Password"
+                  className="text-black px-8 py-4 rounded-lg mb-1"
+                />
+                {errors.password && <p className=" text-red-500">{errors.password.message}</p>}
+              </div>
+              <div>
+                <input
+                  {...register('confirmPassword', {
+                    required: 'Confirm Password is required',
+                  })}
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="text-black px-8 rounded-lg mb-1 py-4"
+                />
+                {errors.confirmPassword && <p className=" text-red-500">{errors.confirmPassword.message}</p>}
+              </div>
+            </div>
             <input type="submit" className="cursor-pointer p-4 rounded-lg mt-5 w-40 bg-sky-600 text-white" />
           </form>
         </div>
