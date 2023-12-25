@@ -39,7 +39,7 @@ export default function SignIn() {
           <h1 className="mb-3 font-extrabold text-6xl">Log in</h1>
           <div className="flex gap-2">
             <p>Don't have an account?</p>
-            <Link className="text-sky-600" href='/sign-in'>Log in</Link>
+            <Link className="text-sky-600" href='/sign-up'>Register</Link>
           </div>
           <div className="flex gap-5 my-5">
             <div className="text-black p-5 px-16 bg-white rounded-lg cursor-pointer">Google</div>

@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
-import { addDays } from 'date-fns';
-import { type DateRange, DayPicker } from 'react-day-picker';
 
 import MachuPicchu from "@/public/assets/machu-picchu.webp";
 import SearchIcon from "@/public/assets/search.webp";
@@ -15,20 +13,13 @@ import Oceania from "@/public/assets/search_continents/Oceania.webp";
 import SouthAmerica from "@/public/assets/search_continents/SouthAmerica.webp";
 
 import Navbar from "../Navbar";
-
-const pastMonth = new Date(2024, 1, 15);
+import DateRangeComp from "../DateRangeComp";
 
 function Landing() {
   const [destination, setDestination] = useState(false);
   const [calendar, setCalendar] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
-
-  const defaultSelected: DateRange = {
-    from: pastMonth,
-    to: addDays(pastMonth, 4)
-  };
-  const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
 
   const OpenDestinations = () => {
     setDestination(!destination);
@@ -73,7 +64,7 @@ function Landing() {
           <Navbar />
         </div>
         <div>
-          <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform flex-col text-center text-white">
+          <div className="absolute left-1/2 top-96 flex -translate-x-1/2 -translate-y-1/2 transform flex-col text-center text-white">
             <h1 className="mb-5 text-4xl font-bold">
               Buy Travel Packeges at the Best Price
             </h1>
@@ -85,9 +76,9 @@ function Landing() {
               >
                 Search Destination
               </div>
-              <div className="border-r border-gray-500" />
-              <div className="flex cursor-pointer items-center py-2 hover:rounded-full hover:bg-gray-200">
-                <div className="mr-16 pl-8 pr-20" onClick={OpenCalendar}>Add dates</div>
+              <div className="border-r border-gray-600" />
+              <div className="flex cursor-pointer items-center py-2 hover:rounded-full hover:bg-gray-200" onClick={OpenCalendar}>
+                <div className="mr-16 pl-8 pr-20">Add dates</div>
                 <div className="mr-2 rounded-full bg-black p-3">
                   <Image
                     alt="search button"
@@ -187,19 +178,13 @@ function Landing() {
                 </div>
               </div>
             )}
-            {calendar && (
-              <div
-                ref={calendarRef}
-                className="absolute top-full mt-2 bg-black p-10 -right-3.5"
-              >
-                <DayPicker
-                  mode="range"
-                  defaultMonth={pastMonth}
-                  selected={range}
-                  onSelect={setRange}
-                />
-              </div>
-            )}
+            <div className="top-full right-10">
+              {calendar && (
+                <div ref={calendarRef}>
+                  <DateRangeComp />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
