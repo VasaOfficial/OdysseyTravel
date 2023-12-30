@@ -20,9 +20,16 @@ function SearchBar() {
   const [calendar, setCalendar] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
+  const [selectedContinent, setSelectedContinent] = useState('');
 
   const OpenDestinations = () => {
     setDestination(!destination);
+  };
+
+  const handleContinentSelect = (continent: string) => {
+    setSelectedContinent(continent);
+    setDestination(false);
+    console.log('Continent', continent )
   };
 
   const OpenCalendar = () => {
@@ -55,7 +62,7 @@ function SearchBar() {
         onClick={OpenDestinations}>
           <div className="flex gap-3">
             <Image src={globeIcon} alt="globe icon" height={25} width={25}/>
-            <p>Search Destination</p>
+            <p>{selectedContinent || "Search Destination"}</p>
           </div>
         </div>
         <div className="border-r border-gray-600" />
@@ -92,7 +99,7 @@ function SearchBar() {
         className="absolute top-full mt-2 flex flex-col gap-6 rounded border bg-white p-10 shadow-md"
       >
         <div className="flex gap-6">
-          <div>
+          <div onClick={() => handleContinentSelect("Africa")}>
             <div className="relative h-28 w-28">
               <Image
                 src={Africa}
@@ -105,7 +112,7 @@ function SearchBar() {
             </div>
             <p className="text-black text-left font-medium">Africa</p>
           </div>
-          <div>
+          <div onClick={() => handleContinentSelect("Europe")}>
             <div className="relative h-28 w-28">
               <Image
                 src={Europe}
@@ -118,7 +125,7 @@ function SearchBar() {
             </div>
             <p className="text-black text-left font-medium">Europe</p>
           </div>
-          <div>
+          <div onClick={() => handleContinentSelect("Asia")}>
             <div className="relative h-28 w-28">
               <Image
                 src={Asia}
@@ -133,7 +140,7 @@ function SearchBar() {
           </div>
         </div>
         <div className="flex gap-6">
-          <div>
+          <div onClick={() => handleContinentSelect("North America")}>
             <div className="relative h-28 w-28">
               <Image
                 src={NorthAmerica}
@@ -146,7 +153,7 @@ function SearchBar() {
             </div>
             <p className="text-black text-left font-medium">North America</p>
           </div>
-          <div>
+          <div onClick={() => handleContinentSelect("South America")}>
             <div className="relative h-28 w-28">
               <Image
                 src={SouthAmerica}
@@ -159,7 +166,7 @@ function SearchBar() {
             </div>
             <p className="text-black text-left font-medium">South America</p>
           </div>
-          <div>
+          <div onClick={() => handleContinentSelect("Oceania")}>
             <div className="relative h-28 w-28">
               <Image
                 src={Oceania}
