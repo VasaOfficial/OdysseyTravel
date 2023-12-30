@@ -1,7 +1,7 @@
-import Landing from "./Components/PageSections/Landing";
-import Faq from "./Components/PageSections/FAQ";
-import Footer from "./Components/PageSections/Footer";
-import ContintentSlider from "./Components/PageSections/ContinentSlider";
+import Landing from "./LandingPage/Landing";
+import Faq from "./LandingPage/FAQ";
+import Footer from "./LandingPage/Footer";
+import ContintentSlider from "./LandingPage/ContinentSlider/ContinentSlider";
 
 export default function HomePage() {
   return (

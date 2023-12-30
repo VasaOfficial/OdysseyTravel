@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Controls from "@/src/app/Components/ContinentSection/Controls";
-import SlideInfo from "@/src/app/Components/ContinentSection/SlideInfo";
-import Slides from "@/src/app/Components/ContinentSection/Slides";
-import BackgroundImage from "@/src/app/Components/ContinentSection/BackgroundImage";
+import Controls from "./ui/Controls";
+import SlideInfo from "./ui/SlideInfo";
+import Slides from "./ui/Slides";
+import BackgroundImage from "./ui/BackgroundImage";
 
 export type Data = {
     img: string;

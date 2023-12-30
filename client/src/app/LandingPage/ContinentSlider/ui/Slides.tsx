@@ -1,4 +1,4 @@
-import { type Data } from "@/src/app/Components/PageSections/ContinentSlider";
+import { type Data } from "@/src/app/Components/LandingPage/ContinentSlider/ContinentSlider";
 import SliderCard from "./SliderCard";
 
 type Props = {

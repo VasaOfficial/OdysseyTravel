@@ -4,7 +4,7 @@ import plusIcon from '@/public/assets/plus.webp'
 function Faq() {
     return ( 
       <section>
-        <div className="flex flex-col max-w-[90%] mx-auto justify-center my-20 w-full">
+        <div className="flex flex-col max-w-[80%] mx-auto justify-center my-20 w-full">
           <div className="flex flex-col">
             <h1 className="font-extrabold text-3xl mb-2">FAQs</h1>
             <p className="mb-10 text-lg">Find answers to frequently asked questions about our travel agency services.</p>
