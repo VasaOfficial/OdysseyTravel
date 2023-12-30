@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useSearchStore } from "@/src/state/store";
 
 import DateRangeComp from "./DateRangeComp";
 
@@ -20,16 +21,16 @@ function SearchBar() {
   const [calendar, setCalendar] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
-  const [selectedContinent, setSelectedContinent] = useState('');
+  const { selectedContinent, maxPrice, setContinent, setMaxPrice } = useSearchStore();
 
   const OpenDestinations = () => {
     setDestination(!destination);
   };
 
   const handleContinentSelect = (continent: string) => {
-    setSelectedContinent(continent);
+    setContinent(continent);
     setDestination(false);
-    console.log('Continent', continent )
+    console.log('Continent', continent );
   };
 
   const OpenCalendar = () => {
@@ -81,6 +82,8 @@ function SearchBar() {
               className="border-none outline-none focus:ring-0"
               maxLength={6}
               max={100000}
+              value={maxPrice > 0 ? maxPrice.toString() : ''}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
             />
           </div>
         </div>

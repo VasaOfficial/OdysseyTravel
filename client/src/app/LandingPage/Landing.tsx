@@ -1,7 +1,7 @@
 import Image from "next/image";
 import MachuPicchu from "@/public/assets/machu-picchu.webp";
 import Navbar from "../components/Navbar";
-import SearchBar from "../components/searchBar";
+import SearchBar from "../components/SearchBar";
 
 function Landing() {
   return (
