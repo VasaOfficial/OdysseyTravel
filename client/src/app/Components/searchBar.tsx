@@ -58,7 +58,7 @@ function SearchBar() {
 
   return ( 
     <>
-      <div className="flex items-center rounded-full border bg-white text-left text-gray-600">
+      <div className="flex items-center rounded-full border bg-white text-left text-gray-600 shadow-md">
         <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200"
         onClick={OpenDestinations}>
           <div className="flex gap-3">
@@ -70,7 +70,7 @@ function SearchBar() {
         <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200" onClick={OpenCalendar}>
           <div className="flex gap-3">
             <Image src={calendarIcon} alt="calendar icon" height={25} width={25}/>
-            <div>Add dates</div>
+            <p>Add dates</p>
           </div>
         </div>
         <div className="flex-1 py-7 pl-8">
