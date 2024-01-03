@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import Footer from "../LandingPage/Footer";
+import PriceFilterDropdown from "./ui/priceDropdown";
 
 function Shop() {
   return ( 
@@ -13,7 +14,7 @@ function Shop() {
         <div className="max-w-[50%] flex flex-col justify-start">
           <div className="flex justify-between w-full">
             <h1 className="font-extrabold text-5xl">Africa</h1>
-            <div className="px-20 py-3 font-medium broder border-2 border-black">Price down</div>
+            <PriceFilterDropdown />
           </div>
         </div>
       </div>
