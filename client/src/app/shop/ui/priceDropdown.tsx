@@ -12,7 +12,7 @@ const PriceFilterDropdown = () => {
   };
 
   return (
-    <div className="gap-3 px-10 text-lg font-medium">
+    <div className="gap-3 text-lg font-medium">
       <label>Sort by Price:</label>
       <select className='bg-gray-300 ml-2 rounded-md py-3 px-2 border-r-8 border-gray-300' value={selectedOption} onChange={handleOptionChange}>
         {options.map((option) => (
