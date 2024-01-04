@@ -21,7 +21,7 @@ export const useSearchStore = create<SearchState>((set) => ({
   selectedDateRange: [
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 0),
+      endDate: addDays(new Date(), 30000),
       key: 'selection',
     },
   ],

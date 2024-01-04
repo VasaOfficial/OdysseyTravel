@@ -36,7 +36,7 @@ const DateRangeComp = () => {
     <div>
       <input
         value={`${format(range?.startDate ?? new Date(), 'MM/dd/yyyy')} to ${format(
-          range?.endDate ?? addDays(new Date(), 7),
+          range?.endDate ?? addDays(new Date(), 0),
           'MM/dd/yyyy'
         )}`}
         readOnly
@@ -59,7 +59,6 @@ const DateRangeComp = () => {
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             ranges={range ? [range] : []}
-            months={1}
             direction="horizontal"
             className="absolute rounded-lg h-96"
           />

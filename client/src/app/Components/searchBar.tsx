@@ -59,17 +59,17 @@ function SearchBar() {
 
   const handleSearch = () => {
     // Handle case when the user didn't select anything
-    if (!selectedContinent && !calendar && maxPrice <= 0) return;
+    if (!selectedContinent || (!selectedContinent && !calendar && maxPrice <= 0)) return;
   
     // Get start and end dates from the selected date range
     const startDate = selectedDateRange[0]?.startDate;
     const endDate = selectedDateRange[0]?.endDate;
-
+  
+    console.log(startDate);
+    console.log(endDate);
+  
     const formattedStartDate = startDate?.toISOString().split('T')[0];
-  const formattedEndDate = endDate?.toISOString().split('T')[0];
-
-    console.log('date:', startDate)
-    console.log('date:', endDate)
+    const formattedEndDate = endDate?.toISOString().split('T')[0];
   
     // Construct the search query based on selected options
     const query = {
@@ -77,13 +77,12 @@ function SearchBar() {
       dateRange: startDate && endDate ? `${formattedStartDate}:${formattedEndDate}` : null,
       maxPrice: maxPrice,
     };
-
-    console.log('date:', query)
-
+  
     const createQueryString = (name: string, value: string | number | Date | null | undefined) => {
       const params = new URLSearchParams();
   
-      if (value !== null && value !== undefined) {
+      // checking if the value is not null or undefined and maxPrice is not 0
+      if (value !== null && value !== undefined && !(name === 'maxPrice' && value === 0)) {
         if (value instanceof Date) {
           params.set(name, value.toISOString());
         } else {
@@ -103,7 +102,7 @@ function SearchBar() {
         '&' +
         createQueryString('maxPrice', query.maxPrice)
     );
-  };
+  };  
   
   return ( 
     <>
