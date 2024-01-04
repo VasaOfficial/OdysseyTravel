@@ -87,7 +87,7 @@ function SearchBar() {
             />
           </div>
         </div>
-        <div className="mr-2 rounded-full bg-black p-3 cursor-pointer">
+        <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform">
           <Image
             alt="search button"
             src={SearchIcon}

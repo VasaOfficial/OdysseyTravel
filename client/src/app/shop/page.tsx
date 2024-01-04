@@ -5,11 +5,15 @@ import PriceFilterDropdown from "./ui/priceDropdown";
 import ItemCard from "../components/itemCards";
 
 function Shop() {
-  return ( 
-    <section className="bg-gray-100 h-auto w-full">
-      <Navbar />
-      <div className="my-28 max-w-[60%] m-auto">
-        <SearchBar />
+  return (
+    <section className="h-auto w-full bg-gray-100">
+      <div className="left-0 top-0 w-full">
+        <Navbar />
+      </div>
+      <div className="flex justify-center my-20">
+        <div className="transform w-3/6 z-10">
+          <SearchBar />
+        </div>
       </div>
       <div className="max-w-[90%] m-auto mb-20">
         <div className="max-w-[50%] flex flex-col justify-start">
@@ -26,7 +30,7 @@ function Shop() {
       </div>
       <Footer />
     </section>
-   );
+  );
 }
 
 export default Shop;
