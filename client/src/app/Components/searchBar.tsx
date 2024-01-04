@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from 'next/navigation'
 import { useSearchStore } from "@/src/state/store";
 
 import DateRangeComp from "./DateRangeComp";
@@ -21,7 +22,8 @@ function SearchBar() {
   const [calendar, setCalendar] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
-  const { selectedContinent, maxPrice, setContinent, setMaxPrice } = useSearchStore();
+  const { selectedContinent, maxPrice, selectedDateRange, setContinent, setMaxPrice } = useSearchStore();
+  const router = useRouter();
 
   const OpenDestinations = () => {
     setDestination(!destination);
@@ -30,7 +32,6 @@ function SearchBar() {
   const handleContinentSelect = (continent: string) => {
     setContinent(continent);
     setDestination(false);
-    console.log('Continent', continent );
   };
 
   const OpenCalendar = () => {
@@ -56,6 +57,54 @@ function SearchBar() {
     };
   }, []);
 
+  const handleSearch = () => {
+    // Handle case when the user didn't select anything
+    if (!selectedContinent && !calendar && maxPrice <= 0) return;
+  
+    // Get start and end dates from the selected date range
+    const startDate = selectedDateRange[0]?.startDate;
+    const endDate = selectedDateRange[0]?.endDate;
+
+    const formattedStartDate = startDate?.toISOString().split('T')[0];
+  const formattedEndDate = endDate?.toISOString().split('T')[0];
+
+    console.log('date:', startDate)
+    console.log('date:', endDate)
+  
+    // Construct the search query based on selected options
+    const query = {
+      continent: selectedContinent,
+      dateRange: startDate && endDate ? `${formattedStartDate}:${formattedEndDate}` : null,
+      maxPrice: maxPrice,
+    };
+
+    console.log('date:', query)
+
+    const createQueryString = (name: string, value: string | number | Date | null | undefined) => {
+      const params = new URLSearchParams();
+  
+      if (value !== null && value !== undefined) {
+        if (value instanceof Date) {
+          params.set(name, value.toISOString());
+        } else {
+          params.set(name, value.toString());
+        }
+      }
+  
+      return params.toString();
+    };
+  
+    // Join the path and query string and navigate to the shop page
+    router.push(
+      `/shop?` +
+        createQueryString('continent', query.continent) +
+        '&' +
+        createQueryString('dateRange', query.dateRange) +
+        '&' +
+        createQueryString('maxPrice', query.maxPrice)
+    );
+  };
+  
   return ( 
     <>
       <div className="flex items-center rounded-full border bg-white text-left text-gray-600 shadow-md">
@@ -87,7 +136,7 @@ function SearchBar() {
             />
           </div>
         </div>
-        <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform">
+        <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform" onClick={handleSearch}>
           <Image
             alt="search button"
             src={SearchIcon}
