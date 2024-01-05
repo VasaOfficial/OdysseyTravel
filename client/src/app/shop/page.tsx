@@ -1,21 +1,57 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Map from 'react-map-gl';
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import Footer from "../LandingPage/Footer";
 import PriceFilterDropdown from "./ui/priceDropdown";
 import ItemCard from "../components/itemCards";
 
+type Coordinates = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
+type Continent = "Africa" | "Asia" | "Europe" | "North America" | "South America" | "Oceania";
+
 function Shop() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
+  const [continent, setContinent] = useState("");
+  const [viewport, setViewport] = useState<Coordinates>({
+    longitude: 0,
+    latitude: 0,
+    zoom: 1,
+  });
 
   useEffect(() => {
-    const continent = searchParams.get("continent");
-    const maxPrice = searchParams.get("maxPrice");
-    const dateRange = searchParams.get("dateRange");
-  }, [searchParams])
+    // let maxPrice = searchParams.get("maxPrice");
+    // let dateRange = searchParams.get("dateRange");
+    const continentFromParams = searchParams.get("continent") as Continent;
+    if (continentFromParams) {
+      setContinent(continentFromParams);
 
+      // Update the viewport based on the current continent
+      const { latitude, longitude, zoom } = continentCoordinates[continentFromParams] || {};
+      setViewport((prevViewport) => ({
+        ...prevViewport,
+        latitude: latitude || 0,
+        longitude: longitude || 0,
+        zoom: zoom || 1
+      }));
+    }
+  }, [searchParams]);
+
+  const continentCoordinates = {
+    "Africa": { latitude: 0, longitude: 17, zoom: 3.2 },
+    "Asia": { latitude: 55, longitude: 90, zoom: 2.4 },
+    "Europe": { latitude: 54, longitude: 15, zoom: 3.5 },
+    "North America": { latitude: 54, longitude: -105, zoom: 2.8 },
+    "South America":{ latitude: -14, longitude: -51, zoom: 3 },
+    "Oceania": { latitude: -24, longitude: 145, zoom: 3.1 },
+  };
+  
   return (
     <section className="h-auto w-full bg-gray-100">
       <div className="left-0 top-0 w-full">
@@ -26,17 +62,35 @@ function Shop() {
           <SearchBar />
         </div>
       </div>
-      <div className="max-w-[90%] m-auto mb-20">
+      <div className="max-w-[95%] m-auto mb-20 flex gap-4">
         <div className="max-w-[50%] flex flex-col justify-start">
           <div className="flex justify-between w-full">
-            <h1 className="font-extrabold text-5xl">Africa</h1>
+            <h1 className="font-extrabold text-5xl">{continent}</h1>
             <PriceFilterDropdown />
           </div>
-          <div className="flex gap-3 mt-5">
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
+          <div className='flex flex-col'>
+            <div className="flex gap-3 mt-5">
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+            </div>
+            <div className="flex gap-3 mt-5">
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+            </div>
           </div>
+        </div>
+        {/** Mapbox here */}
+        <div className='w-full'>
+          <Map
+            {...viewport}
+            mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+            dragPan={false}
+            dragRotate={false}
+            style={{height: 1200}}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+          />
         </div>
       </div>
       <Footer />
