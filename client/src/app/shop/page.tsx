@@ -11,7 +11,9 @@ function Shop() {
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    const query = `${searchParams.toString()}`;
+    const continent = searchParams.get("continent");
+    const maxPrice = searchParams.get("maxPrice");
+    const dateRange = searchParams.get("dateRange");
   }, [searchParams])
 
   return (
