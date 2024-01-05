@@ -65,9 +65,6 @@ function SearchBar() {
     const startDate = selectedDateRange[0]?.startDate;
     const endDate = selectedDateRange[0]?.endDate;
   
-    console.log(startDate);
-    console.log(endDate);
-  
     const formattedStartDate = startDate?.toISOString().split('T')[0];
     const formattedEndDate = endDate?.toISOString().split('T')[0];
   

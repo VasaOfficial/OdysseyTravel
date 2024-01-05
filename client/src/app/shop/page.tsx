@@ -1,3 +1,6 @@
+'use client'
+import { useSearchParams } from 'next/navigation'
+import { useEffect } from 'react';
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import Footer from "../LandingPage/Footer";
@@ -5,6 +8,12 @@ import PriceFilterDropdown from "./ui/priceDropdown";
 import ItemCard from "../components/itemCards";
 
 function Shop() {
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const query = `${searchParams.toString()}`;
+  }, [searchParams])
+
   return (
     <section className="h-auto w-full bg-gray-100">
       <div className="left-0 top-0 w-full">
