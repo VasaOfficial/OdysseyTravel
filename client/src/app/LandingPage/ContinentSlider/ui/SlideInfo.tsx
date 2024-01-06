@@ -1,7 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
 import OtherInfo from "./OtherInfo";
-import { type Data, type CurrentSlideData } from "@/src/app/Components/LandingPage/ContinentSlider/ContinentSlider";
+import { type Data, type CurrentSlideData } from "../ContinentSlider";
 
 type Props = {
   transitionData: Data;

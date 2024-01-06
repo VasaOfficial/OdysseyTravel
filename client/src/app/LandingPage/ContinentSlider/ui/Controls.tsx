@@ -1,7 +1,6 @@
-import React from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Progress from "./Progress";
-import { type Data, type CurrentSlideData } from "@/src/app/Components/LandingPage/ContinentSlider/ContinentSlider";
+import { type Data, type CurrentSlideData } from "../ContinentSlider";
 
 type Props = {
   currentSlideData: CurrentSlideData;
