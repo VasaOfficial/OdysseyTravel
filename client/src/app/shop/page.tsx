@@ -79,15 +79,14 @@ function Shop() {
               <ItemCard />
               <ItemCard />
             </div>
+            {/** Pagination Here */}
           </div>
         </div>
         {/** Mapbox here */}
-        <div className='w-full'>
+        <div className='w-full map'>
           <Map
             {...viewport}
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-            dragPan={false}
-            dragRotate={false}
             style={{height: 1200}}
             mapStyle="mapbox://styles/mapbox/streets-v9"
           />

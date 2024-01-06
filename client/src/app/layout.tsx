@@ -2,6 +2,7 @@ import "../styles/globals.css";
 
 import { Inter } from "next/font/google";
 import type { Metadata } from 'next';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const inter = Inter({
   subsets: ["latin"],

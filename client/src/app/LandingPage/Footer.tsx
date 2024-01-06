@@ -26,20 +26,20 @@ function Footer() {
             <div>
               <h1 className="font-bold text-3xl mb-3">Contact</h1>
               <div className="flex mb-3">
-                <Image src={emailIcon} alt="email icon" width={40} height={40}/>
+                <Image src={emailIcon} alt="email icon" width={35} height={35}/>
                 <p className="ml-3 mt-2">travelagency@gmail.com</p>
               </div>
               <div className="flex">
-                <Image src={phoneIcon} alt="phone icon" width={40} height={40}/>
+                <Image src={phoneIcon} alt="phone icon" width={35} height={35}/>
                 <p className="ml-3 mt-2">032131203192</p>
               </div>
             </div>
             <div>
               <h1 className="font-bold text-3xl mb-3">Social Media</h1>
               <div className="flex gap-3">
-                <Image className="cursor-pointer" src={instagramIcon} alt="instagram icon" width={40} height={40}/>
-                <Image className="cursor-pointer" src={facebookIcon} alt="facebook icon" width={40} height={40}/>
-                <Image className="cursor-pointer" src={xIcon} alt="X icon" width={40} height={40}/>
+                <Image className="cursor-pointer" src={instagramIcon} alt="instagram icon" width={35} height={35}/>
+                <Image className="cursor-pointer" src={facebookIcon} alt="facebook icon" width={35} height={35}/>
+                <Image className="cursor-pointer" src={xIcon} alt="X icon" width={35} height={35}/>
               </div>
             </div>
           </div>
