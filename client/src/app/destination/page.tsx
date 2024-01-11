@@ -2,6 +2,11 @@ import Navbar from "../components/Navbar";
 import Image from "next/image";
 import Hawaii from '@/public/assets/hawaii.jpg'
 import RedHeartIcon from '@/public/assets/card/red-heart.webp'
+import CartIcon from '@/public/assets/card/cart.webp'
+import RouteIcon from '@/public/assets/destionation/route.webp'
+import FoodIcon from '@/public/assets/destionation/food.webp'
+import PlaneIcon from '@/public/assets/destionation/plane.webp'
+import BedIcon from '@/public/assets/destionation/bed.webp'
 
 function Location() {
   return ( 
@@ -20,14 +25,17 @@ function Location() {
             <p className="text-green-500 font-bold text-4xl mr-2">7</p>
             <p className="text-gray-700 font-bold text-4xl">days</p>
           </div>
-          <div className="flex gap-3 justify-center p-3 bg-red-700 rounded-2xl text-white cursor-pointer">
-            <div className="rounded-full bg-white p-1">
-              <Image src={RedHeartIcon} alt="save to favorite" width={20} height={20}/>
+          <div className="flex gap-10">
+            <Image src={CartIcon} alt="Cart icon" width={35} height={35} className="transition-transform transform hover:scale-110 cursor-pointer" />
+            <div className="flex gap-3 justify-center p-3 bg-red-700 rounded-2xl text-white cursor-pointer">
+              <div className="rounded-full bg-white p-1">
+                <Image src={RedHeartIcon} alt="save to favorite" width={20} height={20}/>
+              </div>
+              <p>Remove from the favorites</p>
             </div>
-            <p>Remove from the favorites</p>
           </div>
         </div>
-        <div className="border-t-2 border-gray-400 w-full my-10"></div>
+        <div className="border-t-2 border-gray-400 w-full my-10" />
         <p className="font-semibold text-xl">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -39,7 +47,36 @@ function Location() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
         id est laborum.
         </p>
-        <div className="border-t-2 border-gray-400 w-full my-10"></div>
+        <div className="border-t-2 border-gray-400 w-full my-10" />
+        <div className="flex gap-7 text-center">
+          <Image src={RouteIcon} alt="route icon" height={40} width={40} />
+          <p className="font-bold text-3xl">New York - Paris - Dubai - Maldives</p>
+        </div>
+        <div className="border-t-2 border-gray-400 w-full my-10" />
+        <div className="flex flex-col gap-7 justify-start text-3xl">
+          <div className="flex flex-col gap-7 text-3xl">
+            <dl className="flex flex-wrap">
+              <div className="flex flex-col items-start mr-20 font-medium gap-4">
+                <dt>Transport</dt>
+                <dt>Accommodation</dt>
+                <dt>Organizer</dt>
+                <dt>Destination</dt>
+              </div>
+              <div className="flex flex-col gap-4 text-green-500">
+                <dd>Plane, local transport</dd>
+                <dd>Hotel</dd>
+                <dd>Odyssey Travel</dd>
+                <dd>Asia, Maldives</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+        <div className="border-t-2 border-gray-400 w-full my-10" />
+        <div>
+          <h1>
+            Travel Plan
+          </h1>
+        </div>
       </div>
     </section>
    );
