@@ -3,16 +3,25 @@ import Image from "next/image";
 import Hawaii from '@/public/assets/hawaii.jpg'
 import RedHeartIcon from '@/public/assets/card/red-heart.webp'
 import CartIcon from '@/public/assets/card/cart.webp'
-import RouteIcon from '@/public/assets/destionation/route.webp'
-import FoodIcon from '@/public/assets/destionation/food.webp'
-import PlaneIcon from '@/public/assets/destionation/plane.webp'
-import BedIcon from '@/public/assets/destionation/bed.webp'
+import RouteIcon from '@/public/assets/destination/route.webp'
+import FoodIcon from '@/public/assets/destination/food.webp'
+import PlaneIcon from '@/public/assets/destination/plane.webp'
+import BedIcon from '@/public/assets/destination/bed.webp'
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 function Location() {
   return ( 
     <section className="h-auto w-full bg-gray-100">
-      <Navbar />
-      <div className="max-w-[60%] flex flex-col items-center my-20 m-auto">
+      <nav>
+        <Navbar />
+      </nav>
+      <div className="max-w-[70%] flex flex-col my-20 m-auto">
         <div className="relative flex flex-col">
           <Image src={Hawaii} alt="hawait image" width={1150} height={450} className="rounded"/>
           <div className="absolute bottom-0 left-0 pl-4 py-3">
@@ -72,10 +81,82 @@ function Location() {
           </div>
         </div>
         <div className="border-t-2 border-gray-400 w-full my-10" />
-        <div>
-          <h1>
+        <div className="flex flex-col justify-start">
+          <h1 className="text-4xl font-semibold mb-10">
             Travel Plan
           </h1>
+          <div className="flex flex-col justify-start gap-5">
+            <Accordion className="border-2 border-black px-7 rounded-2xl" type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Day 1</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            <Accordion className="border-2 border-black px-7 rounded-2xl" type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Day 2</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            <Accordion className="border-2 border-black px-7 rounded-2xl" type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Day 3</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            <Accordion className="border-2 border-black px-7 rounded-2xl" type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Day 4</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            <Accordion className="border-2 border-black px-7 rounded-2xl" type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Day 5</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <div className="border-t-2 border-gray-400 w-full my-10" />
+          <div className="flex flex-col items-center w-full mb-10">
+            <h1 className="text-4xl font-semibold mb-10">What's included</h1>
+            <div className="flex gap-10">
+              <div className="flex border-r-2 border-black pr-10 gap-7">
+                <Image src={BedIcon} alt="bed icon" width={60} height={60} className="self-start" />
+                <div className="flex flex-col text-xl font-medium">
+                  <p className="text-2xl font-medium mb-2">Accommodation</p>
+                  <p>- 7 days</p>
+                </div>
+              </div>
+              <div className="flex border-r-2 border-black pr-10 gap-5">
+                <Image src={PlaneIcon} alt="bed icon" width={60} height={60} className="self-start"/>
+                <div className="flex flex-col text-xl font-medium">
+                  <p className="text-2xl font-medium mb-2">Transport</p>
+                  <p>- Plane tickets to destination back. </p>
+                  <p>- Bus tickets for city travel.  </p>
+                </div>
+              </div>
+              <div className="flex gap-5">
+                <Image src={FoodIcon} alt="bed icon" width={60} height={60} className="self-start"/>
+                <div className="flex flex-col text-xl font-medium">
+                  <p className="text-2xl font-medium mb-2">Food</p>
+                  <p>- 7 x dinner</p>
+                  <p>- 7 x breakfasts</p>
+                  <p>- 6 x lunch</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
