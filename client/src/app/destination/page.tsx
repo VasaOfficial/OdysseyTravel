@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Footer from "../LandingPage/Footer";
 import Image from "next/image";
 import Hawaii from '@/public/assets/hawaii.jpg'
 import RedHeartIcon from '@/public/assets/card/red-heart.webp'
@@ -25,14 +26,19 @@ function Location() {
         <div className="relative flex flex-col">
           <Image src={Hawaii} alt="hawait image" width={1150} height={450} className="rounded"/>
           <div className="absolute bottom-0 left-0 pl-4 py-3">
-            <p className="m-0 text-white font-semibold text-2xl">Location</p>
+            <p className="m-0 text-white font-semibold text-6xl">Location</p>
           </div>
         </div>
         <div className="flex w-full justify-between items-center mt-12">
-          <div className="flex">
-            <p className="text-red-600 font-bold text-4xl mr-5">$1000</p>
-            <p className="text-green-500 font-bold text-4xl mr-2">7</p>
-            <p className="text-gray-700 font-bold text-4xl">days</p>
+          <div className="flex flex-col gap-5">
+            <div className="flex">
+              <p className="font-bold text-4xl mr-5">Price:</p>
+              <p className="text-red-600 font-bold text-4xl">$1000</p>
+            </div>
+            <div className="flex">
+              <p className="text-green-500 font-bold text-4xl mr-2">7</p>
+              <p className="text-gray-700 font-bold text-4xl">days</p>
+            </div>
           </div>
           <div className="flex gap-10">
             <Image src={CartIcon} alt="Cart icon" width={35} height={35} className="transition-transform transform hover:scale-110 cursor-pointer" />
@@ -72,7 +78,7 @@ function Location() {
                 <dt>Destination</dt>
               </div>
               <div className="flex flex-col gap-4 text-green-500">
-                <dd>Plane, local transport</dd>
+                <dd>Plane, Local transport</dd>
                 <dd>Hotel</dd>
                 <dd>Odyssey Travel</dd>
                 <dd>Asia, Maldives</dd>
@@ -90,7 +96,7 @@ function Location() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>Day 1</AccordionTrigger>
                 <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
+                  Description
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -98,7 +104,7 @@ function Location() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>Day 2</AccordionTrigger>
                 <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
+                  Description
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -106,7 +112,7 @@ function Location() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>Day 3</AccordionTrigger>
                 <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
+                  Description
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -114,7 +120,7 @@ function Location() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>Day 4</AccordionTrigger>
                 <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
+                  Description
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -122,32 +128,34 @@ function Location() {
               <AccordionItem value="item-1">
                 <AccordionTrigger>Day 5</AccordionTrigger>
                 <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
+                  Description
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
           </div>
-          <div className="border-t-2 border-gray-400 w-full my-10" />
+          <div className="border-t-2 border-gray-400 w-full my-20" />
           <div className="flex flex-col items-center w-full mb-10">
-            <h1 className="text-4xl font-semibold mb-10">What's included</h1>
-            <div className="flex gap-10">
-              <div className="flex border-r-2 border-black pr-10 gap-7">
-                <Image src={BedIcon} alt="bed icon" width={60} height={60} className="self-start" />
+            <h1 className="text-4xl font-semibold mb-20">What's included</h1>
+            <div className="flex gap-10 justify-center items-center">
+              <div className="flex pr-10 gap-7 pt-1">
+                <Image src={BedIcon} alt="bed icon" width={70} height={70} className="self-start mt-5" />
                 <div className="flex flex-col text-xl font-medium">
                   <p className="text-2xl font-medium mb-2">Accommodation</p>
                   <p>- 7 days</p>
                 </div>
               </div>
-              <div className="flex border-r-2 border-black pr-10 gap-5">
-                <Image src={PlaneIcon} alt="bed icon" width={60} height={60} className="self-start"/>
+              <div className="border-r-2 border-gray-400 h-40"></div>
+              <div className="flex pr-10 gap-7">
+                <Image src={PlaneIcon} alt="bed icon" width={70} height={70} className="self-start mt-5"/>
                 <div className="flex flex-col text-xl font-medium">
                   <p className="text-2xl font-medium mb-2">Transport</p>
-                  <p>- Plane tickets to destination back. </p>
-                  <p>- Bus tickets for city travel.  </p>
+                  <p>- Plane tickets to destination and back.</p>
+                  <p>- Bus tickets for city travel.</p>
                 </div>
               </div>
-              <div className="flex gap-5">
-                <Image src={FoodIcon} alt="bed icon" width={60} height={60} className="self-start"/>
+              <div className="border-r-2 border-gray-400 h-40"></div>
+              <div className="flex gap-7">
+                <Image src={FoodIcon} alt="bed icon" width={70} height={70} className="self-start mt-5"/>
                 <div className="flex flex-col text-xl font-medium">
                   <p className="text-2xl font-medium mb-2">Food</p>
                   <p>- 7 x dinner</p>
@@ -159,6 +167,7 @@ function Location() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
    );
 }

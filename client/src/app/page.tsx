@@ -6,10 +6,12 @@ import ContintentSlider from "./LandingPage/ContinentSlider/ContinentSlider";
 export default function HomePage() {
   return (
     <>
-      <Landing />
-      <ContintentSlider />
-      <Faq />
-      <Footer />
+      <main>
+        <Landing />
+        <ContintentSlider />
+        <Faq />
+        <Footer />
+      </main>
     </>
   );
 }
