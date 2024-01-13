@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useSearchStore } from "@/src/state/store";
 
 import DateRangeComp from "./DateRangeComp";
+import Spinner from "./spinner";
 
 import SearchIcon from "@/public/assets/search.webp";
 import Africa from "@/public/assets/search_continents/Africa.webp";
@@ -24,6 +25,7 @@ function SearchBar() {
   const calendarRef = useRef<HTMLDivElement>(null);
   const { selectedContinent, maxPrice, selectedDateRange, setContinent, setMaxPrice } = useSearchStore();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const OpenDestinations = () => {
     setDestination(!destination);
@@ -237,6 +239,7 @@ function SearchBar() {
         </div>
       )}
     </div>
+    <Spinner />
     </>
   );
 }
