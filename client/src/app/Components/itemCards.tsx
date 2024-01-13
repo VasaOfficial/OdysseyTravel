@@ -7,7 +7,7 @@ import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
 
 function ItemCard() {
   return ( 
-    <div className="shadow-md cursor-pointer transition-transform transform hover:scale-105">
+    <div className="card shadow-3d">
       <div className="relative flex flex-col">
         <Image className="rounded-t" src={jaguar} alt="missing image" />
         <Image
