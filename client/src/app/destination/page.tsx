@@ -9,12 +9,7 @@ import FoodIcon from '@/public/assets/destination/food.webp'
 import PlaneIcon from '@/public/assets/destination/plane.webp'
 import BedIcon from '@/public/assets/destination/bed.webp'
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 function Location() {
   return ( 

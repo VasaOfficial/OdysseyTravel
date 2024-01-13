@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 import Footer from "../LandingPage/Footer";
 import PriceFilterDropdown from "./ui/priceDropdown";
 import ItemCard from "../components/itemCards";
+import {Pagination} from "@nextui-org/react";
 
 type Coordinates = {
   latitude: number;
@@ -53,7 +54,7 @@ function Shop() {
   };
   
   return (
-    <section className="h-auto w-full bg-gray-100">
+    <section className="h-auto w-full bg-slate-100">
       <div className="left-0 top-0 w-full">
         <Navbar />
       </div>
@@ -68,7 +69,7 @@ function Shop() {
             <h1 className="font-extrabold text-5xl">{continent}</h1>
             <PriceFilterDropdown />
           </div>
-          <div className='flex flex-col'>
+          <div className='flex flex-col items-center'>
             <div className="flex gap-3 mt-5">
               <ItemCard />
               <ItemCard />
@@ -80,6 +81,7 @@ function Shop() {
               <ItemCard />
             </div>
             {/** Pagination Here */}
+            <Pagination showControls total={3} initialPage={1} className='mt-10' color='success' variant='faded' size='lg' showShadow />
           </div>
         </div>
         {/** Mapbox here */}

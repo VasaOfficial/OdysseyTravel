@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from 'next';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { Providers } from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,7 +49,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`font-sans ${inter.variable}`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
