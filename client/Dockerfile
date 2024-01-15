@@ -9,16 +9,18 @@ RUN npm install --loglevel verbose
 
 COPY . .
 
-# RUN npm run build
+RUN npm run build
 
 # Runtime stage
-# FROM node:21-alpine
+FROM node:21-alpine
 
-#WORKDIR /app
+WORKDIR /app
 
 # Copy only necessary files from the build stage
-# COPY --from=build /app/.next ./.next
-# COPY --from=build /app/node_modules ./node_modules
-# COPY --from=build /app/package*.json ./
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
+
+EXPOSE 3000
 
 CMD ["npm", "run", "dev"]
