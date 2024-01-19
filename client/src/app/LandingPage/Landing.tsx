@@ -25,7 +25,9 @@ function Landing() {
               Buy Travel Packeges at the Best Price
             </h1>
             <p className="mb-10 text-lg">Explore best selling packeges</p>
-            <SearchBar />
+            <div className="mt-20">
+              <SearchBar />
+            </div>
           </div>
         </div>
       </div>

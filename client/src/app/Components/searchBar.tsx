@@ -105,141 +105,145 @@ function SearchBar() {
   
   return ( 
     <>
-      <div className="flex items-center rounded-full border bg-white text-left text-gray-600 shadow-md">
-        <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200"
-        onClick={OpenDestinations}>
-          <div className="flex gap-3">
-            <Image src={globeIcon} alt="globe icon" height={25} width={25}/>
-            <p>{selectedContinent || "Search Destination"}</p>
+      <div className="flex items-center w-full">
+        <div className="flex items-center rounded-full border bg-white text-left text-gray-600 shadow-md w-full">
+          <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200"
+          onClick={OpenDestinations}>
+            <div className="flex gap-3">
+              <Image src={globeIcon} alt="globe icon" height={25} width={25}/>
+              <p>{selectedContinent || "Search Destination"}</p>
+            </div>
           </div>
-        </div>
-        <div className="border-r border-gray-600" />
-        <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200" onClick={OpenCalendar}>
-          <div className="flex gap-3">
-            <Image src={calendarIcon} alt="calendar icon" height={25} width={25}/>
-            <p>Add dates</p>
+          <div className="border-r border-gray-600" />
+          <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200" onClick={OpenCalendar}>
+            <div className="flex gap-3">
+              <Image src={calendarIcon} alt="calendar icon" height={25} width={25}/>
+              <p>Add dates</p>
+            </div>
           </div>
-        </div>
-        <div className="flex-1 py-7 pl-8">
-          <div className="flex gap-3">
-            <Image src={priceIcon} alt="price icon" height={25} width={25}/>
-            <input
-              type="text"
-              placeholder="Add max price"
-              className="border-none outline-none focus:ring-0"
-              maxLength={6}
-              max={100000}
-              value={maxPrice > 0 ? maxPrice.toString() : ''}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
+          <div className="flex-1 py-7 pl-8">
+            <div className="flex gap-3">
+              <Image src={priceIcon} alt="price icon" height={25} width={25}/>
+              <input
+                type="text"
+                placeholder="Add max price"
+                className="border-none outline-none focus:ring-0"
+                maxLength={6}
+                max={100000}
+                value={maxPrice > 0 ? maxPrice.toString() : ''}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+              />
+            </div>
+          </div>
+          <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform" onClick={handleSearch}>
+            <Image
+              alt="search button"
+              src={SearchIcon}
+              height={40}
+              width={40}
             />
           </div>
         </div>
-        <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform" onClick={handleSearch}>
-          <Image
-            alt="search button"
-            src={SearchIcon}
-            height={40}
-            width={40}
-          />
-        </div>
-      </div>
-      {destination && (
-      <div
-        ref={cardRef}
-        className="absolute top-full mt-2 flex flex-col gap-6 rounded border bg-white p-10 shadow-md"
-      >
-        <div className="flex gap-6">
-          <div onClick={() => handleContinentSelect("Africa")}>
-            <div className="relative h-28 w-28">
-              <Image
-                src={Africa}
-                quality={100}
-                alt="Africa"
-                fill
-                style={{objectFit:"cover"}}
-                className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
-              />
+        {destination && (
+        <div
+          ref={cardRef}
+          className="absolute top-full mt-2 flex flex-col gap-6 rounded border bg-white p-10 shadow-md"
+        >
+          <div className="flex gap-6">
+            <div onClick={() => handleContinentSelect("Africa")}>
+              <div className="relative h-28 w-28">
+                <Image
+                  src={Africa}
+                  quality={100}
+                  alt="Africa"
+                  fill
+                  style={{objectFit:"cover"}}
+                  className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
+                />
+              </div>
+              <p className="text-black text-left font-medium">Africa</p>
             </div>
-            <p className="text-black text-left font-medium">Africa</p>
-          </div>
-          <div onClick={() => handleContinentSelect("Europe")}>
-            <div className="relative h-28 w-28">
-              <Image
-                src={Europe}
-                quality={100}
-                alt="Europe"
-                fill
-                style={{objectFit:"cover"}}
-                className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
-              />
+            <div onClick={() => handleContinentSelect("Europe")}>
+              <div className="relative h-28 w-28">
+                <Image
+                  src={Europe}
+                  quality={100}
+                  alt="Europe"
+                  fill
+                  style={{objectFit:"cover"}}
+                  className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
+                />
+              </div>
+              <p className="text-black text-left font-medium">Europe</p>
             </div>
-            <p className="text-black text-left font-medium">Europe</p>
-          </div>
-          <div onClick={() => handleContinentSelect("Asia")}>
-            <div className="relative h-28 w-28">
-              <Image
-                src={Asia}
-                quality={100}
-                alt="Asia"
-                fill
-                style={{objectFit:"cover"}}
-                className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
-              />
+            <div onClick={() => handleContinentSelect("Asia")}>
+              <div className="relative h-28 w-28">
+                <Image
+                  src={Asia}
+                  quality={100}
+                  alt="Asia"
+                  fill
+                  style={{objectFit:"cover"}}
+                  className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
+                />
+              </div>
+              <p className="text-black text-left font-medium">Asia</p>
             </div>
-            <p className="text-black text-left font-medium">Asia</p>
           </div>
-        </div>
-        <div className="flex gap-6">
-          <div onClick={() => handleContinentSelect("North America")}>
-            <div className="relative h-28 w-28">
-              <Image
-                src={NorthAmerica}
-                quality={100}
-                alt="North America"
-                fill
-                style={{objectFit:"cover"}}
-                className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
-              />
+          <div className="flex gap-6">
+            <div onClick={() => handleContinentSelect("North America")}>
+              <div className="relative h-28 w-28">
+                <Image
+                  src={NorthAmerica}
+                  quality={100}
+                  alt="North America"
+                  fill
+                  style={{objectFit:"cover"}}
+                  className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
+                />
+              </div>
+              <p className="text-black text-left font-medium">North America</p>
             </div>
-            <p className="text-black text-left font-medium">North America</p>
-          </div>
-          <div onClick={() => handleContinentSelect("South America")}>
-            <div className="relative h-28 w-28">
-              <Image
-                src={SouthAmerica}
-                quality={100}
-                alt="South America"
-                fill
-                style={{objectFit:"cover"}}
-                className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
-              />
+            <div onClick={() => handleContinentSelect("South America")}>
+              <div className="relative h-28 w-28">
+                <Image
+                  src={SouthAmerica}
+                  quality={100}
+                  alt="South America"
+                  fill
+                  style={{objectFit:"cover"}}
+                  className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
+                />
+              </div>
+              <p className="text-black text-left font-medium">South America</p>
             </div>
-            <p className="text-black text-left font-medium">South America</p>
-          </div>
-          <div onClick={() => handleContinentSelect("Oceania")}>
-            <div className="relative h-28 w-28">
-              <Image
-                src={Oceania}
-                quality={100}
-                alt="Oceania"
-                fill
-                style={{objectFit:"cover"}}
-                className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
-              />
+            <div onClick={() => handleContinentSelect("Oceania")}>
+              <div className="relative h-28 w-28">
+                <Image
+                  src={Oceania}
+                  quality={100}
+                  alt="Oceania"
+                  fill
+                  style={{objectFit:"cover"}}
+                  className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
+                />
+              </div>
+              <p className="text-black text-left font-medium">Oceania</p>
             </div>
-            <p className="text-black text-left font-medium">Oceania</p>
           </div>
-        </div>
-      </div>
-    )}
-    <div className="absolute top-full left-72">
-      {calendar && (
-        <div ref={calendarRef}>
-          <DateRangeComp />
         </div>
       )}
-    </div>
-    <Spinner />
+      <div className="absolute top-full left-72">
+        {calendar && (
+          <div ref={calendarRef}>
+            <DateRangeComp />
+          </div>
+        )}
+      </div>
+      <div className="ml-10">
+        <Spinner />
+      </div>
+      </div>
     </>
   );
 }
