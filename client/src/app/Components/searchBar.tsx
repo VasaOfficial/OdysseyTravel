@@ -59,49 +59,57 @@ function SearchBar() {
     };
   }, []);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     // Handle case when the user didn't select anything
     if (!selectedContinent || (!selectedContinent && !calendar && maxPrice <= 0)) return;
   
-    // Get start and end dates from the selected date range
-    const startDate = selectedDateRange[0]?.startDate;
-    const endDate = selectedDateRange[0]?.endDate;
+    setLoading(true);
   
-    const formattedStartDate = startDate?.toISOString().split('T')[0];
-    const formattedEndDate = endDate?.toISOString().split('T')[0];
+    try {
+      // Get start and end dates from the selected date range
+      const startDate = selectedDateRange[0]?.startDate;
+      const endDate = selectedDateRange[0]?.endDate;
   
-    // Construct the search query based on selected options
-    const query = {
-      continent: selectedContinent,
-      dateRange: startDate && endDate ? `${formattedStartDate}:${formattedEndDate}` : null,
-      maxPrice: maxPrice,
-    };
+      const formattedStartDate = startDate?.toISOString().split('T')[0];
+      const formattedEndDate = endDate?.toISOString().split('T')[0];
   
-    const createQueryString = (name: string, value: string | number | Date | null | undefined) => {
-      const params = new URLSearchParams();
+      // Construct the search query based on selected options
+      const query = {
+        continent: selectedContinent,
+        dateRange: startDate && endDate ? `${formattedStartDate}:${formattedEndDate}` : null,
+        maxPrice: maxPrice,
+      };
   
-      // checking if the value is not null or undefined and maxPrice is not 0
-      if (value !== null && value !== undefined && !(name === 'maxPrice' && value === 0)) {
-        if (value instanceof Date) {
-          params.set(name, value.toISOString());
-        } else {
-          params.set(name, value.toString());
+      const createQueryString = (name: string, value: string | number | Date | null | undefined) => {
+        const params = new URLSearchParams();
+  
+        // checking if the value is not null or undefined and maxPrice is not 0
+        if (value !== null && value !== undefined && !(name === 'maxPrice' && value === 0)) {
+          if (value instanceof Date) {
+            params.set(name, value.toISOString());
+          } else {
+            params.set(name, value.toString());
+          }
         }
-      }
   
-      return params.toString();
-    };
+        return params.toString();
+      };
   
-    // Join the path and query string and navigate to the shop page
-    router.push(
-      `/shop?` +
-        createQueryString('continent', query.continent) +
-        '&' +
-        createQueryString('dateRange', query.dateRange) +
-        '&' +
-        createQueryString('maxPrice', query.maxPrice)
-    );
-  };  
+      router.push(
+        `/shop?` +
+          createQueryString('continent', query.continent) +
+          '&' +
+          createQueryString('dateRange', query.dateRange) +
+          '&' +
+          createQueryString('maxPrice', query.maxPrice)
+      );
+  
+    } catch (error) {
+      console.error("Error during search:", error);
+    } finally {
+      setLoading(false);
+    }
+  };    
   
   return ( 
     <>
@@ -241,7 +249,7 @@ function SearchBar() {
         )}
       </div>
       <div className="ml-10">
-        <Spinner />
+        {loading && <Spinner />}
       </div>
       </div>
     </>
