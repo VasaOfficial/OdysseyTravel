@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useSearchStore } from "@/src/state/store";
 
 import DateRangeComp from "./DateRangeComp";
-import Spinner from "./spinner";
+import Spinner from "./ui/spinner";
 
 import SearchIcon from "@/public/assets/search.webp";
 import Africa from "@/public/assets/search_continents/Africa.webp";
