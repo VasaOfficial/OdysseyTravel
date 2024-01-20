@@ -9,6 +9,7 @@ import FoodIcon from '@/public/assets/destination/food.webp'
 import PlaneIcon from '@/public/assets/destination/plane.webp'
 import BedIcon from '@/public/assets/destination/bed.webp'
 
+import AddToFavorites from "../components/ui/add-to-favorites";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 function Location() {
@@ -37,12 +38,7 @@ function Location() {
           </div>
           <div className="flex gap-10">
             <Image src={CartIcon} alt="Cart icon" width={35} height={35} className="transition-transform transform hover:scale-110 cursor-pointer" />
-            <div className="flex gap-3 justify-center p-3 bg-red-700 rounded-2xl text-white cursor-pointer">
-              <div className="rounded-full bg-white p-1">
-                <Image src={RedHeartIcon} alt="save to favorite" width={20} height={20}/>
-              </div>
-              <p>Remove from the favorites</p>
-            </div>
+            <AddToFavorites />
           </div>
         </div>
         <div className="border-t-2 border-gray-400 w-full my-10" />

@@ -155,8 +155,7 @@ function SearchBar() {
         {destination && (
         <div
           ref={cardRef}
-          className="absolute top-full mt-2 flex flex-col gap-6 rounded border bg-white p-10 shadow-md"
-        >
+          className="absolute top-full mt-2 flex flex-col gap-6 rounded border bg-white p-10 shadow-md" >
           <div className="flex gap-6">
             <div onClick={() => handleContinentSelect("Africa")}>
               <div className="relative h-28 w-28">
