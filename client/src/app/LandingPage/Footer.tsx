@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Logo from '@/public/assets/logoWhite.webp'
 import Link from "next/link";
+import SocialIcons from "../components/ui/social-icons";
 
 import phoneIcon from '@/public/assets/footer/phone.webp'
 import emailIcon from '@/public/assets/footer/email.webp'
-import instagramIcon from '@/public/assets/footer/instagram.webp'
-import xIcon from '@/public/assets/footer/X.webp'
-import facebookIcon from '@/public/assets/footer/facebook.webp'
 
 function Footer() {
     return ( 
@@ -26,21 +24,17 @@ function Footer() {
             <div>
               <h1 className="font-bold text-3xl mb-3">Contact</h1>
               <div className="flex mb-3">
-                <Image src={emailIcon} alt="email icon" width={35} height={35}/>
+                <Image src={emailIcon} alt="email icon" width={30} height={30}/>
                 <p className="ml-3 mt-2">travelagency@gmail.com</p>
               </div>
               <div className="flex">
-                <Image src={phoneIcon} alt="phone icon" width={35} height={35}/>
+                <Image src={phoneIcon} alt="phone icon" width={30} height={30}/>
                 <p className="ml-3 mt-2">032131203192</p>
               </div>
             </div>
-            <div>
+            <div className="flex flex-col items-center">
               <h1 className="font-bold text-3xl mb-3">Social Media</h1>
-              <div className="flex gap-3">
-                <Image className="cursor-pointer" src={instagramIcon} alt="instagram icon" width={35} height={35}/>
-                <Image className="cursor-pointer" src={facebookIcon} alt="facebook icon" width={35} height={35}/>
-                <Image className="cursor-pointer" src={xIcon} alt="X icon" width={35} height={35}/>
-              </div>
+              <SocialIcons />
             </div>
           </div>
           <div className="mt-16 flex w-full items-center justify-center border-t">
