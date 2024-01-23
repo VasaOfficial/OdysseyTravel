@@ -1,22 +1,18 @@
+import '@/src/styles/favoritesBtn.css'
 import Image from "next/image";
-import EmptyHeartIcon from '@/public/assets/card/empty-heart.webp'
-import RedHeartIcon from '@/public/assets/card/red-heart.webp'
 import CartIcon from '@/public/assets/card/cart.webp'
 import jaguar from '@/public/assets/jaguar.jpg'
 import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
+import AddToFavoritesBtn from "./ui/favoritesBtn";
 
 function ItemCard() {
   return ( 
     <div className="card shadow-3d">
       <div className="relative flex flex-col">
         <Image className="rounded-t" src={jaguar} alt="missing image" />
-        <Image
-          className="absolute top-0 right-0 m-2 cursor-pointer transition-transform transform hover:scale-110"
-          src={EmptyHeartIcon}
-          alt="empty heart icon"
-          width={30}
-          height={30}
-        />
+        <div className="favorites-btn-wrapper">
+          <AddToFavoritesBtn />
+        </div>
         <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 pl-4 py-1">
           <p className="m-0 text-white font-semibold text-2xl">Location</p>
           <p className="text-white">Country</p>

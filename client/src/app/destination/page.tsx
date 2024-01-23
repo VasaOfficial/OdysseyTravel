@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../LandingPage/Footer";
 import Image from "next/image";
 import Hawaii from '@/public/assets/hawaii.jpg'
-import RedHeartIcon from '@/public/assets/card/red-heart.webp'
 import CartIcon from '@/public/assets/card/cart.webp'
 import RouteIcon from '@/public/assets/destination/route.webp'
 import FoodIcon from '@/public/assets/destination/food.webp'
