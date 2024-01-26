@@ -1,13 +1,17 @@
 'use client'
 
 import '@/src/styles/blue-button.css'
+import '@/src/styles/login.css'
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm, type SubmitHandler } from "react-hook-form";
+
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
-import { useForm, type SubmitHandler } from "react-hook-form";
+import FacebookIcon from '@/public/assets/facebook-icon.webp'
+import GoogleIcon from '@/public/assets/google-icon.webp'
 
 const signUpSchema = z.object({
   email: z.string().min(5, { message: "Email is required" }).email({ message: "Must be a valid email"}),
@@ -36,53 +40,54 @@ export default function SignIn() {
           <Link href='/'>
             <Image className="mb-10" src={Logo} alt="logo" width={300} height={300} />
           </Link>
-          <h1 className="mb-3 font-extrabold text-6xl">Log in</h1>
-          <div className="flex gap-2">
-            <p>Don't have an account?</p>
-            <Link className="text-sky-600" href='/sign-up'>Register</Link>
-          </div>
-          <div className='flex flex-col max-w-md w-96'>
-            <div className="flex gap-5 my-5 text-center">
-              <div className="text-black p-5 w-full bg-white rounded-lg cursor-pointer">Google</div>
-              <div className="text-black p-5 w-full bg-white rounded-lg cursor-pointer">Facebook</div>
+          <h1 className="mb-12 font-extrabold text-6xl">Log in</h1>
+          {/*FORM */}
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex-column">
+              <label>Email </label>
             </div>
-            <div className="flex items-center">
-              <div className="flex-1 border-t-2 border-white"></div>
-              <p className="mx-4 text-white">or</p>
-              <div className="flex-1 border-t-2 border-white"></div>
+            <div className="inputForm">
+              <svg height="20" viewBox="0 0 32 32" width="20" xmlns="http://www.w3.org/2000/svg"><g id="Layer_3" data-name="Layer 3"><path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path></g></svg>
+              <input
+                {...register("email", {
+                  required: "Email is required",
+                  maxLength: 40,
+                  minLength: 10,
+                })}
+                placeholder="Enter your Email"
+                className="input"
+              />
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
-            {/*FORM */}
-            <form className="flex flex-col mt-5" onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-5">
-                <input
-                  {...register("email", {
-                    required: "Email is required",
-                    maxLength: 40,
-                    minLength: 10,
-                  })}
-                  placeholder="Email"
-                  className="text-black p-4 rounded-lg mb-1 w-full"
-                />
-                {errors.email && <p className="mb-2">{errors.email.message}</p>}
+            <div className="flex-column">
+              <label>Password </label>
+            </div>
+            <div className='inputForm'>
+              <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>
+              <input
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 8,
+                    message: 'Password must have at least 8 characters',
+                  },
+                  maxLength: 25,
+                })}
+                type="password"
+                placeholder="Enter your Password"
+                className="input"
+              />
+              {errors.password && <p className=" text-red-500">{errors.password.message}</p>}
+            </div>
+            <div className="flex-row">
+              <div className='gap-1 flex'>
+                <input type="checkbox" />
+                <label>Remember me </label>
               </div>
-              <div className='mb-5'>
-                <input
-                  {...register('password', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 8,
-                      message: 'Password must have at least 8 characters',
-                    },
-                    maxLength: 25,
-                  })}
-                  type="password"
-                  placeholder="Password"
-                  className="text-black p-4 rounded-lg mb-1 w-full"
-                />
-                {errors.password && <p className=" text-red-500">{errors.password.message}</p>}
-                <Link href='/' className='text-sky-600'>Forgot password?</Link>
-              </div>
-              <button type='submit' className="button">
+              <span className="span">Forgot password?</span>
+            </div>
+            <div className='w-full items-center flex justify-center my-3'>
+              <button type='submit' className="blue-btn">
                 Log In
                 <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
                   <path
@@ -92,8 +97,22 @@ export default function SignIn() {
                   ></path>
                 </svg>
               </button>
-            </form>
-          </div>
+            </div>
+            <p className="p">Don't have an account? 
+              <Link href='/sign-up' className="span">Sign Up</Link>
+            </p>
+            <p className="p line">Or With</p>
+            <div className="flex-row">
+              <button className="btn">
+                <Image src={GoogleIcon} alt='google icon' width={20} height={20}/>
+                Google 
+              </button>
+              <button className="btn">
+                <Image src={FacebookIcon} alt='facebook icon' width={20} height={20}/>
+                Facebook 
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
