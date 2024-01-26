@@ -7,7 +7,7 @@ import AddToFavoritesBtn from "./ui/favoritesBtn";
 
 function ItemCard() {
   return ( 
-    <div className="card shadow-3d">
+    <div className="card shadow-3d cursor-pointer">
       <div className="relative flex flex-col">
         <Image className="rounded-t" src={jaguar} alt="missing image" />
         <div className="favorites-btn-wrapper">

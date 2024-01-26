@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Logo from '@/public/assets/logoWhite.webp'
 import Link from "next/link";
-import SocialIcons from "../components/ui/social-icons";
+import SocialIcons from "./ui/social-icons";
 
 import phoneIcon from '@/public/assets/footer/phone.webp'
 import emailIcon from '@/public/assets/footer/email.webp'
@@ -9,7 +9,7 @@ import emailIcon from '@/public/assets/footer/email.webp'
 function Footer() {
     return ( 
       <footer className="bg-gray-950 text-white w-full">
-        <div className="max-w-[80%] mx-auto py-20">
+        <div className="max-w-[80%] mx-auto py-16">
           <Image src={Logo} alt="Logo" width={400} height={400}/>
           <div className="flex mt-10 justify-between">
             <div className="flex flex-col">

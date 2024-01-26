@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Map from 'react-map-gl';
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
-import Footer from "../LandingPage/Footer";
+import Footer from "../components/Footer";
 import PriceFilterDropdown from "./ui/priceDropdown";
 import ItemCard from "../components/itemCards";
 import {Pagination} from "@nextui-org/react";

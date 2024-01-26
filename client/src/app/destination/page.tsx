@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import Footer from "../LandingPage/Footer";
+import Footer from "../components/Footer";
 import Image from "next/image";
 import Hawaii from '@/public/assets/hawaii.jpg'
 import CartIcon from '@/public/assets/card/cart.webp'
