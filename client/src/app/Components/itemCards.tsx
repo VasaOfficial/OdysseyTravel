@@ -1,9 +1,9 @@
-import '@/src/styles/favoritesBtn.css'
+import '@/src/styles/favorites-btn.css'
 import Image from "next/image";
-import CartIcon from '@/public/assets/card/cart.webp'
 import jaguar from '@/public/assets/jaguar.jpg'
 import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
-import AddToFavoritesBtn from "./ui/favoritesBtn";
+import AddToFavoritesBtn from "./ui/favorites-btn";
+import CartBtn from './ui/cart-btn';
 
 function ItemCard() {
   return ( 
@@ -19,13 +19,9 @@ function ItemCard() {
         </div>
       </div>
       <div className="border-2 border-gray-500 px-3 pb-2 py-1">
-        <p className="text-red-600 mb-2 text-xl font-medium">$1000</p>
-        <div className="flex w-full justify-between">
-          <div className="flex gap-1 text-lg">
-            <p className="text-lime-600 font-medium">7</p>
-            <p className="text-gray-500 font-medium">days</p>
-          </div>
-          <Image className="cursor-pointer group transition-transform transform hover:scale-110" src={CartIcon} alt="cart icon" width={30} height={30} />
+        <div className="flex w-full justify-between items-center py-3">
+          <p className="text-red-600 text-xl font-medium">$1000</p>
+          <CartBtn />
         </div>
         <div className="border-t border-gray-400 my-3"></div>
         <div className="flex w-full justify-between">

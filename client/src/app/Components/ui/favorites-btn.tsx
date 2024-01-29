@@ -1,4 +1,4 @@
-import '@/src/styles/favoritesBtn.css'
+import '@/src/styles/favorites-btn.css'
 
 function AddToFavoritesBtn() {
   return ( 
