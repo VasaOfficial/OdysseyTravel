@@ -59,8 +59,8 @@ export default function SignIn() {
                   boxShadow: "0 0 0 30px white inset !important",
                 }}
               />
-              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
+            {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             <div className="font-semibold text-slate-700">
               <label>Password </label>
             </div>
@@ -79,8 +79,8 @@ export default function SignIn() {
                 placeholder="Enter your Password"
                 className="ml-2 rounded-lg border-none w-5/6 h-full text-black focus:outline-none"
               />
-              {errors.password && <p className=" text-red-500">{errors.password.message}</p>}
             </div>
+            {errors.password && <p className="text-red-500">{errors.password.message}</p>}
             <div className="flex flex-row items-center gap-2 justify-between">
               <div className='gap-1 flex'>
                 <input type="checkbox" />

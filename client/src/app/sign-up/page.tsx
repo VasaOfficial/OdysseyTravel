@@ -65,8 +65,8 @@ export default function SignUp() {
                     boxShadow: "0 0 0 30px white inset !important",
                   }}
                 />
-                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
               </div>
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
               <div className="font-semibold text-slate-700">
                 <label>Password</label>
               </div>
@@ -85,8 +85,8 @@ export default function SignUp() {
                   placeholder="Enter your Password"
                   className="ml-2 rounded-lg border-none w-5/6 h-full text-black focus:outline-none"
                 />
-                {errors.password && <p className=" text-red-500">{errors.password.message}</p>}
               </div>
+              {errors.password && <p className=" text-red-500">{errors.password.message}</p>}
               <div className="font-semibold text-slate-700">
                 <label>Confirm Password</label>
               </div>
@@ -100,8 +100,8 @@ export default function SignUp() {
                   placeholder="Enter your Password"
                   className="ml-2 rounded-lg border-none w-5/6 h-full text-black focus:outline-none"
                 />
-                {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
               </div>
+              {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
               <div className="flex flex-row items-center gap-2 justify-between">
               <span className="text-sm ml-1 font-medium text-slate-700">Already a member?
               <Link className="text-sky-600 ml-2 cursor-pointer" href='/sign-in'>Log in</Link>
