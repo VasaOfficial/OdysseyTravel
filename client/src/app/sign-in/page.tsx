@@ -54,6 +54,10 @@ export default function SignIn() {
                 })}
                 placeholder="Enter your Email"
                 className="ml-2 rounded-lg border-none w-5/6 h-full text-black focus:outline-none"
+                style={{
+                  WebkitAppearance: "none",
+                  boxShadow: "0 0 0 30px white inset !important",
+                }}
               />
               {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
