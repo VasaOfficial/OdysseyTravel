@@ -1,5 +1,6 @@
 version: '3.8'
 services:
+
   web:
     depends_on:
       - api
@@ -8,6 +9,8 @@ services:
     ports:
       - "3000:3000"
     container_name: odyssey-frontend
+    networks:
+      - public
     # url of the backend
     environment:
       NEXT_API_URL: http://localhost:8000
@@ -32,6 +35,9 @@ services:
       - 8000:8000
     environment: 
       DB_URL: lol
+    networks:
+      - public
+      - private
     develop:
       watch:
         - path: ./server/package.json
@@ -48,6 +54,8 @@ services:
     # but for the db service, we're using the image from docker hub so we specify the image as "image: mongo:latest"
     # you can find the image name and tag for mongodb from docker hub here: https://hub.docker.com/_/mongo
     image: mongo:latest
+    networks:
+      - private
 
     # specify the ports to expose for the db service
     # generally, we do this in api service using mongodb atlas. But for demo purposes, we're using a local mongodb instance
@@ -59,11 +67,12 @@ services:
     # we're mounting the volume named "anime" inside the container at /data/db directory
     # this is done so that the data inside the mongodb container is persisted even if the container is stopped
     volumes:
-      - anime:/data/db
-
+      - db-data:/data/db
+networks:
+  public:
+  private:
 # define the volumes to be used by the services
 volumes:
-  anime:
+  db-data:
 
 # to run this composer: docker compose up and also open another termial and enter docker compose watch
-  
