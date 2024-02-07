@@ -5,7 +5,7 @@ import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
 import AddToFavoritesBtn from "./ui/favorites-btn";
 import CartBtn from './ui/cart-btn';
 
-function LocationCard() {
+function ShopCard() {
   return ( 
     <div className="card shadow-3d cursor-pointer hover-scale">
       <div className="relative flex flex-col">
@@ -33,4 +33,4 @@ function LocationCard() {
    );
 }
 
-export default LocationCard;
+export default ShopCard;

@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import PriceFilterDropdown from "./ui/priceDropdown";
-import ItemCard from "../components/LocationCard";
+import ItemCard from "../components/ShopCard";
 import {Pagination} from "@nextui-org/react";
 
 type Coordinates = {

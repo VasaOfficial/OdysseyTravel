@@ -27,7 +27,7 @@ function ContinentSlider() {
     });
   
     return (
-      <main
+      <section
         className='relative min-h-screen select-none overflow-hidden text-white antialiased'>
         <AnimatePresence>
           <BackgroundImage
@@ -58,7 +58,7 @@ function ContinentSlider() {
             </div>
           </div>
         </AnimatePresence>
-      </main>
+      </section>
     );
 }
 
