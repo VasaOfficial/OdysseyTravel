@@ -5,9 +5,9 @@ import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
 import AddToFavoritesBtn from "./ui/favorites-btn";
 import CartBtn from './ui/cart-btn';
 
-function ItemCard() {
+function LocationCard() {
   return ( 
-    <div className="card shadow-3d cursor-pointer">
+    <div className="card shadow-3d cursor-pointer hover-scale">
       <div className="relative flex flex-col">
         <Image className="rounded-t" src={jaguar} alt="missing image" />
         <div className="favorites-btn-wrapper">
@@ -33,4 +33,4 @@ function ItemCard() {
    );
 }
 
-export default ItemCard;
+export default LocationCard;
