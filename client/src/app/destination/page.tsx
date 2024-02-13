@@ -1,12 +1,13 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import Hawaii from '@/public/assets/hawaii.jpg'
-import CartIcon from '@/public/assets/card/cart.webp'
+import Hawaii from '@/public/assets/destination/hawai.jpg'
 import RouteIcon from '@/public/assets/destination/route.webp'
 import FoodIcon from '@/public/assets/destination/food.webp'
 import PlaneIcon from '@/public/assets/destination/plane.webp'
 import BedIcon from '@/public/assets/destination/bed.webp'
+
+import CartBtn from "../components/ui/cart-btn";
 
 import AddToFavorites from "../components/ui/add-to-favorites";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
@@ -17,9 +18,9 @@ function Location() {
       <nav>
         <Navbar />
       </nav>
-      <div className="max-w-[70%] flex flex-col my-20 m-auto">
+      <div className="max-w-[75%] flex flex-col my-20 m-auto">
         <div className="relative flex flex-col">
-          <Image src={Hawaii} alt="hawait image" width={1150} height={450} className="rounded"/>
+            <Image src={Hawaii} alt="hawait image" className="rounded w-full"/>
           <div className="absolute bottom-0 left-0 pl-4 py-3">
             <p className="m-0 text-white font-semibold text-6xl">Location</p>
           </div>
@@ -35,8 +36,8 @@ function Location() {
               <p className="text-gray-700 font-bold text-4xl">days</p>
             </div>
           </div>
-          <div className="flex gap-10">
-            <Image src={CartIcon} alt="Cart icon" width={35} height={35} className="transition-transform transform hover:scale-110 cursor-pointer" />
+          <div className="flex flex-col gap-5 items-end">
+            <CartBtn />
             <AddToFavorites />
           </div>
         </div>
@@ -56,25 +57,6 @@ function Location() {
         <div className="flex gap-7 text-center">
           <Image src={RouteIcon} alt="route icon" height={40} width={40} />
           <p className="font-bold text-3xl">New York - Paris - Dubai - Maldives</p>
-        </div>
-        <div className="border-t-2 border-gray-400 w-full my-10" />
-        <div className="flex flex-col gap-7 justify-start text-3xl">
-          <div className="flex flex-col gap-7 text-3xl">
-            <dl className="flex flex-wrap">
-              <div className="flex flex-col items-start mr-20 font-medium gap-4">
-                <dt>Transport</dt>
-                <dt>Accommodation</dt>
-                <dt>Organizer</dt>
-                <dt>Destination</dt>
-              </div>
-              <div className="flex flex-col gap-4 text-green-500">
-                <dd>Plane, Local transport</dd>
-                <dd>Hotel</dd>
-                <dd>Odyssey Travel</dd>
-                <dd>Asia, Maldives</dd>
-              </div>
-            </dl>
-          </div>
         </div>
         <div className="border-t-2 border-gray-400 w-full my-10" />
         <div className="flex flex-col justify-start">
