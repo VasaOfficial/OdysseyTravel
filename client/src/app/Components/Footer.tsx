@@ -24,11 +24,11 @@ function Footer() {
             <div>
               <h1 className="font-bold text-3xl mb-3">Contact</h1>
               <div className="flex mb-3">
-                <Image src={emailIcon} alt="email icon" width={30} height={30}/>
+                <Image src={emailIcon} alt="email icon" width={30} height={30} className="w-auto h-auto"/>
                 <p className="ml-3 mt-2">travelagency@gmail.com</p>
               </div>
               <div className="flex">
-                <Image src={phoneIcon} alt="phone icon" width={30} height={30}/>
+                <Image src={phoneIcon} alt="phone icon" width={30} height={30} className="w-auto h-auto"/>
                 <p className="ml-3 mt-2">032131203192</p>
               </div>
             </div>
