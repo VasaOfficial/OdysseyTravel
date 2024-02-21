@@ -11,7 +11,7 @@ function Footer() {
       <footer className="bg-gray-950 text-white w-full">
         <div className="max-w-[80%] mx-auto py-16">
           <Image src={Logo} alt="Logo" width={400} height={400}/>
-          <div className="flex mt-10 justify-between">
+          <div className="flex mt-10 justify-between max-lg:flex-col max-lg:items-start max-lg:gap-10 max-lg:justify-center">
             <div className="flex flex-col">
               <h1 className="font-bold text-3xl mb-3">Locations</h1>
               <Link href='/' className="linkWithLine mb-2 cursor-pointer font-extrabold hover:text-[darkRed]">Europe</Link>
@@ -32,7 +32,7 @@ function Footer() {
                 <p className="ml-3 mt-2">032131203192</p>
               </div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center max-lg:items-start">
               <h1 className="font-bold text-3xl mb-3">Social Media</h1>
               <SocialIcons />
             </div>

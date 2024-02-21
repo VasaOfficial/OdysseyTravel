@@ -18,9 +18,12 @@ function ShopCard() {
           <p className="text-white">Country</p>
         </div>
       </div>
-      <div className="border-2 border-gray-500 px-3 pb-2 py-1">
+      <div className="border-2 px-3 pb-2 py-1">
         <div className="flex w-full justify-between items-center py-3">
-          <p className="text-red-600 text-xl font-medium">$1000</p>
+          <div className='flex flex-col'>
+            <p>Price</p>
+            <p className="text-xl font-medium">1,500$</p>
+          </div>
           <CartBtn />
         </div>
         <div className="border-t border-gray-400 my-3"></div>
