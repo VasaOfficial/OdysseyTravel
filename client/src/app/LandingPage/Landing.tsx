@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar";
 
 function Landing() {
   return (
-    <section className="relative h-screen w-full">
+    <section className="relative h-screen w-full overflow-hidden">
       <div className="relative h-full w-full">
         <div className="z-1 relative h-full w-full">
           <Image
