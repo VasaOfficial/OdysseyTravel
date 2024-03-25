@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 
+import React from 'react'
 import { Inter } from "next/font/google";
 import type { Metadata } from 'next';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -50,7 +51,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
