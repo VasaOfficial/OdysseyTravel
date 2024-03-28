@@ -11,6 +11,8 @@ import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
 import FacebookIcon from '@/public/assets/facebook-icon.webp'
 import GoogleIcon from '@/public/assets/google-icon.webp'
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios'
 
 const signUpSchema = z.object({
   email: z.string().min(5, { message: "Email is required" }).email({ message: "Must be a valid email"}),
@@ -21,7 +23,23 @@ type IFormInput = z.infer<typeof signUpSchema>;
 
 export default function SignIn() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
-  const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
+
+  const registerMutation = async (data: IFormInput) => {
+    const response = await axios.post('http://localhost:8000/login', data);
+    return console.log(response.data);
+  };
+
+  const {mutate} = useMutation({
+    mutationFn: registerMutation
+  })
+  
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    try {
+      mutate(data); // Trigger the mutation with form data
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
 
   return (
     <section className="relative h-screen w-full">
