@@ -15,7 +15,7 @@ function Faq() {
                 <h1 className="font-extrabold text-xl">How do I book?</h1>
                 <Image src={plusIcon} alt="plus icon" width={40} height={40} className="max-sm:hidden"/>
               </div>
-              <p className="max-w-[70%] text-lg">Booking with us is easy. Simply visit our website or give us a call to make a reservation. Our friendly team will assist you every step of the way.</p>
+              <p className="max-w-[70%] text-lg">Booking with us is easy. Simply add to cart destinations you want to book and then order it or give us a call to make a reservation. Our friendly team will assist you every step of the way.</p>
             </div>
             <div className="flex flex-col border-4 p-6 mb-5 max-sm:text-center max-sm:items-center">
               <div className="flex justify-between mb-4">
@@ -37,13 +37,6 @@ function Faq() {
                 <Image src={plusIcon} alt="plus icon" width={40} height={40} className="max-sm:hidden"/>
               </div>
               <p className="max-w-[70%] text-lg">Our cancellation policy varies depending on the type of booking and the specific terms and conditions of the travel package. Please refer to our terms and conditions or contact our customer support for more information.</p>
-            </div> 
-            <div className="flex flex-col border-4 p-6 mb-5 max-sm:text-center max-sm:items-center">
-              <div className="flex justify-between mb-4">
-                <h1 className="font-extrabold text-xl">Do you provide discounts?</h1>
-                <Image src={plusIcon} alt="plus icon" width={40} height={40} className="max-sm:hidden"/>
-              </div>
-              <p className="max-w-[70%] text-lg">Yes, we offer discounts on global holiday's and for kid's. There are also discounts for specific packages trough the year. Check out our destinations section for more info.   </p>
             </div>    
           </div>
         </div>
