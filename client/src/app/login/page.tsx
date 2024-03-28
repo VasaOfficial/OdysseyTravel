@@ -58,7 +58,8 @@ export default function SignIn() {
             <Image className="mb-10" src={Logo} alt="logo" width={300} height={300} />
           </Link>
           <h1 className="mb-12 font-extrabold text-6xl">Log in</h1>
-          <form className="flex flex-col gap-2 bg-white p-7 rounded-2xl w-[450px]" onSubmit={handleSubmit(onSubmit)}>
+          <form className="flex flex-col gap-2 bg-white p-7 rounded-2xl w-[450px]" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+          
             <div className="font-semibold text-slate-700">
               <label>Email </label>
             </div>

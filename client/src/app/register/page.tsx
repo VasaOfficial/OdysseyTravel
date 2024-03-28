@@ -64,7 +64,7 @@ export default function SignUp() {
           </Link>
           <h1 className="mb-12 font-extrabold text-6xl">Create new account</h1>
             {/*FORM*/}
-            <form className="flex flex-col gap-2 bg-white p-7 rounded-2xl w-[450px]" onSubmit={handleSubmit(onSubmit)}>
+            <form className="flex flex-col gap-2 bg-white p-7 rounded-2xl w-[450px]" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="font-semibold text-slate-700">
                 <label>Email</label>
               </div>
