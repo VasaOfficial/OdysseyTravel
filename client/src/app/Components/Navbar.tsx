@@ -1,6 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 import Logo from '@/public/assets/logo.webp'
+import { DropdownMenuCheckboxes } from './ui/user-dropdown';
 
 function Navbar() {
     return ( 
@@ -9,10 +10,10 @@ function Navbar() {
           <Link href='/'>
             <Image src={Logo} alt="logo" width={250} height={250}/>
           </Link>
-          <div className="flex gap-5">
-            <Link className="hidden sm:block border border-black p-3" href='/login'>Login</Link>
-            <Link className="hidden sm:block bg-black text-white p-3" href='/register'>Register</Link>
-            <div className="sm:hidden border border-black p-3">Menu</div>
+          <div className="flex">
+            <Link className="hidden sm:block border border-black p-3 mr-4" href='/login'>Login</Link>
+            <Link className="hidden sm:block bg-black text-white p-3 mr-4" href='/register'>Register</Link>
+            <DropdownMenuCheckboxes />
           </div>  
         </div>
       </nav>
