@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { DateRange } from 'react-date-range'
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
-import { useSearchStore } from "@/src/state/store";
+import { useSearchStore } from '@/src/state/store';
 
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
@@ -14,13 +14,13 @@ const DateRangeComp = () => {
   const refOne = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.addEventListener("keydown", hideOnEscape, true)
-    document.addEventListener("click", hideOnClickOutside, true)
+    document.addEventListener('keydown', hideOnEscape, true)
+    document.addEventListener('click', hideOnClickOutside, true)
   }, [])
 
   // hide dropdown on ESC press
   const hideOnEscape = (e: KeyboardEvent) => {
-    if( e.key === "Escape" ) {
+    if( e.key === 'Escape' ) {
       setOpen(false)
     }
   }

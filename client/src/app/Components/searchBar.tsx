@@ -1,19 +1,19 @@
 'use client'
-import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
-import { useSearchStore } from "@/src/state/store";
+import { useSearchStore } from '@/src/state/store';
 
-import DateRangeComp from "./DateRangeComp";
-import Spinner from "./ui/spinner";
+import DateRangeComp from './DateRangeComp';
+import Spinner from './ui/spinner';
 
-import SearchIcon from "@/public/assets/search.webp";
-import Africa from "@/public/assets/search_continents/Africa.webp";
-import Asia from "@/public/assets/search_continents/Asia.webp";
-import Europe from "@/public/assets/search_continents/Europe.webp";
-import NorthAmerica from "@/public/assets/search_continents/NorthAmerica.webp";
-import Oceania from "@/public/assets/search_continents/Oceania.webp";
-import SouthAmerica from "@/public/assets/search_continents/SouthAmerica.webp";
+import SearchIcon from '@/public/assets/search.webp';
+import Africa from '@/public/assets/search_continents/Africa.webp';
+import Asia from '@/public/assets/search_continents/Asia.webp';
+import Europe from '@/public/assets/search_continents/Europe.webp';
+import NorthAmerica from '@/public/assets/search_continents/NorthAmerica.webp';
+import Oceania from '@/public/assets/search_continents/Oceania.webp';
+import SouthAmerica from '@/public/assets/search_continents/SouthAmerica.webp';
 import calendarIcon from '@/public/assets/search_bar/calendar.webp'
 import priceIcon from '@/public/assets/search_bar/price-tag.webp'
 import globeIcon from '@/public/assets/search_bar/globe.webp'
@@ -52,10 +52,10 @@ function SearchBar() {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -96,7 +96,7 @@ function SearchBar() {
       };
   
       router.push(
-        `/shop?` +
+        '/shop?' +
           createQueryString('continent', query.continent) +
           '&' +
           createQueryString('dateRange', query.dateRange) +
@@ -105,7 +105,7 @@ function SearchBar() {
       );
   
     } catch (error) {
-      console.error("Error during search:", error);
+      console.error('Error during search:', error);
     } finally {
       setLoading(false);
     }
@@ -119,7 +119,7 @@ function SearchBar() {
           onClick={OpenDestinations}>
             <div className="flex gap-3">
               <Image src={globeIcon} alt="globe icon" height={25} width={25}/>
-              <p>{selectedContinent || "Search Destination"}</p>
+              <p>{selectedContinent || 'Search Destination'}</p>
             </div>
           </div>
           <div className="border-r border-gray-600" />
@@ -157,40 +157,40 @@ function SearchBar() {
           ref={cardRef}
           className="absolute top-full mt-2 flex flex-col gap-6 rounded border bg-white p-10 shadow-md" >
           <div className="flex gap-6">
-            <div onClick={() => handleContinentSelect("Africa")}>
+            <div onClick={() => handleContinentSelect('Africa')}>
               <div className="relative h-28 w-28">
                 <Image
                   src={Africa}
                   quality={100}
                   alt="Africa"
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:'cover'}}
                   className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
                 />
               </div>
               <p className="text-black text-left font-medium">Africa</p>
             </div>
-            <div onClick={() => handleContinentSelect("Europe")}>
+            <div onClick={() => handleContinentSelect('Europe')}>
               <div className="relative h-28 w-28">
                 <Image
                   src={Europe}
                   quality={100}
                   alt="Europe"
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:'cover'}}
                   className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
                 />
               </div>
               <p className="text-black text-left font-medium">Europe</p>
             </div>
-            <div onClick={() => handleContinentSelect("Asia")}>
+            <div onClick={() => handleContinentSelect('Asia')}>
               <div className="relative h-28 w-28">
                 <Image
                   src={Asia}
                   quality={100}
                   alt="Asia"
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:'cover'}}
                   className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
                 />
               </div>
@@ -198,40 +198,40 @@ function SearchBar() {
             </div>
           </div>
           <div className="flex gap-6">
-            <div onClick={() => handleContinentSelect("North America")}>
+            <div onClick={() => handleContinentSelect('North America')}>
               <div className="relative h-28 w-28">
                 <Image
                   src={NorthAmerica}
                   quality={100}
                   alt="North America"
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:'cover'}}
                   className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
                 />
               </div>
               <p className="text-black text-left font-medium">North America</p>
             </div>
-            <div onClick={() => handleContinentSelect("South America")}>
+            <div onClick={() => handleContinentSelect('South America')}>
               <div className="relative h-28 w-28">
                 <Image
                   src={SouthAmerica}
                   quality={100}
                   alt="South America"
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:'cover'}}
                   className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
                 />
               </div>
               <p className="text-black text-left font-medium">South America</p>
             </div>
-            <div onClick={() => handleContinentSelect("Oceania")}>
+            <div onClick={() => handleContinentSelect('Oceania')}>
               <div className="relative h-28 w-28">
                 <Image
                   src={Oceania}
                   quality={100}
                   alt="Oceania"
                   fill
-                  style={{objectFit:"cover"}}
+                  style={{objectFit:'cover'}}
                   className="cursor-pointer rounded-lg border border-gray-400 hover:border-gray-900"
                 />
               </div>

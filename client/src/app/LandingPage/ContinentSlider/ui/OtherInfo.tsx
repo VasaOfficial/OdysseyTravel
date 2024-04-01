@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { type Data } from "../ContinentSlider";
+import { motion } from 'framer-motion';
+import { type Data } from '../ContinentSlider';
 
 type Props = {
   data: Data;
@@ -7,7 +7,7 @@ type Props = {
 
 const item = {
   hidden: {
-    y: "100%",
+    y: '100%',
     transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 0.85 },
   },
   visible: {
@@ -18,7 +18,7 @@ const item = {
 
 function OtherInfo({ data }: Props) {
   return (
-    <motion.div initial="hidden" animate={"visible"} className=" flex flex-col">
+    <motion.div initial="hidden" animate={'visible'} className=" flex flex-col">
       <AnimatedText
         className="my-1 text-4xl font-semibold md:my-3 md:text-8xl md:leading-[100px]"
         data={data?.title}
@@ -43,8 +43,8 @@ const AnimatedText = ({
   return (
     <span
       style={{
-        overflow: "hidden",
-        display: "inline-block",
+        overflow: 'hidden',
+        display: 'inline-block',
       }}
     >
       <motion.p className={` ${className}`} variants={item} key={data}>

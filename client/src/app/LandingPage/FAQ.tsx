@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import plusIcon from '@/public/assets/plus.webp'
 
 function Faq() {

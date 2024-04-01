@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import Controls from "./ui/Controls";
-import SlideInfo from "./ui/SlideInfo";
-import Slides from "./ui/Slides";
-import BackgroundImage from "./ui/BackgroundImage";
+import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import Controls from './ui/Controls';
+import SlideInfo from './ui/SlideInfo';
+import Slides from './ui/Slides';
+import BackgroundImage from './ui/BackgroundImage';
 
 export type Data = {
     img: string;
@@ -67,39 +67,39 @@ export default ContinentSlider;
 const sliderData = [
   {
     img: '/assets/continentsSlider/Europe.webp',
-    title: "Europe",
+    title: 'Europe',
     description:
-    "Discover the charm of historic cities, cultural treasures, and picturesque landscapes, where every cobblestone street tells a story.",
+    'Discover the charm of historic cities, cultural treasures, and picturesque landscapes, where every cobblestone street tells a story.',
   },
   {
     img: '/assets/continentsSlider/Asia.webp',
-    title: "Asia",
+    title: 'Asia',
     description:
-      "Immerse yourself in ancient traditions, modern marvels, and vibrant cityscapes, as Asia seamlessly blends history with innovation.",
+      'Immerse yourself in ancient traditions, modern marvels, and vibrant cityscapes, as Asia seamlessly blends history with innovation.',
   },
   {
     img: '/assets/continentsSlider/Africa.webp',
-    title: "Africa",
+    title: 'Africa',
     description:
-      "Experience the rich tapestry of cultures, breathtaking wildlife, and diverse landscapes, from the Sahara Desert to the Serengeti plains.",
+      'Experience the rich tapestry of cultures, breathtaking wildlife, and diverse landscapes, from the Sahara Desert to the Serengeti plains.',
   },
   {
     img: '/assets/continentsSlider/Oceania.webp',
-    title: "Oceania",
+    title: 'Oceania',
     description:
-      "Embark on a paradise of islands and coral reefs, where the Pacific Ocean meets unique cultures, offering a perfect blend of relaxation and adventure.",
+      'Embark on a paradise of islands and coral reefs, where the Pacific Ocean meets unique cultures, offering a perfect blend of relaxation and adventure.',
   },
   {
     img: '/assets/continentsSlider/NorthAmerica.webp',
-    title: "North America",
+    title: 'North America',
     description:
-      "From the stunning natural wonders of Yellowstone to the bustling metropolises like New York City, explore the vast diversity and endless opportunities for adventure.",
+      'From the stunning natural wonders of Yellowstone to the bustling metropolises like New York City, explore the vast diversity and endless opportunities for adventure.',
   },
   {
     img: '/assets/continentsSlider/SouthAmerica.webp',
-    title: "South America",
+    title: 'South America',
     description:
-      "Journey through the Amazon rainforest, ancient ruins of Machu Picchu, and vibrant festivals, as South America captivates with its natural beauty and rich heritage.",
+      'Journey through the Amazon rainforest, ancient ruins of Machu Picchu, and vibrant festivals, as South America captivates with its natural beauty and rich heritage.',
   },
 ];
   

@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import OtherInfo from "./OtherInfo";
-import { type Data, type CurrentSlideData } from "../ContinentSlider";
+import { motion } from 'framer-motion';
+import OtherInfo from './OtherInfo';
+import { type Data, type CurrentSlideData } from '../ContinentSlider';
 
 type Props = {
   transitionData: Data;

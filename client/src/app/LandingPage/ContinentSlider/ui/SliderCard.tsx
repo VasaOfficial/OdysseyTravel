@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { type Data } from "../ContinentSlider";
+import { motion } from 'framer-motion';
+import { type Data } from '../ContinentSlider';
 
 type Props = {
   data: Data;
@@ -20,7 +20,7 @@ function SliderCard({ data }: Props) {
       }}
       exit={{ scale: 0.8, opacity: 0 }}
       transition={{
-        type: "spring",
+        type: 'spring',
         damping: 20,
         stiffness: 100,
       }}

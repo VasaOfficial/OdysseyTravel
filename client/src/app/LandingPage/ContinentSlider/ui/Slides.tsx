@@ -1,5 +1,5 @@
-import { type Data } from "../ContinentSlider";
-import SliderCard from "./SliderCard";
+import { type Data } from '../ContinentSlider';
+import SliderCard from './SliderCard';
 
 type Props = {
   data: Data[];

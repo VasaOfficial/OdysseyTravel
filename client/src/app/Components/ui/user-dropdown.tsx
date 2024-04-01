@@ -19,17 +19,21 @@ export function DropdownMenuCheckboxes() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size='icon' className="overflow-hidden rounded-full">
-          <Image src={UserLogo} width={40} height={40} alt="Avatar" className="overflow-hidden opacity-90"/>
+          <Image src={UserLogo} width={40} height={40} alt="Avatar" className="overflow-hidden"/>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
+        <DropdownMenuLabel>
+          My Account <br />
+          <p className='text-gray-400 text-xs'>dynamicemailhere@gmail.com</p>
+        </DropdownMenuLabel> 
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem>Saved</DropdownMenuItem>
+        <DropdownMenuItem>Cart</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Logout</DropdownMenuItem>
+      </DropdownMenuContent>
     </DropdownMenu>
   )
 }

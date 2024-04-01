@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { type Data, type CurrentSlideData } from "../ContinentSlider";
+import { motion } from 'framer-motion';
+import { type Data, type CurrentSlideData } from '../ContinentSlider';
 
 type Props = {
   transitionData: Data;
@@ -15,7 +15,7 @@ function BackgroundImage({ transitionData, currentSlideData }: Props) {
           layoutId={transitionData.img}
           alt="Transition Image"
           transition={{
-            opacity: { ease: "linear" },
+            opacity: { ease: 'linear' },
             layout: { duration: 0.6 },
           }}
           className=" absolute left-0 top-0 z-10 h-full w-full object-cover brightness-50"
@@ -24,7 +24,7 @@ function BackgroundImage({ transitionData, currentSlideData }: Props) {
       )}
       <motion.img
         alt="Current Image"
-        key={currentSlideData.data.img + "transition"}
+        key={currentSlideData.data.img + 'transition'}
         src={currentSlideData.data.img}
         className=" absolute left-0 top-0 h-full w-full object-cover brightness-50"
       />

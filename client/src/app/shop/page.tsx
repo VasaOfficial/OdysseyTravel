@@ -2,12 +2,12 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import Map from 'react-map-gl';
-import Navbar from "../components/Navbar";
-import SearchBar from "../components/SearchBar";
-import Footer from "../components/Footer";
-import PriceFilterDropdown from "./ui/priceDropdown";
-import ItemCard from "../components/ShopCard";
-import {Pagination} from "@nextui-org/react";
+import Navbar from '../components/Navbar';
+import SearchBar from '../components/SearchBar';
+import Footer from '../components/Footer';
+import PriceFilterDropdown from './ui/priceDropdown';
+import ItemCard from '../components/ShopCard';
+import {Pagination} from '@nextui-org/react';
 
 type Coordinates = {
   latitude: number;
@@ -15,11 +15,11 @@ type Coordinates = {
   zoom: number;
 }
 
-type Continent = "Africa" | "Asia" | "Europe" | "North America" | "South America" | "Oceania";
+type Continent = 'Africa' | 'Asia' | 'Europe' | 'North America' | 'South America' | 'Oceania';
 
 function Shop() {
   const searchParams = useSearchParams();
-  const [continent, setContinent] = useState("");
+  const [continent, setContinent] = useState('');
   const [viewport, setViewport] = useState<Coordinates>({
     longitude: 0,
     latitude: 0,
@@ -29,7 +29,7 @@ function Shop() {
   useEffect(() => {
     // let maxPrice = searchParams.get("maxPrice");
     // let dateRange = searchParams.get("dateRange");
-    const continentFromParams = searchParams.get("continent") as Continent;
+    const continentFromParams = searchParams.get('continent') as Continent;
     if (continentFromParams) {
       setContinent(continentFromParams);
 
@@ -45,12 +45,12 @@ function Shop() {
   }, [searchParams]);
 
   const continentCoordinates = {
-    "Africa": { latitude: 0, longitude: 17, zoom: 3.2 },
-    "Asia": { latitude: 55, longitude: 90, zoom: 2.4 },
-    "Europe": { latitude: 54, longitude: 15, zoom: 3.5 },
-    "North America": { latitude: 54, longitude: -105, zoom: 2.8 },
-    "South America":{ latitude: -14, longitude: -51, zoom: 3 },
-    "Oceania": { latitude: -24, longitude: 145, zoom: 3.1 },
+    'Africa': { latitude: 0, longitude: 17, zoom: 3.2 },
+    'Asia': { latitude: 55, longitude: 90, zoom: 2.4 },
+    'Europe': { latitude: 54, longitude: 15, zoom: 3.5 },
+    'North America': { latitude: 54, longitude: -105, zoom: 2.8 },
+    'South America':{ latitude: -14, longitude: -51, zoom: 3 },
+    'Oceania': { latitude: -24, longitude: 145, zoom: 3.1 },
   };
   
   return (

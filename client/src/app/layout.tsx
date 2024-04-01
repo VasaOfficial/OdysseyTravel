@@ -1,14 +1,14 @@
-import "../styles/globals.css";
+import '../styles/globals.css';
 
 import React from 'react'
-import { Inter } from "next/font/google";
+import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { Providers } from "./providers";
+import { Providers } from './providers';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
+  subsets: ['latin'],
+  variable: '--font-sans',
 });
 
 export const metadata: Metadata = {

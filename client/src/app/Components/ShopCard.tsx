@@ -1,8 +1,8 @@
 import '@/src/styles/favorites-btn.css'
-import Image from "next/image";
+import Image from 'next/image';
 import jaguar from '@/public/assets/jaguar.jpg'
 import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
-import AddToFavoritesBtn from "./ui/favorites-btn";
+import AddToFavoritesBtn from './ui/favorites-btn';
 import CartBtn from './ui/cart-btn';
 
 function ShopCard() {
