@@ -1,6 +1,6 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Map from 'react-map-gl';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
@@ -17,6 +17,13 @@ type Coordinates = {
 
 type Continent = 'Africa' | 'Asia' | 'Europe' | 'North America' | 'South America' | 'Oceania';
 
+function ShopSuspense() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}> {/* HERE ADD LOADING SKELETON */}
+      <Shop />
+    </Suspense>
+  );
+}
 function Shop() {
   const searchParams = useSearchParams();
   const [continent, setContinent] = useState('');
@@ -99,4 +106,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default ShopSuspense;

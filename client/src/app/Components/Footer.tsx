@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from 'next/image';
 import Logo from '@/public/assets/logoWhite.webp'
-import Link from "next/link";
-import SocialIcons from "./ui/social-icons";
+import Link from 'next/link';
+import SocialIcons from './ui/social-icons';
 
 import phoneIcon from '@/public/assets/footer/phone.webp'
 import emailIcon from '@/public/assets/footer/email.webp'
