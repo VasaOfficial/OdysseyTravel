@@ -2,11 +2,11 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, Suspense } from 'react';
 import Map from 'react-map-gl';
-import Navbar from '../components/Navbar';
-import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
+import Navbar from '@/src/app/components/Navbar';
+import SearchBar from '@/src/app/components/SearchBar';
+import Footer from '@/src/app/components/Footer';
 import PriceFilterDropdown from './ui/priceDropdown';
-import ItemCard from '../components/ShopCard';
+import ItemCard from '@/src/app/components/ShopCard';
 import {Pagination} from '@nextui-org/react';
 
 type Coordinates = {
