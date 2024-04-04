@@ -6,8 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
 import Link from 'next/link';
-import axios from 'axios'
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios'
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -30,8 +30,17 @@ export default function SignUp() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
 
   const registerMutation = async (data: IFormInput) => {
-    const response = await axios.post('http://localhost:8000/register', data);
-    return console.log(response.data);
+    try {
+      const response = await axios.post('/api/register', data);
+  
+      console.log('Registration successful:', response.data);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error('Registration error:', err.response?.data);
+      } else {
+        console.error('Registration error:', err);
+      }
+    }
   };
 
   const {mutate} = useMutation({
