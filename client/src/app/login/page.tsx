@@ -7,9 +7,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { CognitoIdentityProviderClient } from '@aws-sdk/client-cognito-identity-provider';
-import { InitiateAuthCommand, AuthFlowType } from '@aws-sdk/client-cognito-identity-provider';
-import { createHmac } from 'crypto';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from '../lib/firebase/config';
+import { useRouter } from 'next/navigation';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -25,49 +25,17 @@ type IFormInput = z.infer<typeof signUpSchema>;
 
 export default function Login() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)})
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
+  const router = useRouter()
 
   const loginMutation = async (data: IFormInput) => {
     const { email, password } = data;
     try {
-      const client = new CognitoIdentityProviderClient({
-        region: process.env.AWS_COGNITO_REGION,
-        credentials: {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        },
-      });
-
-      const calculateSecretHash = (clientId: string, clientSecret: string, username: string) => {
-        const message = username + clientId;
-        const key = Buffer.from(clientSecret, 'utf8');
-        const hmac = createHmac('sha256', key);
-        hmac.update(message);
-        const digest = hmac.digest('base64');
-        return digest;
-      };
-      
-      const clientId = process.env.COGNITO_CLIENT_ID;
-      const clientSecret = process.env.COGNITO_CLIENT_SECRET;
-      const username = email;
-      
-      const secretHash = calculateSecretHash(clientId, clientSecret, username);
-  
-      const params = {
-        AuthFlow: AuthFlowType.USER_PASSWORD_AUTH,
-        AuthParameters: {
-          USERNAME: email,
-          PASSWORD: password,
-          SECRET_HASH: secretHash,
-        },
-        ClientId: process.env.COGNITO_CLIENT_ID,
-      };
-  
-      const command = new InitiateAuthCommand(params);
-      const response = await client.send(command);
-  
-      console.log(response);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+      const res = await signInWithEmailAndPassword(email, password)
       console.log('User was successfully signed in')
-      return response; 
+      router.push('/')
     } catch (error) {
       console.error('Login error:', error);
       throw error;

@@ -7,7 +7,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { auth } from '../lib/firebase/config';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -29,17 +30,18 @@ type IFormInput = z.infer<typeof signUpSchema>;
 export default function SignUp() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
+
   const registerMutation = async (data: IFormInput) => {
+    const { email, password } = data
     try {
-      const response = await axios.post('/api/register', data);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+      const res = await createUserWithEmailAndPassword(email, password)
   
-      console.log('Registration successful:', response.data);
+      console.log('Registration successful:', res);
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        console.error('Registration error:', err.response?.data);
-      } else {
         console.error('Registration error:', err);
-      }
     }
   };
 
@@ -143,19 +145,24 @@ export default function SignUp() {
               </button>
             </div>
             <p className="text-center text-black text-sm my-1">Or With</p>
+            </form>
             <div className="flex flex-row items-center gap-2 justify-between">
-              <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out">
+            <form action="http://localhost:8000/api/google" method="get">
+              <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
+               type="submit">
                 <Image src={GoogleIcon} alt='google icon' width={20} height={20}/>
                 Google 
               </button>
+            </form>
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out">
                 <Image src={FacebookIcon} alt='facebook icon' width={20} height={20}/>
                 Facebook 
               </button>
             </div>
-            </form>
           </div>
         </div>
     </section>
   );
 }
+
+// npm uninstall @aws-sdk/client-cognito-identity-provider axios googleapis next-auth nextjs-cors    
