@@ -164,5 +164,3 @@ export default function SignUp() {
     </section>
   );
 }
-
-// npm uninstall @aws-sdk/client-cognito-identity-provider axios googleapis next-auth nextjs-cors    
