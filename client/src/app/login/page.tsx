@@ -10,7 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 import { auth } from '../lib/firebase/config';
-import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
+import { UserAuth } from '../context/AuthContext';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -29,6 +29,7 @@ export default function Login() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
   const router = useRouter()
+  const { GithubSignIn, GoogleSignIn } = UserAuth()
 
   const loginMutation = async (data: IFormInput) => {
     const { email, password } = data;
@@ -36,6 +37,7 @@ export default function Login() {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       const res = await signInWithEmailAndPassword(email, password)
       console.log('User was successfully signed in')
+      console.log(res)
       router.push('/')
     } catch (error) {
       console.error('Login error:', error);
@@ -55,27 +57,29 @@ export default function Login() {
     }
   };
 
-  const GoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
+  const handleGoogleSignIn = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      // Handle successful sign-in here (e.g., navigate to a different page)
-      console.log(result);
+      if (GoogleSignIn) {
+        await GoogleSignIn();
+        router.push('/')
+      } else {
+        console.error('logOut function is not defined.');
+      }
     } catch (error) {
-      // Handle errors here
-      console.error(error);
+      console.log(error);
     }
   };
 
-  const GithubSignIn = async () => {
-    const provider = new GithubAuthProvider();
+  const handleGithubSignIn = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      // Handle successful sign-in here (e.g., navigate to a different page)
-      console.log(result);
+      if (GithubSignIn) {
+        await GithubSignIn();
+        router.push('/')
+      } else {
+        console.error('logOut function is not defined.');
+      }
     } catch (error) {
-      // Handle errors here
-      console.error(error);
+      console.log(error);
     }
   };
   
@@ -160,12 +164,12 @@ export default function Login() {
             </form>
             <div className="flex flex-row items-center gap-2 justify-between">
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
-              onClick={GoogleSignIn}>
+              onClick={handleGoogleSignIn}>
                 <Image src={GoogleIcon} alt='google button' width={20} height={20}/>
                 Google 
               </button>
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
-              onClick={GithubSignIn}>
+              onClick={handleGithubSignIn}>
                 <Image src={GithubIcon} alt='github button' width={20} height={20}/>
                 Github 
               </button>
