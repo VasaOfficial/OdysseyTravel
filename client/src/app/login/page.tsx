@@ -10,11 +10,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 import { auth } from '../lib/firebase/config';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
-import FacebookIcon from '@/public/assets/facebook-icon.webp'
+import GithubIcon from '@/public/assets/github.webp'
 import GoogleIcon from '@/public/assets/google-icon.webp'
 
 const signUpSchema = z.object({
@@ -57,6 +57,18 @@ export default function Login() {
 
   const GoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // Handle successful sign-in here (e.g., navigate to a different page)
+      console.log(result);
+    } catch (error) {
+      // Handle errors here
+      console.error(error);
+    }
+  };
+
+  const GithubSignIn = async () => {
+    const provider = new GithubAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
       // Handle successful sign-in here (e.g., navigate to a different page)
@@ -149,12 +161,13 @@ export default function Login() {
             <div className="flex flex-row items-center gap-2 justify-between">
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
               onClick={GoogleSignIn}>
-                <Image src={GoogleIcon} alt='google icon' width={20} height={20}/>
+                <Image src={GoogleIcon} alt='google button' width={20} height={20}/>
                 Google 
               </button>
-              <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out">
-                <Image src={FacebookIcon} alt='facebook icon' width={20} height={20}/>
-                Facebook 
+              <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
+              onClick={GithubSignIn}>
+                <Image src={GithubIcon} alt='github button' width={20} height={20}/>
+                Github 
               </button>
             </div>
         </div>
