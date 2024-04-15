@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -30,6 +31,8 @@ export default function Login() {
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
   const router = useRouter()
   const { GithubSignIn, GoogleSignIn } = UserAuth()
+  const [honeypotValue, setHoneypotValue] = useState('');
+  const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
 
   const loginMutation = async (data: IFormInput) => {
     const { email, password } = data;
@@ -48,8 +51,19 @@ export default function Login() {
   const {mutate} = useMutation({
     mutationFn: loginMutation
   })
+
+  useEffect(() => {
+    // Generate a random field name for the honeypot field
+    const fieldName = Math.random().toString(36).substring(7);
+    setHoneypotFieldName(fieldName);
+  }, []);
   
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    // adds honeypots against bots
+    if (honeypotValue) { 
+      return;
+    }
+    
     try {
       mutate(data); // Trigger the mutation with form data
     } catch (error) {

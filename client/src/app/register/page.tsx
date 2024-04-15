@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '../lib/firebase/config';
@@ -31,6 +32,8 @@ type IFormInput = z.infer<typeof signUpSchema>;
 
 export default function SignUp() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
+  const [honeypotValue, setHoneypotValue] = useState('');
+  const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
@@ -53,8 +56,19 @@ export default function SignUp() {
   const {mutate} = useMutation({
     mutationFn: registerMutation
   })
+
+  useEffect(() => {
+    // Generate a random field name for the honeypot field
+    const fieldName = Math.random().toString(36).substring(7);
+    setHoneypotFieldName(fieldName);
+  }, []);
   
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    // adds honeypots against bots
+    if (honeypotValue) { 
+      return;
+    }
+
     try {
       mutate(data); // Trigger the mutation with form data
     } catch (error) {
@@ -160,23 +174,30 @@ export default function SignUp() {
                 </div>
                 {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                 <div className="flex flex-row items-center gap-2 justify-between">
-                <span className="text-sm ml-1 font-medium text-slate-700">Already a member?
-                <Link className="text-sky-600 ml-2 cursor-pointer" href='/sign-in'>Log in</Link>
-                </span>
-              </div>
-              <div className='w-full items-center flex justify-center my-5'>
-                <button type='submit' className="blue-btn">
-                  Register
-                  <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
+                  <span className="text-sm ml-1 font-medium text-slate-700">Already a member?
+                    <Link className="text-sky-600 ml-2 cursor-pointer" href='/sign-in'>Log in</Link>
+                  </span>
+                </div>
+                <div className='w-full items-center flex justify-center my-5'>
+                  <button type='submit' className="blue-btn">
+                    Register
+                    <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
                     <path
                       clipRule="evenodd"
                       d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
                       fillRule="evenodd"
                     ></path>
-                  </svg>
-                </button>
-              </div>
-              <p className="text-center text-black text-sm my-1">Or With</p>
+                    </svg>
+                  </button>
+                </div>
+                <p className="text-center text-black text-sm my-1">Or With</p>
+                <input
+                  type="text"
+                  value={honeypotValue}
+                  onChange={(e) => setHoneypotValue(e.target.value)}
+                  className="hidden"
+                  name={honeypotFieldName}
+                />
               </form>
               <div className="flex flex-row items-center gap-2 justify-between">
                 <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
