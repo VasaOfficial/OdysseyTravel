@@ -54,7 +54,6 @@ export default function SignUp() {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       const res = await createUserWithEmailAndPassword(email, password)
       router.push('/')
-      console.log(res)
       console.log('Registration successful');
     } catch (err) {
         console.error('Registration error:', err);
@@ -104,7 +103,6 @@ export default function SignUp() {
           console.error('Error submitting form:', error);
         }
       } else {
-        // If reCAPTCHA verification fails, handle accordingly
         console.error('reCAPTCHA verification failed');
       }
     } catch (error) {

@@ -48,7 +48,6 @@ export default function Login() {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       const res = await signInWithEmailAndPassword(email, password)
       console.log('User was successfully signed in')
-      console.log(res)
       router.push('/')
     } catch (error) {
       console.error('Login error:', error);
@@ -99,7 +98,6 @@ export default function Login() {
           console.error('Error submitting form:', error);
         }
       } else {
-        // If reCAPTCHA verification fails, handle accordingly
         console.error('reCAPTCHA verification failed');
       }
     } catch (error) {
