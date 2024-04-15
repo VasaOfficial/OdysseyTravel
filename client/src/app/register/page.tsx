@@ -15,6 +15,8 @@ import { useRouter } from 'next/navigation';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios from 'axios'
 import { type AxiosResponse } from 'axios';
+import { sendEmailVerification} from 'firebase/auth';
+import EmailVerificationCard from '../components/ui/email-verification';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -41,8 +43,7 @@ export default function SignUp() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
   const [honeypotValue, setHoneypotValue] = useState('');
   const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const [verificationSent, setVerificationSent] = useState(false);
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const router = useRouter()
@@ -51,8 +52,14 @@ export default function SignUp() {
   const registerMutation = async (data: IFormInput) => {
     const { email, password } = data
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       const res = await createUserWithEmailAndPassword(email, password)
+      if (res?.user) { // Add null check for res and res.user
+        await sendEmailVerification(res.user);
+        setVerificationSent(true);
+        console.log('Verification successful');
+      } else {
+        console.error('User creation error: User object not available');
+      }
       router.push('/')
       console.log('Registration successful');
     } catch (err) {
@@ -134,6 +141,11 @@ export default function SignUp() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  // Update the state to hide the EmailVerificationCard
+  const handleDismiss = () => {
+    setVerificationSent(false);
   };
 
   return (
@@ -245,9 +257,12 @@ export default function SignUp() {
                   Github
                 </button>
               </div>
-            </div>
           </div>
         </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          {verificationSent && <EmailVerificationCard isVisible={verificationSent} onDismiss={handleDismiss} />}
+        </div>
+      </div>
     </section>
   );
 }
