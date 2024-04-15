@@ -12,6 +12,9 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 import { auth } from '../lib/firebase/config';
 import { UserAuth } from '../context/AuthContext';
+import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
+import axios from 'axios'
+import { type AxiosResponse } from 'axios';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -25,6 +28,10 @@ const signUpSchema = z.object({
 
 type IFormInput = z.infer<typeof signUpSchema>;
 
+type RecaptchaResponse = {
+  success: boolean;
+}
+
 export default function Login() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)})
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
@@ -33,6 +40,7 @@ export default function Login() {
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const [honeypotValue, setHoneypotValue] = useState('');
   const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const loginMutation = async (data: IFormInput) => {
     const { email, password } = data;
@@ -58,16 +66,44 @@ export default function Login() {
     setHoneypotFieldName(fieldName);
   }, []);
   
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     // adds honeypots against bots
     if (honeypotValue) { 
       return;
     }
+
+    if (!executeRecaptcha) {
+      return
+    }
     
     try {
-      mutate(data); // Trigger the mutation with form data
+      const gRecaptchaToken = await executeRecaptcha('registerSubmit');
+
+      const response: AxiosResponse<RecaptchaResponse> = await axios({
+        method: 'post',
+        url: '/api/recaptcha',
+        data: {
+          gRecaptchaToken,
+        },
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response?.data?.success === true) {
+        // If reCAPTCHA verification is successful, proceed with form submission
+        try {
+          mutate(data); // Trigger the mutation with form data
+        } catch (error) {
+          console.error('Error submitting form:', error);
+        }
+      } else {
+        // If reCAPTCHA verification fails, handle accordingly
+        console.error('reCAPTCHA verification failed');
+      }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error verifying reCAPTCHA:', error);
     }
   };
 
@@ -172,9 +208,16 @@ export default function Login() {
                 </button>
               </div>
               <p className="text-center text-black text-sm mb-5">Don't have an account? 
-                <Link href='/sign-up' className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Sign Up</Link>
+                <Link href='/register' className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Sign Up</Link>
               </p>
               <p className="text-center text-black text-sm my-1">Or With</p>
+              <input
+                type="text"
+                value={honeypotValue}
+                onChange={(e) => setHoneypotValue(e.target.value)}
+                className="hidden"
+                name={honeypotFieldName}
+              />
             </form>
             <div className="flex flex-row items-center gap-2 justify-between">
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"

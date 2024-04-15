@@ -12,6 +12,9 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '../lib/firebase/config';
 import { UserAuth } from '../context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
+import axios from 'axios'
+import { type AxiosResponse } from 'axios';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -30,6 +33,10 @@ const signUpSchema = z.object({
 
 type IFormInput = z.infer<typeof signUpSchema>;
 
+type RecaptchaResponse = {
+  success: boolean;
+}
+
 export default function SignUp() {
   const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
   const [honeypotValue, setHoneypotValue] = useState('');
@@ -39,6 +46,7 @@ export default function SignUp() {
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const router = useRouter()
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   const registerMutation = async (data: IFormInput) => {
     const { email, password } = data
@@ -63,16 +71,44 @@ export default function SignUp() {
     setHoneypotFieldName(fieldName);
   }, []);
   
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     // adds honeypots against bots
     if (honeypotValue) { 
       return;
     }
 
+    if (!executeRecaptcha) {
+      return
+    }
+
     try {
-      mutate(data); // Trigger the mutation with form data
+      const gRecaptchaToken = await executeRecaptcha('registerSubmit');
+
+      const response: AxiosResponse<RecaptchaResponse> = await axios({
+        method: 'post',
+        url: '/api/recaptcha',
+        data: {
+          gRecaptchaToken,
+        },
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response?.data?.success === true) {
+        // If reCAPTCHA verification is successful, proceed with form submission
+        try {
+          mutate(data); // Trigger the mutation with form data
+        } catch (error) {
+          console.error('Error submitting form:', error);
+        }
+      } else {
+        // If reCAPTCHA verification fails, handle accordingly
+        console.error('reCAPTCHA verification failed');
+      }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error verifying reCAPTCHA:', error);
     }
   };
 
