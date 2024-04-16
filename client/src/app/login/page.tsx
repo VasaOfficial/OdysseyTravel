@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { auth } from '../lib/firebase/config';
 import { UserAuth } from '../context/AuthContext';
@@ -35,7 +35,6 @@ type RecaptchaResponse = {
 export default function Login() {
   const { register, formState: { errors, isValid }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)})
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
   const router = useRouter()
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const [honeypotValue, setHoneypotValue] = useState('');
@@ -46,7 +45,7 @@ export default function Login() {
     const { email, password } = data;
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-      const res = await signInWithEmailAndPassword(email, password)
+      const res = await signInWithEmailAndPassword(auth, email, password)
       console.log('User was successfully signed in')
       router.push('/')
     } catch (error) {

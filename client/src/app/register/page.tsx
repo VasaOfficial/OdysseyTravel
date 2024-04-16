@@ -8,14 +8,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '../lib/firebase/config';
 import { UserAuth } from '../context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios from 'axios'
 import { type AxiosResponse } from 'axios';
-import { sendEmailVerification} from 'firebase/auth';
+import { sendEmailVerification, createUserWithEmailAndPassword} from 'firebase/auth';
 import EmailVerificationCard from '../components/ui/email-verification';
 
 import EverestImage from '@/public/assets/Everest.webp'
@@ -44,7 +43,6 @@ export default function SignUp() {
   const [honeypotValue, setHoneypotValue] = useState('');
   const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
   const [verificationSent, setVerificationSent] = useState(false);
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth)
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const router = useRouter()
   const { executeRecaptcha } = useGoogleReCaptcha()
@@ -52,18 +50,22 @@ export default function SignUp() {
   const registerMutation = async (data: IFormInput) => {
     const { email, password } = data
     try {
-      const res = await createUserWithEmailAndPassword(email, password)
+      const res = await createUserWithEmailAndPassword(auth, email, password)
       if (res?.user) { // Add null check for res and res.user
         await sendEmailVerification(res.user);
         setVerificationSent(true);
-        console.log('Verification successful');
+        console.log('Verification successfully sent');
       } else {
         console.error('Verification failed');
       }
-      router.push('/')
       console.log('Registration successful');
     } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (err.code === 'auth/email-already-in-use') {
+        alert('This email is already in use. Please use a different email address.');
+      } else {
         console.error('Registration error:', err);
+      }
     }
   };
 
@@ -107,7 +109,7 @@ export default function SignUp() {
         try {
           mutate(data); // Trigger the mutation with form data
         } catch (error) {
-          console.error('Error submitting form:', error);
+          console.log(error)
         }
       } else {
         console.error('reCAPTCHA verification failed');
@@ -141,12 +143,7 @@ export default function SignUp() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  // Update the state to hide the EmailVerificationCard
-  const handleDismiss = () => {
-    setVerificationSent(false);
-  };
+  }
 
   return (
     <section className="relative h-screen w-full">
@@ -259,9 +256,13 @@ export default function SignUp() {
               </div>
           </div>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          {verificationSent && <EmailVerificationCard isVisible={verificationSent} onDismiss={handleDismiss} />}
-        </div>
+        {verificationSent && (
+          <div className="fixed inset-0 flex items-center justify-center">
+            <div className="z-50">
+              <EmailVerificationCard />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
