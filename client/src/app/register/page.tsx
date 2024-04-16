@@ -25,7 +25,7 @@ import GoogleIcon from '@/public/assets/google-icon.webp'
 
 const signUpSchema = z.object({
   email: z.string().min(5, { message: 'Email is required' }).email({ message: 'Must be a valid email'}),
-  password: z.string().min(8, { message: 'Password must be at least 8 characters' }).max(25),
+  password: z.string().min(8, { message: 'Password needs to be 8 characters or longer.' }).max(25),
   confirmPassword: z.string().min(8, { message: 'Confirm Password is required' }).max(25),
 })
 .refine((data) => data.password === data.confirmPassword, {
@@ -40,7 +40,7 @@ type RecaptchaResponse = {
 }
 
 export default function SignUp() {
-  const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
+  const { register, formState: { errors, isValid }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
   const [honeypotValue, setHoneypotValue] = useState('');
   const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
   const [verificationSent, setVerificationSent] = useState(false);
@@ -58,7 +58,7 @@ export default function SignUp() {
         setVerificationSent(true);
         console.log('Verification successful');
       } else {
-        console.error('User creation error: User object not available');
+        console.error('Verification failed');
       }
       router.push('/')
       console.log('Registration successful');
@@ -123,7 +123,7 @@ export default function SignUp() {
         await GoogleSignIn();
         router.push('/')
       } else {
-        console.error('logOut function is not defined.');
+        console.error('Google Sign In failed.');
       }
     } catch (error) {
       console.log(error);
@@ -136,7 +136,7 @@ export default function SignUp() {
         await GithubSignIn();
         router.push('/')
       } else {
-        console.error('logOut function is not defined.');
+        console.error('Github Sign In failed.');
       }
     } catch (error) {
       console.log(error);
@@ -225,7 +225,7 @@ export default function SignUp() {
                   </span>
                 </div>
                 <div className='w-full items-center flex justify-center my-5'>
-                  <button type='submit' className="blue-btn">
+                  <button type='submit' className="blue-btn" disabled={!isValid}>
                     Register
                     <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
                     <path

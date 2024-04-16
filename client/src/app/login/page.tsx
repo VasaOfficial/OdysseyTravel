@@ -33,7 +33,7 @@ type RecaptchaResponse = {
 }
 
 export default function Login() {
-  const { register, formState: { errors }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)})
+  const { register, formState: { errors, isValid }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)})
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
   const router = useRouter()
@@ -194,7 +194,7 @@ export default function Login() {
                 <span className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Forgot password?</span>
               </div>
               <div className='w-full items-center flex justify-center mt-8 mb-5'>
-                <button type='submit' className="blue-btn">
+                <button type='submit' className="blue-btn" disabled={!isValid}>
                   Log In
                   <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
                     <path
