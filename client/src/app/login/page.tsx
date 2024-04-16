@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { auth } from '../lib/firebase/config';
 import { UserAuth } from '../context/AuthContext';
@@ -40,6 +40,8 @@ export default function Login() {
   const [honeypotValue, setHoneypotValue] = useState('');
   const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
   const { executeRecaptcha } = useGoogleReCaptcha()
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
 
   const loginMutation = async (data: IFormInput) => {
     const { email, password } = data;
@@ -129,6 +131,18 @@ export default function Login() {
       console.log(error);
     }
   };
+
+  const handleForgotPasswordSubmit = async () => {
+    try {
+      await sendPasswordResetEmail(auth, forgotPasswordEmail);
+      // Notify the user that a password reset email has been sent
+      alert('A password reset email has been sent to your email address.');
+      // Close the modal
+      setShowForgotPasswordModal(false);
+    } catch (error) {
+      console.error('Error sending password reset email:', error);
+    }
+  };
   
   return (
     <section className="relative h-screen w-full">
@@ -185,7 +199,7 @@ export default function Login() {
                 />
               </div>
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-              <span className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Forgot password?</span>
+              <span className="text-sm ml-1 font-medium cursor-pointer text-sky-600" onClick={() => setShowForgotPasswordModal(true)}>Forgot password?</span>
               <div className='w-full items-center flex justify-center mt-8 mb-5'>
                 <button type='submit' className="blue-btn" disabled={!isValid}>
                   Log In
@@ -222,6 +236,23 @@ export default function Login() {
                 Github 
               </button>
             </div>
+            {/* PASSWORD RESET FORM */}
+            {showForgotPasswordModal && (
+              <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                  <h2 className="text-lg font-semibold mb-4">Forgot Password</h2>
+                  <input
+                    type="email"
+                    value={forgotPasswordEmail}
+                    onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="border border-gray-300 rounded-lg h-12 px-4 w-full mb-4 text-black"
+                  />
+                  <button onClick={handleForgotPasswordSubmit} className="blue-btn w-full text-center">Submit</button>
+                  <button onClick={() => setShowForgotPasswordModal(false)} className="mt-2 w-full text-center text-sm text-gray-500">Cancel</button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
