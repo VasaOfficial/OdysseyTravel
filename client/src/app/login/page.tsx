@@ -185,13 +185,7 @@ export default function Login() {
                 />
               </div>
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-              <div className="flex flex-row items-center gap-2 justify-between my-2">
-                <div className='gap-1 flex'>
-                  <input type="checkbox" />
-                  <label className='text-slate-700 text-sm font-normal'>Remember me </label>
-                </div>
-                <span className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Forgot password?</span>
-              </div>
+              <span className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Forgot password?</span>
               <div className='w-full items-center flex justify-center mt-8 mb-5'>
                 <button type='submit' className="blue-btn" disabled={!isValid}>
                   Log In

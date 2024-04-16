@@ -218,7 +218,7 @@ export default function SignUp() {
                 {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                 <div className="flex flex-row items-center gap-2 justify-between">
                   <span className="text-sm ml-1 font-medium text-slate-700">Already a member?
-                    <Link className="text-sky-600 ml-2 cursor-pointer" href='/sign-in'>Log in</Link>
+                    <Link className="text-sky-600 ml-2 cursor-pointer" href='/login'>Log in</Link>
                   </span>
                 </div>
                 <div className='w-full items-center flex justify-center my-5'>
