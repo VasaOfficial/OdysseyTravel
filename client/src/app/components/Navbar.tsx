@@ -18,8 +18,8 @@ function Navbar() {
           {/* Conditional rendering based on user login status */}
           {!user ? (
             <>
-              <Link className="hidden sm:block border border-black p-3 mr-4" href='/login'>Login</Link>
-              <Link className="hidden sm:block bg-black text-white p-3 mr-4" href='/register'>Register</Link>
+              <Link className="hidden sm:block border border-black p-3 mr-4" href='/pages/auth/login'>Login</Link>
+              <Link className="hidden sm:block bg-black text-white p-3 mr-4" href='/pages/auth/register'>Register</Link>
             </>
           ) : (
             <DropdownMenuCheckboxes />

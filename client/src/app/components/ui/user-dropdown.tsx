@@ -4,6 +4,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import UserLogo from '@/public/assets/user.webp'
 import { UserAuth } from '../../context/AuthContext'
+import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -39,15 +40,18 @@ export function DropdownMenuCheckboxes() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          My Account <br />
+          Account <br />
           <p className='text-gray-400 text-xs'>{user?.displayName ? user.displayName : user?.email}</p>
         </DropdownMenuLabel> 
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem>Saved</DropdownMenuItem>
-        <DropdownMenuItem>Cart</DropdownMenuItem>
+          <Link href='/pages/auth/protected/saved-destinations'>
+            <DropdownMenuItem className='cursor-pointer'>Saved</DropdownMenuItem>
+          </Link>
+          <Link href="/pages/auth/protected/cart">
+            <DropdownMenuItem className="cursor-pointer">Cart</DropdownMenuItem>
+          </Link>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut}>Logout</DropdownMenuItem>
+        <DropdownMenuItem className='cursor-pointer' onClick={handleSignOut}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

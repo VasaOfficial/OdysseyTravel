@@ -1,5 +1,5 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import Image from 'next/image';
 import Hawaii from '@/public/assets/destination/hawai.jpg'
 import RouteIcon from '@/public/assets/destination/route.webp'
@@ -7,9 +7,9 @@ import FoodIcon from '@/public/assets/destination/food.webp'
 import PlaneIcon from '@/public/assets/destination/plane.webp'
 import BedIcon from '@/public/assets/destination/bed.webp'
 
-import CartBtn from '../components/ui/cart-btn';
+import CartBtn from '../../components/ui/cart-btn';
 
-import AddToFavorites from '../components/ui/add-to-favorites';
+import AddToFavorites from '../../components/ui/add-to-favorites';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 function Location() {

@@ -10,8 +10,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import { auth } from '../lib/firebase/config';
-import { UserAuth } from '../context/AuthContext';
+import { auth } from '../../../lib/firebase/config';
+import { UserAuth } from '../../../context/AuthContext';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios from 'axios'
 import { type AxiosResponse } from 'axios';
@@ -217,7 +217,7 @@ export default function Login() {
                 </button>
               </div>
               <p className="text-center text-black text-sm mb-5">Don't have an account? 
-                <Link href='/register' className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Sign Up</Link>
+                <Link href='/pages/auth/register' className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Sign Up</Link>
               </p>
               <p className="text-center text-black text-sm my-1">Or With</p>
               <input

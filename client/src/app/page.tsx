@@ -1,8 +1,8 @@
-import Landing from './LandingPage/Landing';
-import Faq from './LandingPage/FAQ';
+import Landing from '@/src/app/pages/landing-page/Landing';
+import Faq from '@/src/app/pages/landing-page//FAQ';
 import Footer from './components/Footer';
-import ContintentSlider from './LandingPage/ContinentSlider/ContinentSlider';
-import TopOffers from './LandingPage/TopOffers';
+import ContintentSlider from '@/src/app/pages/landing-page//ContinentSlider/ContinentSlider';
+import TopOffers from '@/src/app/pages/landing-page//TopOffers';
 
 export default function HomePage() {
   return (

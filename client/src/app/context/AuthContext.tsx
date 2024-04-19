@@ -60,5 +60,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const UserAuth = () => {
-  return useContext(AuthContext);
+  if (typeof window !== 'undefined') {
+    return useContext(AuthContext);
+  } else {
+    return defaultUser;
+  }
 };

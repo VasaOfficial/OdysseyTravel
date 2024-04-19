@@ -1,4 +1,4 @@
-import ShopCard from '../components/ShopCard';
+import ShopCard from '../../components/ShopCard';
 
 function TopOffers() { 
     return (

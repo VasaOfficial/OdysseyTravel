@@ -8,14 +8,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { auth } from '../lib/firebase/config';
-import { UserAuth } from '../context/AuthContext';
+import { auth } from '../../../lib/firebase/config';
+import { UserAuth } from '../../../context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios from 'axios'
 import { type AxiosResponse } from 'axios';
 import { sendEmailVerification, createUserWithEmailAndPassword} from 'firebase/auth';
-import EmailVerificationCard from '../components/ui/email-verification';
+import EmailVerificationCard from '../../../components/ui/email-verification';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -218,7 +218,7 @@ export default function SignUp() {
                 {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
                 <div className="flex flex-row items-center gap-2 justify-between">
                   <span className="text-sm ml-1 font-medium text-slate-700">Already a member?
-                    <Link className="text-sky-600 ml-2 cursor-pointer" href='/login'>Log in</Link>
+                    <Link className="text-sky-600 ml-2 cursor-pointer" href='/pages/auth/login'>Log in</Link>
                   </span>
                 </div>
                 <div className='w-full items-center flex justify-center my-5'>
