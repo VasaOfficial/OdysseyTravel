@@ -42,6 +42,7 @@ export default function Login() {
   const { executeRecaptcha } = useGoogleReCaptcha()
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+  const [incorrectCredentials, setincorrectCredentials] = useState('');
 
   const loginMutation = async (data: IFormInput) => {
     const { email, password } = data;
@@ -52,6 +53,7 @@ export default function Login() {
       router.push('/')
     } catch (error) {
       console.error('Login error:', error);
+      setincorrectCredentials('Invalid email or password. Please try again.');
       throw error;
     }
   };
@@ -132,6 +134,7 @@ export default function Login() {
     }
   };
 
+  // Reset user password
   const handleForgotPasswordSubmit = async () => {
     try {
       await sendPasswordResetEmail(auth, forgotPasswordEmail);
@@ -179,6 +182,7 @@ export default function Login() {
                 />
               </div>
               {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+              {incorrectCredentials && <p className="text-red-500 mb-2">{incorrectCredentials}</p>}
               <div className="font-semibold text-slate-700">
                 <label>Password </label>
               </div>
