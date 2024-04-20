@@ -11,14 +11,14 @@ export function Providers({children}: { children: React.ReactNode }) {
 
   const recapchaKey: string | undefined = process?.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
   return (
+    <AuthContextProvider>
       <GoogleReCaptchaProvider reCaptchaKey={recapchaKey ?? 'NOT DEFINED'}>
-        <AuthContextProvider>
           <QueryClientProvider client={queryClient}>
             <NextUIProvider>
                 {children}
             </NextUIProvider>
           </QueryClientProvider>
-        </AuthContextProvider>
       </GoogleReCaptchaProvider>
+    </AuthContextProvider>
   )
 }
