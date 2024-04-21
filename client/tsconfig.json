@@ -46,8 +46,9 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts"
-  ],
+, "src/app/components/ui/globe.tsx"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/app/components/ui/globe.tsx"
   ]
 }

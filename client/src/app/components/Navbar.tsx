@@ -15,12 +15,15 @@ function Navbar() {
           <Link href='/'>
             <Image src={Logo} alt="logo" width={250} height={250}/>
           </Link>
-          <div className="flex">
+          <div className="flex gap-3">
           {/* Conditional rendering based on user login status */}
           {!user ? (
             <>
-              <Link className="hidden sm:block border border-black p-3 mr-4" href='/pages/auth/login'>Login</Link>
-              <Link className="hidden sm:block bg-black text-white p-3 mr-4" href='/pages/auth/register'>Register</Link>
+              <Link className="inline-flex h-[3.1rem] animate-background-shine items-center justify-center rounded-md border border-gray-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50" href='/pages/auth/login'>Login</Link>
+              <Link href='/pages/auth/register' className='relative inline-flex h-12 w-full items-center justify-center rounded-md bg-white px-6 font-medium text-gray-950 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'>
+                <div className='absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#c7d2fe] to-[#8678f9] opacity-75 blur' />
+                Register
+              </Link>
             </>
           ) : (
             <DropdownMenuCheckboxes />

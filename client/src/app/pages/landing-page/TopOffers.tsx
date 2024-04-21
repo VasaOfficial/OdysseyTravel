@@ -3,9 +3,9 @@ import { BentoGrid, BentoGridItem } from '../../components/ui/bento-grid';
 
 export default function BentoGridDemo() {
   return (
-    <section className='bg-black'>
+    <section className='bg-black pt-10'>
       <div className='max-w-6xl mx-auto py-12'>
-        <h1 className='text-white font-semibold text-3xl'>Top Offers</h1>
+        <h1 className='text-white font-semibold text-3xl'>Popular Destinations</h1>
         <BentoGrid className="max-w-6xl mx-auto py-5">
           {items.map((item, i) => (
             <BentoGridItem

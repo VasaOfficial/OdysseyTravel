@@ -40,7 +40,7 @@ const DateRangeComp = () => {
           'MM/dd/yyyy'
         )}`}
         readOnly
-        className="absolute text-black p-3 rounded-lg text-center font-semibold"
+        className="absolute text-black p-3 text-center font-semibold"
         onClick={() => setOpen((open) => !open)}
       />
       <div ref={refOne}>
