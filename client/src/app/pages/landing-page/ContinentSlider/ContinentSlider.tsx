@@ -28,7 +28,7 @@ function ContinentSlider() {
   
     return (
       <section
-        className='relative min-h-screen select-none overflow-hidden text-white antialiased'>
+        className='relative min-h-screen select-none overflow-hidden text-white from-neutral-200 to-neutral-500 antialiased'>
         <AnimatePresence>
           <BackgroundImage
             transitionData={transitionData}

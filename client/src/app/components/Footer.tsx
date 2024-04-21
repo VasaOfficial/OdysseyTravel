@@ -8,7 +8,7 @@ import emailIcon from '@/public/assets/footer/email.webp'
 
 function Footer() {
     return ( 
-      <footer className="bg-gray-950 text-white w-full">
+      <footer className="bg-black text-white w-full from-neutral-200 to-neutral-500">
         <div className="max-w-[80%] mx-auto py-16">
           <Image src={Logo} alt="Logo" width={400} height={400}/>
           <div className="flex mt-10 justify-between max-lg:flex-col max-lg:items-start max-lg:gap-10 max-lg:justify-center">

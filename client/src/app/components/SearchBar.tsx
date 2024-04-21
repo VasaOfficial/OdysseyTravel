@@ -112,7 +112,7 @@ function SearchBar() {
   };    
   
   return ( 
-    <div className='relative'>
+    <div className='relative z-20'>
       <div className="flex items-center w-full">
         <div className="flex items-center rounded-full border bg-white text-left text-gray-600 shadow-md w-full">
           <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200"
