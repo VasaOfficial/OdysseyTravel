@@ -1,13 +1,14 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, Suspense } from 'react';
-import Map from 'react-map-gl';
+import Map, { Marker } from 'react-map-gl';
 import Navbar from '@/src/app/components/Navbar';
 import SearchBar from '@/src/app/components/SearchBar';
 import Footer from '@/src/app/components/Footer';
 import PriceFilterDropdown from './ui/priceDropdown';
 import ItemCard from '@/src/app/components/ShopCard';
 import {Pagination} from '@nextui-org/react';
+import { locations } from '@/src/database/locations';
 
 type Coordinates = {
   latitude: number;
@@ -52,19 +53,17 @@ function Shop() {
   }, [searchParams]);
 
   const continentCoordinates = {
-    'Africa': { latitude: 0, longitude: 17, zoom: 3.2 },
-    'Asia': { latitude: 55, longitude: 90, zoom: 2.4 },
+    'Africa': { latitude: 0, longitude: 17, zoom: 3 },
+    'Asia': { latitude: 35, longitude: 90, zoom: 2.6 },
     'Europe': { latitude: 54, longitude: 15, zoom: 3.5 },
-    'North America': { latitude: 54, longitude: -105, zoom: 2.8 },
-    'South America':{ latitude: -14, longitude: -51, zoom: 3 },
-    'Oceania': { latitude: -24, longitude: 145, zoom: 3.1 },
+    'North America': { latitude: 50, longitude: -105, zoom: 3.2 },
+    'South America':{ latitude: -10, longitude: -56, zoom: 3.1 },
+    'Oceania': { latitude: -24, longitude: 145, zoom: 3.2 },
   };
   
   return (
     <section className="h-auto w-full bg-slate-100">
-      <div className="left-0 top-0 w-full">
         <Navbar />
-      </div>
       <div className="flex justify-center my-20">
         <div className="transform w-3/6 z-10">
           <SearchBar />
@@ -96,9 +95,20 @@ function Shop() {
           <Map
             {...viewport}
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-            style={{height: 1200}}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-          />
+            style={{ height: 1200 }}
+            mapStyle="mapbox://styles/mapbox/outdoors-v12"
+          >
+            {/* Render markers for each location */}
+            {Object.keys(locations).map((locationName) => (
+              <Marker
+                key={locationName}
+                latitude={locations[locationName as keyof typeof locations].latitude}
+                longitude={locations[locationName as keyof typeof locations].longitude}
+              >
+                <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">$232</div>
+              </Marker>
+            ))}
+          </Map>
         </div>
       </div>
       <Footer />

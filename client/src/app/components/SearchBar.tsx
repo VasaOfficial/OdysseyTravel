@@ -96,7 +96,7 @@ function SearchBar() {
       };
   
       router.push(
-        '/shop?' +
+        '/pages/shop?' +
           createQueryString('continent', query.continent) +
           '&' +
           createQueryString('dateRange', query.dateRange) +
