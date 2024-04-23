@@ -33,6 +33,7 @@ function Shop() {
     latitude: 0,
     zoom: 1,
   });
+  const [popupOpen, setPopupOpen] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     // let maxPrice = searchParams.get("maxPrice");
@@ -59,6 +60,10 @@ function Shop() {
     'North America': { latitude: 50, longitude: -105, zoom: 3.2 },
     'South America':{ latitude: -10, longitude: -56, zoom: 3.1 },
     'Oceania': { latitude: -24, longitude: 145, zoom: 3.2 },
+  };
+
+  const handleMapClick = () => {
+    setPopupOpen({ ...Object.fromEntries(Object.keys(locations).map(locationName => [locationName, false])) });
   };
   
   return (
@@ -93,6 +98,7 @@ function Shop() {
         {/** Mapbox here */}
         <div className='w-full map'>
           <Map
+            onClick={handleMapClick}
             {...viewport}
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
             style={{ height: 1200 }}
@@ -100,14 +106,32 @@ function Shop() {
           >
             {/* Render markers for each location */}
             {Object.keys(locations).map((locationName) => (
-              <Marker
-                key={locationName}
-                latitude={locations[locationName as keyof typeof locations].latitude}
-                longitude={locations[locationName as keyof typeof locations].longitude}
-              >
-                <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">$232</div>
-              </Marker>
-            ))}
+            <Marker
+              key={locationName}
+              latitude={locations[locationName as keyof typeof locations].latitude}
+              longitude={locations[locationName as keyof typeof locations].longitude}
+              // onClick={(event) => handleMarkerClick(locations[locationName], event)}
+              onClick={(e) => {
+                // If we let the click event propagate to the map, it will immediately close the popup
+                // with `closeOnClick: true`
+                e.originalEvent.stopPropagation();
+                setPopupOpen({ [locationName as keyof typeof locations]: true });
+              }}
+            >
+              <div className='flex flex-col'>
+                <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
+                  $250
+                </div>
+                {popupOpen[locationName] && (
+                  <div key={locationName}>
+                    <div className="bg-white text-black p-4 font-bold text-base rounded-2xl">
+                      {locations[locationName as keyof typeof locations].name} 
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Marker>
+          ))}
           </Map>
         </div>
       </div>
