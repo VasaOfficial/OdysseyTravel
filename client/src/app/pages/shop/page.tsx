@@ -28,7 +28,6 @@ function ShopSuspense() {
 function Shop() {
   const searchParams = useSearchParams();
   const [continent, setContinent] = useState('');
-  console.log(continent)
   const [viewport, setViewport] = useState<Coordinates>({
     longitude: 0,
     latitude: 0,
@@ -58,7 +57,7 @@ function Shop() {
     'Africa': { latitude: 0, longitude: 17, zoom: 3 },
     'Asia': { latitude: 35, longitude: 90, zoom: 2.6 },
     'Europe': { latitude: 54, longitude: 15, zoom: 3.6 },
-    'North America': { latitude: 50, longitude: -105, zoom: 3.2 },
+    'North America': { latitude: 40, longitude: -90, zoom: 3.2 },
     'South America':{ latitude: -10, longitude: -56, zoom: 3.1 },
     'Oceania': { latitude: -24, longitude: 145, zoom: 3.2 },
   };
@@ -112,34 +111,36 @@ function Shop() {
             scrollZoom={false}
           >
             {/* Render markers for each location */}
-            {Object.keys(locations).map((locationName) => (
-            <Marker
-              key={locationName}
-              latitude={locations[locationName as keyof typeof locations].latitude}
-              longitude={locations[locationName as keyof typeof locations].longitude}
-              // onClick={(event) => handleMarkerClick(locations[locationName], event)}
-              onClick={(e) => {
-                // If we let the click event propagate to the map, it will immediately close the popup
-                // with `closeOnClick: true`
-                e.originalEvent.stopPropagation();
-                setPopupOpen({ [locationName as keyof typeof locations]: true });
-              }}
-              style={{ position: 'absolute'}}
-            >
-              <div className='relative flex flex-col'>
-                <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
-                  $250
-                </div>
-                {popupOpen[locationName] && (
-                  <div key={locationName}>
-                    <div className="bg-white absolute mt-2 text-black p-4 font-bold text-base rounded-2xl">
-                      {locations[locationName as keyof typeof locations].name} 
+            {continent && locations[continent ] && Object.keys(locations[continent]!).map((locationId) => {
+              const location = locations[continent]![locationId];
+
+              if (location?.latitude !== undefined && location.longitude !== undefined) {
+              return (
+                <Marker
+                  key={locationId}
+                  latitude={location.latitude}
+                  longitude={location.longitude}
+                  onClick={(e) => {
+                    e.originalEvent.stopPropagation();
+                    setPopupOpen({ [locationId]: true });
+                  }}
+                  style={{ position: 'absolute'}}
+                >
+                  <div className='relative flex flex-col'>
+                    <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
+                      $250
                     </div>
+                    {popupOpen[locationId] && (
+                      <div key={locationId}>
+                        <div className="bg-white absolute mt-2 text-black p-4 font-bold text-base rounded-2xl">
+                          {location?.name}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </Marker>
-          ))}
+                </Marker>
+              )};
+            })}
           </Map>
         </div>
       </div>
