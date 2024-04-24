@@ -57,7 +57,7 @@ function Shop() {
   const continentCoordinates = {
     'Africa': { latitude: 0, longitude: 17, zoom: 3 },
     'Asia': { latitude: 35, longitude: 90, zoom: 2.6 },
-    'Europe': { latitude: 54, longitude: 15, zoom: 3.5 },
+    'Europe': { latitude: 54, longitude: 15, zoom: 3.6 },
     'North America': { latitude: 50, longitude: -105, zoom: 3.2 },
     'South America':{ latitude: -10, longitude: -56, zoom: 3.1 },
     'Oceania': { latitude: -24, longitude: 145, zoom: 3.2 },
@@ -107,6 +107,9 @@ function Shop() {
             dragRotate={false}
             dragPan={false}
             touchPitch={false}
+            boxZoom={false}
+            doubleClickZoom={false}
+            scrollZoom={false}
           >
             {/* Render markers for each location */}
             {Object.keys(locations).map((locationName) => (
