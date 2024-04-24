@@ -28,6 +28,7 @@ function ShopSuspense() {
 function Shop() {
   const searchParams = useSearchParams();
   const [continent, setContinent] = useState('');
+  console.log(continent)
   const [viewport, setViewport] = useState<Coordinates>({
     longitude: 0,
     latitude: 0,
@@ -51,7 +52,7 @@ function Shop() {
         zoom: zoom || 1
       }));
     }
-  }, [searchParams]);
+  }, [searchParams, continent]);
 
   const continentCoordinates = {
     'Africa': { latitude: 0, longitude: 17, zoom: 3 },
@@ -96,13 +97,16 @@ function Shop() {
           </div>
         </div>
         {/** Mapbox here */}
-        <div className='w-full map'>
+        <div className='w-full'>
           <Map
             onClick={handleMapClick}
             {...viewport}
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
             style={{ height: 1200 }}
             mapStyle="mapbox://styles/mapbox/outdoors-v12"
+            dragRotate={false}
+            dragPan={false}
+            touchPitch={false}
           >
             {/* Render markers for each location */}
             {Object.keys(locations).map((locationName) => (
@@ -117,14 +121,15 @@ function Shop() {
                 e.originalEvent.stopPropagation();
                 setPopupOpen({ [locationName as keyof typeof locations]: true });
               }}
+              style={{ position: 'absolute'}}
             >
-              <div className='flex flex-col'>
+              <div className='relative flex flex-col'>
                 <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
                   $250
                 </div>
                 {popupOpen[locationName] && (
                   <div key={locationName}>
-                    <div className="bg-white text-black p-4 font-bold text-base rounded-2xl">
+                    <div className="bg-white absolute mt-2 text-black p-4 font-bold text-base rounded-2xl">
                       {locations[locationName as keyof typeof locations].name} 
                     </div>
                   </div>
