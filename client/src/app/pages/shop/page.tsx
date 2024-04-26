@@ -1,7 +1,7 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, Suspense } from 'react';
-import Map, { Marker } from 'react-map-gl';
+import Map, { Marker, Popup } from 'react-map-gl';
 import Navbar from '@/src/app/components/Navbar';
 import SearchBar from '@/src/app/components/SearchBar';
 import Footer from '@/src/app/components/Footer';
@@ -9,6 +9,8 @@ import PriceFilterDropdown from './ui/priceDropdown';
 import ItemCard from '@/src/app/components/ShopCard';
 import {Pagination} from '@nextui-org/react';
 import { locations } from '@/src/database/locations';
+import Image from 'next/image';
+import HawaiImage from '@/public/popup/ea.jpg'
 
 type Coordinates = {
   latitude: number;
@@ -124,18 +126,38 @@ function Shop() {
                     e.originalEvent.stopPropagation();
                     setPopupOpen({ [locationId]: true });
                   }}
-                  style={{ position: 'absolute'}}
                 >
                   <div className='relative flex flex-col'>
-                    <div className="bg-white text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
+                    <div className="bg-white popup-3d text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
                       $250
                     </div>
                     {popupOpen[locationId] && (
-                      <div key={locationId}>
-                        <div className="bg-white absolute mt-2 text-black p-4 font-bold text-base rounded-2xl">
-                          {location?.name}
+                      <Popup
+                      key={locationId}
+                      latitude={location.latitude}
+                      longitude={location.longitude}
+                      closeOnClick={false}
+                      closeButton={false}
+                      anchor='top'
+                    >
+                      <div className="popup-3d bg-slate-50 w-[325px] h-[270px] absolute z-50 mt-2 z-100 text-black font-bold text-base rounded-t-2xl rounded-b-2xl">
+                        <div className='w-full'>
+                          <Image src={HawaiImage} alt={`image of ${location?.name}`} className='rounded-t-2xl max-h-[210px]'/>
+                        </div>
+                        <div className='flex flex-col px-4 py-2 gap-2'>
+                          <div className='flex justify-between items-center'>
+                            <div className='text-xl'>{location?.name}</div>
+                            <div className="bg-green-400 z-10 text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-110 transition-transform duration-500 ease-in-out cursor-pointer">
+                              Check Out
+                            </div>
+                          </div>
+                          <div className='flex gap-1'>
+                            <p className='text-black font-bold text-base'>$396</p>
+                            <p className='text-gray-500 font-semibold'> · JUN 24-29</p>
+                          </div>
                         </div>
                       </div>
+                    </Popup>
                     )}
                   </div>
                 </Marker>

@@ -34,7 +34,7 @@ export function DropdownMenuCheckboxes() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size='icon' className="overflow-hidden rounded-full">
+        <Button size='icon' className="rounded-full">
           <Image src={UserLogo} width={40} height={40} alt="Avatar" className="overflow-hidden"/>
         </Button>
       </DropdownMenuTrigger>

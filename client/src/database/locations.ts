@@ -53,11 +53,11 @@ export const locations: Record<string, Record<string, {
       longitude: 4.9041,
       name: 'Amsterdam'
     },
-    'Ireland': {
+    'Iceland': {
       id: 9,
-      latitude: 53.3498,
-      longitude: -6.2603,
-      name: 'Dublin'
+      latitude: 64.128288,
+      longitude: -21.827774,
+      name: 'Reykjavík'
     },
     'Russia': {
       id: 10,
@@ -103,7 +103,7 @@ export const locations: Record<string, Record<string, {
       longitude: 47.5079,
       name: 'Antananarivo'
     },
-    'Morroco': {
+    'Morocco': {
       id: 4,
       latitude: 31.7917,
       longitude: -7.0926,

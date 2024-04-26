@@ -16,10 +16,10 @@ import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios from 'axios'
 import { type AxiosResponse } from 'axios';
 
-import EverestImage from '@/public/assets/Everest.webp'
+import EverestImage from '@/public/assets/auth/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
-import GithubIcon from '@/public/assets/github.webp'
-import GoogleIcon from '@/public/assets/google-icon.webp'
+import GithubIcon from '@/public/assets/auth/github.webp'
+import GoogleIcon from '@/public/assets/auth/google-icon.webp'
 
 const signUpSchema = z.object({
   email: z.string().min(5, { message: 'Email is required' }).email({ message: 'Must be a valid email'}),

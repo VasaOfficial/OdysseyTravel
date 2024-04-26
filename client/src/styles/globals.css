@@ -18,6 +18,19 @@
   transition: transform 0.5s ease-in-out;
 }
 
+.popup-3d {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .grecaptcha-badge { 
   visibility: hidden !important;
 }
+
+.mapboxgl-popup-content{
+  padding: 0;
+  width: 50px;
+ }
+
+ .mapboxgl-popup-tip{
+  visibility: hidden;
+ }
