@@ -33,7 +33,7 @@ const DateRangeComp = () => {
   }
 
   return (
-    <div>
+    <div className='z-[100]'>
       <input
         value={`${format(range?.startDate ?? new Date(), 'MM/dd/yyyy')} to ${format(
           range?.endDate ?? addDays(new Date(), 0),

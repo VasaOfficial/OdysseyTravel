@@ -14,26 +14,25 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 function Location() {
   return ( 
-    <section className="h-auto w-full bg-gray-100">
-      <nav>
+    <div className="h-auto w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]"></div>
         <Navbar />
-      </nav>
-      <div className="max-w-[75%] flex flex-col my-20 m-auto">
-        <div className="relative flex flex-col">
+      <div className="max-w-[75%] flex flex-col m-auto">
+        <div className="relative flex flex-col mt-40">
             <Image src={Hawaii} alt="hawait image" className="rounded w-full"/>
           <div className="absolute bottom-0 left-0 pl-4 py-3">
             <p className="m-0 text-white font-semibold text-6xl">Location</p>
           </div>
         </div>
-        <div className="flex w-full justify-between items-center mt-12">
+        <div className="flex w-full justify-between items-center mt-12 z-20">
           <div className="flex flex-col gap-5">
             <div className="flex">
-              <p className="font-bold text-4xl mr-5">Price:</p>
+              <p className="font-bold text-4xl mr-5 text-white">Price:</p>
               <p className="text-red-600 font-bold text-4xl">$1000</p>
             </div>
             <div className="flex">
               <p className="text-green-500 font-bold text-4xl mr-2">7</p>
-              <p className="text-gray-700 font-bold text-4xl">days</p>
+              <p className="text-white font-bold text-4xl">days</p>
             </div>
           </div>
           <div className="flex flex-col gap-5 items-end">
@@ -42,7 +41,7 @@ function Location() {
           </div>
         </div>
         <div className="border-t-2 border-gray-400 w-full my-10" />
-        <p className="font-semibold text-xl">
+        <p className="font-semibold text-xl text-white">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         <br />
@@ -56,14 +55,14 @@ function Location() {
         <div className="border-t-2 border-gray-400 w-full my-10" />
         <div className="flex gap-7 text-center">
           <Image src={RouteIcon} alt="route icon" height={40} width={40} />
-          <p className="font-bold text-3xl">New York - Paris - Dubai - Maldives</p>
+          <p className="font-bold text-3xl text-white">New York - Paris - Dubai - Maldives</p>
         </div>
         <div className="border-t-2 border-gray-400 w-full my-10" />
         <div className="flex flex-col justify-start">
-          <h1 className="text-4xl font-semibold mb-10">
+          <h1 className="text-4xl font-semibold mb-10 text-white">
             Travel Plan
           </h1>
-          <div className="flex flex-col justify-start gap-5">
+          <div className="flex flex-col justify-start gap-5 text-white">
             <Accordion className="border-2 border-black px-7 rounded-2xl" type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>Day 1</AccordionTrigger>
@@ -106,7 +105,7 @@ function Location() {
             </Accordion>
           </div>
           <div className="border-t-2 border-gray-400 w-full my-20" />
-          <div className="flex flex-col items-center w-full mb-10">
+          <div className="flex flex-col items-center w-full mb-10 text-white">
             <h1 className="text-4xl font-semibold mb-20">What's included</h1>
             <div className="flex gap-10 justify-center items-center">
               <div className="flex pr-10 gap-7 pt-1">
@@ -140,7 +139,7 @@ function Location() {
         </div>
       </div>
       <Footer />
-    </section>
+    </div>
    );
 }
 

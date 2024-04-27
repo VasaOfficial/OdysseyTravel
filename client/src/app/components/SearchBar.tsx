@@ -112,7 +112,7 @@ function SearchBar() {
   };    
   
   return ( 
-    <div className='relative z-20'>
+    <div className='relative z-[100]'>
       <div className="flex items-center w-full">
         <div className="flex items-center rounded-full border bg-white text-left text-gray-600 shadow-md w-full">
           <div className="flex-1 cursor-pointer py-7 pl-8 hover:rounded-full hover:border-transparent hover:bg-gray-200"
@@ -155,7 +155,7 @@ function SearchBar() {
           {destination && (
           <div
             ref={cardRef}
-            className="absolute top-full left-0 mt-2 flex flex-col gap-6 rounded border bg-white p-8 shadow-md" >
+            className="absolute z-[100] top-full left-0 mt-2 flex flex-col gap-6 rounded border bg-white p-8 shadow-md" >
             <div className="flex gap-6">
               <div onClick={() => handleContinentSelect('Africa')}>
                 <div className="relative h-28 w-28">
