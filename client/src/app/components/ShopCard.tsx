@@ -1,4 +1,4 @@
-import '@/src/styles/favorites-btn.css'
+import '@/src/styles/favorites-heart.css'
 import Image from 'next/image';
 import jaguar from '@/public/assets/jaguar.jpg'
 import CalendarIcon from '@/public/assets/search_bar/calendar.webp'
@@ -7,7 +7,7 @@ import CartBtn from './ui/cart-btn';
 
 function ShopCard() {
   return ( 
-    <div className="card shadow-3d cursor-pointer hover-scale">
+    <div className="card shadow-3d cursor-pointer">
       <div className="relative flex flex-col">
         <Image className="rounded-t" src={jaguar} alt="missing image" />
         <div className="favorites-btn-wrapper">
