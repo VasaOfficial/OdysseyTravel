@@ -1,6 +1,6 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense} from 'react';
 import Map, { Marker, Popup } from 'react-map-gl';
 import Navbar from '@/src/app/components/Navbar';
 import SearchBar from '@/src/app/components/SearchBar';
@@ -22,7 +22,7 @@ type Continent = 'Africa' | 'Asia' | 'Europe' | 'North America' | 'South America
 
 function ShopSuspense() {
   return (
-    <Suspense fallback={<div>Loading...</div>}> {/* HERE ADD LOADING SKELETON */}
+    <Suspense fallback={<div>Loading...</div>}>
       <Shop />
     </Suspense>
   );
@@ -56,18 +56,18 @@ function Shop() {
   }, [searchParams, continent]);
 
   const continentCoordinates = {
-    'Africa': { latitude: 0, longitude: 17, zoom: 3 },
-    'Asia': { latitude: 35, longitude: 90, zoom: 2.6 },
-    'Europe': { latitude: 54, longitude: 15, zoom: 3.6 },
-    'North America': { latitude: 40, longitude: -90, zoom: 3.2 },
+    'Africa': { latitude: 0, longitude: 23, zoom: 2.8 },
+    'Asia': { latitude: 35, longitude: 90, zoom: 2 },
+    'Europe': { latitude: 54, longitude: 17, zoom: 3.2 },
+    'North America': { latitude: 40, longitude: -97, zoom: 3.1 },
     'South America':{ latitude: -10, longitude: -56, zoom: 3.1 },
-    'Oceania': { latitude: -24, longitude: 145, zoom: 3.2 },
+    'Oceania': { latitude: -24, longitude: 150, zoom: 2.8 },
   };
 
   const handleMapClick = () => {
     setPopupOpen({ ...Object.fromEntries(Object.keys(locations).map(locationName => [locationName, false])) });
   };
-  
+
   return (
     <section className="h-auto w-full bg-slate-100">
         <Navbar />
@@ -103,7 +103,7 @@ function Shop() {
             onClick={handleMapClick}
             {...viewport}
             mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-            style={{ height: 1200 }}
+            style={{ height: 1250 }}
             mapStyle="mapbox://styles/mapbox/outdoors-v12"
             dragRotate={false}
             dragPan={false}
@@ -111,6 +111,9 @@ function Shop() {
             boxZoom={false}
             doubleClickZoom={false}
             scrollZoom={false}
+            projection={{
+              name: 'mercator',
+            }}
           >
             {/* Render markers for each location */}
             {continent && locations[continent ] && Object.keys(locations[continent]!).map((locationId) => {
@@ -138,22 +141,24 @@ function Shop() {
                       longitude={location.longitude}
                       closeOnClick={false}
                       closeButton={false}
-                      anchor='top'
+                      anchor='right'
+                      offset={90}
                     >
-                      <div className="popup-3d bg-slate-50 w-[325px] h-[270px] absolute z-50 mt-2 z-100 text-black font-bold text-base rounded-t-2xl rounded-b-2xl">
+                      <div className="popup-3d bg-slate-50 w-[305px] h-[240px] absolute z-50 mt-2 text-black font-bold text-base rounded-t-2xl rounded-b-2xl">
                         <div className='w-full'>
-                          <Image src={HawaiImage} alt={`image of ${location?.name}`} className='rounded-t-2xl max-h-[210px]'/>
+                          <Image src={HawaiImage} alt={`image of ${location.country}`} className='rounded-t-2xl h-[160px]'/>
                         </div>
                         <div className='flex flex-col px-4 py-2 gap-2'>
                           <div className='flex justify-between items-center'>
-                            <div className='text-xl'>{location?.name}</div>
-                            <div className="bg-green-400 z-10 text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-110 transition-transform duration-500 ease-in-out cursor-pointer">
+                            <div className='text-xl'>{location.country}</div>
+                            <div className="bg-green-400 z-10 text-black p-1 px-2 font-semibold text-sm rounded-2xl transform hover:scale-110 transition-transform duration-500 ease-in-out cursor-pointer">
                               Check Out
                             </div>
                           </div>
                           <div className='flex gap-1'>
                             <p className='text-black font-bold text-base'>$396</p>
-                            <p className='text-gray-500 font-semibold'> · JUN 24-29</p>
+                            <p className='text-gray-500 font-semibold'> · {location.city}</p>
+                            <p className='text-gray-500 font-semibold'> · JUN 24 - 29</p>
                           </div>
                         </div>
                       </div>

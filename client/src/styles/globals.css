@@ -27,10 +27,11 @@
 }
 
 .mapboxgl-popup-content{
+  background: transparent;
   padding: 0;
   width: 50px;
- }
+}
 
- .mapboxgl-popup-tip{
+  .mapboxgl-popup-tip{
   visibility: hidden;
- }
+}
