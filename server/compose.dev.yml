@@ -1,0 +1,34 @@
+services:
+  backend: 
+    container_name: backend
+    image: backend
+    depends_on: 
+      - db
+    build: 
+      context: .
+      target: development
+      dockerfile: backend.dockerfile
+    ports: 
+      - 8000:8000
+    volumes:
+      - ./:/app
+      - /app/node_modules 
+    environment: 
+      DB_URL: postgresql://postgres:drkongo22322@db:5432/postgres?schema=public
+    command: npm run dev
+
+  db:
+    container_name: postgres_db
+    image: postgres:16.2-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: drkongo22322
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  
+volumes:
+  pgdata: {}

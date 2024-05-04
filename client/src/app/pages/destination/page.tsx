@@ -55,7 +55,7 @@ function Location() {
         <div className="border-t-2 border-gray-400 w-full my-10" />
         <div className="flex gap-7 text-center">
           <Image src={RouteIcon} alt="route icon" height={40} width={40} />
-          <p className="font-bold text-3xl text-white">New York - Paris - Dubai - Maldives</p>
+          <p className="font-bold text-3xl text-white">Belgrade → Paris → Lyon → Bordeaux → French Riviera (Nice, Cannes, Monaco) → Belgrade</p>
         </div>
         <div className="border-t-2 border-gray-400 w-full my-10" />
         <div className="flex flex-col justify-start">

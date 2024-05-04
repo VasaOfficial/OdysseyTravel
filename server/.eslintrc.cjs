@@ -2,13 +2,14 @@
 const config = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: true,
+    project: './tsconfig.json', // Update path to your tsconfig.json
   },
   plugins: ['@typescript-eslint'],
   extends: [
-    'plugin:@next/next/recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:@typescript-eslint/recommended', // Keep for TypeScript rules
+    'plugin:@typescript-eslint/recommended-type-checked', // Keep for type checking
+    'plugin:@typescript-eslint/stylistic-type-checked', // Keep for stylistic checks
+    // Remove Next.js specific extension
   ],
   rules: {
     // These opinionated rules are enabled in stylistic-type-checked above.
