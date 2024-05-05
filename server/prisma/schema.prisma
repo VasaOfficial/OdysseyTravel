@@ -4,6 +4,8 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// run this to migrate to db  docker exec -it backend npx prisma migrate dev --name init
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,9 +15,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Continent {
+  id        Int      @id @default(autoincrement())
+  name      String
+  countries Country[]
+}
+
+model Country {
+  id          Int      @id @default(autoincrement())
+  name        String
+  continent   Continent @relation(fields: [continentId], references: [id])
+  continentId Int
+  destinations   Destination[]
+}
+
 model Destination {
-  id           Int      @id @default(autoincrement())
-  locationName String  @db.VarChar(100)
+  id           Int    @id @default(autoincrement())
+  countryName String  
+  country     Country @relation(fields: [countryId], references: [id])
+  countryId   Int
   city         String  @db.VarChar(100)
   price        Int
   latitude     Float

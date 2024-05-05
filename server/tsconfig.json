@@ -16,17 +16,14 @@
     "checkJs": true,
     /* Node.js project specific options: */
     "outDir": "dist", // Add an output directory for compiled JavaScript files
-    "module": "commonjs", // Change from "ESNext" to "commonjs" for Node.js modules
-    "jsx": "preserve", // Remove if you're not using JSX
+    "module": "NodeNext", // Change from "ESNext" to "commonjs" for Node.js modules
+    "moduleResolution": "NodeNext",
     "lib": ["dom", "dom.iterable", "ES2022"], // Might not be necessary depending on your project
     "declaration": false, // Remove if you don't need type declaration files
     "sourceMap": true, // Enable source maps for debugging (optional)
     "incremental": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.js"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules"
   ]

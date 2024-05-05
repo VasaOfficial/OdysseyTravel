@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "dev": "ts-node-dev --poll server.ts",
     "build": "rimraf ./dist && tsc",
