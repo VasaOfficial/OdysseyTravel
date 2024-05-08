@@ -23,7 +23,7 @@
     "sourceMap": true, // Enable source maps for debugging (optional)
     "incremental": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "@types/**/*", "prisma/seed.ts"],
   "exclude": [
     "node_modules"
   ]

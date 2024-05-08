@@ -4,7 +4,9 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-// run this to migrate to db  docker exec -it backend npx prisma migrate dev --name init
+// run this to migrate to db docker exec -it backend npx prisma migrate dev --name init
+
+// to enter database from terminal docker exec -it postgres_db psql -U postgres
 
 generator client {
   provider = "prisma-client-js"
@@ -16,25 +18,25 @@ datasource db {
 }
 
 model Continent {
-  id        Int      @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   name      String
   countries Country[]
 }
 
 model Country {
-  id          Int      @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String
-  continent   Continent @relation(fields: [continentId], references: [id])
+  continent   Continent     @relation(fields: [continentId], references: [id])
   continentId Int
-  destinations   Destination[]
+  destinations Destination[]
 }
 
 model Destination {
-  id           Int    @id @default(autoincrement())
-  countryName String  
-  country     Country @relation(fields: [countryId], references: [id])
-  countryId   Int
-  city         String  @db.VarChar(100)
+  id           Int          @id @default(autoincrement())
+  countryName  String  
+  country      Country      @relation(fields: [countryId], references: [id])
+  countryId    Int
+  city         String       @db.VarChar(100)
   price        Int
   latitude     Float
   longitude    Float
@@ -42,14 +44,14 @@ model Destination {
   durationDays Int
   description  String  @db.Text
   tripRoute    String  @db.Text
-  travelPlans  TravelPlan[]
-  includedIn   String  @db.Text
+  travelPlan  TravelPlan[]
+  includedIn   String        @db.Text
 }
 
 model TravelPlan {
-  id             Int      @id @default(autoincrement())
-  destination    Destination @relation(fields: [destinationId], references: [id])
+  id             Int          @id @default(autoincrement())
+  destination    Destination  @relation(fields: [destinationId], references: [id])
   destinationId  Int
-  day            Int
-  description    String  @db.Text
+  day            String
+  description    String       @db.Text
 }
