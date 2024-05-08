@@ -1,22 +1,21 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors'
+import cors from 'cors';
+import fetchLocationDataRouter from './api/routes/fetch-[location-data]';
 
 dotenv.config();
-const app = express()
-const PORT = process.env.PORT || 8000
+const app = express();
+const PORT = process.env.PORT || 8000;
 
 const allowedOrigins = ['http://localhost:3000'];
 const options: cors.CorsOptions = {
-  origin: allowedOrigins
+    origin: allowedOrigins
 };
 
-// Then pass these options to cors:
 app.use(cors(options));
-app.use(express.json())
+app.use(express.json());
 
-app.get('/test', (req, res) => {
-  res.send('hello world')
-})
+// Mount the router for handling location data fetch
+app.use('/', fetchLocationDataRouter);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

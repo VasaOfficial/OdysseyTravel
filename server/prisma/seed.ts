@@ -32,7 +32,6 @@ async function seedData() {
       where: { name: continentName },
     });
 
-    //console.log(`Existing continent is: ${existingContinent}`)
     if (!existingContinent) {
       // Create continent if it doesn't exist
       const createdContinent = await prisma.continent.create({
@@ -66,10 +65,10 @@ async function seedData() {
         console.log(`Country '${countryName}' already exists, skipping...`);
       }
 
-      const destinationData = locations[continentName]?.[countryName];
+      const destinationDetails = locations[continentName]?.[countryName];
 
        // Insert Destination data
-      if (destinationData) {
+      if (destinationDetails) {
         const country = await prisma.country.findFirst({
           where: { name: countryName }, 
         });
@@ -79,12 +78,12 @@ async function seedData() {
           continue;
         }
 
-        if (destinationData) {
+        if (destinationDetails) {
           // Check for existing destination using a unique constraint filter
           const existingDestination = await prisma.destination.findFirst({
             where: {
               countryName: countryName,  // Assuming country name is unique
-              city: destinationData.city,  // Additional field for uniqueness (optional)
+              city: destinationDetails.city,  // Additional field for uniqueness (optional)
             },
           });
       
@@ -94,19 +93,19 @@ async function seedData() {
               data: {
                 countryName: countryName,
                 country: { connect: { id: country.id } },
-                city: destinationData.city,
-                latitude: destinationData.latitude,
-                longitude: destinationData.longitude,
-                price: destinationData.price,
-                imageUrl: destinationData.imageUrl,
-                durationDays: destinationData.days,
-                description: destinationData.description,
-                tripRoute: destinationData.tripRoute,
-                includedIn: destinationData.includedIn,
+                city: destinationDetails.city,
+                latitude: destinationDetails.latitude,
+                longitude: destinationDetails.longitude,
+                price: destinationDetails.price,
+                imageUrl: destinationDetails.imageUrl,
+                durationDays: destinationDetails.days,
+                description: destinationDetails.description,
+                tripRoute: destinationDetails.tripRoute,
+                includedIn: destinationDetails.includedIn,
               },
             });
 
-            const travelPlans = destinationData.travelPlans;
+            const travelPlans = destinationDetails.travelPlans;
 
             if (travelPlans) {
               for (const travelPlan of travelPlans) {
@@ -133,7 +132,7 @@ async function seedData() {
               }
             }
           } else {
-            console.log(`Destination '${destinationData.city}' already exists, skipping...`);
+            console.log(`Destination '${destinationDetails.city}' already exists, skipping...`);
           }
         }
       }
