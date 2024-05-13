@@ -10,11 +10,18 @@ router.get('/api/data/:continent', async (req, res) => {
         const { continent } = req.params;
 
         // Query the database for data specific to the requested continent
-        const data = await prisma.continent.findFirst({
+        const data = await prisma.continent.findMany({
             where: {
                 name: continent
+            },
+            include: {
+                countries: {
+                    include: {
+                        destinations: true
+                    }
+                }
             }
-        });
+        });        
 
         // If the continent is not found, return a 404 response
         if (!data) {

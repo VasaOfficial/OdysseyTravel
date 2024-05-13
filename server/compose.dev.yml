@@ -2,8 +2,6 @@ services:
   backend: 
     container_name: backend
     image: backend
-    depends_on: 
-      - db
     build: 
       context: .
       target: development
@@ -14,11 +12,11 @@ services:
       - ./:/app
       - /app/node_modules 
     environment: 
-      DB_URL: postgresql://postgres:drkongo22322@db:5432/postgres?schema=public
+      DATABASE_URL: postgresql://postgres:drkongo22322@db:5432/postgres?schema=public
     command: npm run dev
 
   db:
-    container_name: postgres_db
+    container_name: db
     image: postgres:16.2-alpine
     restart: always
     ports:

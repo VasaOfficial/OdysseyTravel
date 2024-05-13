@@ -8,9 +8,11 @@ import Footer from '@/src/app/components/Footer';
 import PriceFilterDropdown from './ui/priceDropdown';
 import ItemCard from '@/src/app/components/ShopCard';
 import {Pagination} from '@nextui-org/react';
-import { locations } from '@/src/database/locations';
 import Image from 'next/image';
 import HawaiImage from '@/public/popup/ea.webp'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios';
+import { type ContinentTypes, type Country} from '@/types';
 
 type Coordinates = {
   latitude: number;
@@ -35,7 +37,30 @@ function Shop() {
     latitude: 0,
     zoom: 1,
   });
-  const [popupOpen, setPopupOpen] = useState<Record<string, boolean>>({});
+  const [popupOpen, setPopupOpen] = useState<Record<number, boolean>>({});
+  const { isPending, isError, data, error } = useQuery({ queryKey: ['continents', continent], queryFn: fetchContinents })
+
+  async function fetchContinents() {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/data/${continent}`);
+  
+      if (response.status !== 200) {
+        throw new Error('API request failed');
+      }
+
+      return response.data as ContinentTypes;
+    } catch (error) {
+      console.error('Error fetching continents:', error);
+      throw error; // Re-throw for handling in useQuery
+    }
+  }
+
+  useEffect(() => {
+    if (data) {
+      console.log('Data:', data); 
+    }
+  }, [data]);
+  
 
   useEffect(() => {
     // let maxPrice = searchParams.get("maxPrice");
@@ -65,9 +90,19 @@ function Shop() {
   };
 
   const handleMapClick = () => {
-    setPopupOpen({ ...Object.fromEntries(Object.keys(locations).map(locationName => [locationName, false])) });
+    if (data && data.length > 0 && data[0]?.countries) {
+      const popupState = data[0].countries.reduce((acc: Record<number, boolean>, country: Country) => {
+        country.destinations.forEach((destination) => {
+          acc[destination.id] = false;
+        });
+        return acc;
+      }, {});
+  
+      setPopupOpen(popupState);
+    }
   };
-
+  
+  
   return (
     <div className="h-auto w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
     <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]"></div>
@@ -119,58 +154,58 @@ function Shop() {
             }}
           >
             {/* Render markers for each location */}
-            {continent && locations[continent ] && Object.keys(locations[continent]!).map((locationId) => {
-              const location = locations[continent]![locationId];
-
-              if (location?.latitude !== undefined && location.longitude !== undefined) {
-              return (
-                <Marker
-                  key={locationId}
-                  latitude={location.latitude}
-                  longitude={location.longitude}
-                  onClick={(e) => {
-                    e.originalEvent.stopPropagation();
-                    setPopupOpen({ [locationId]: true });
-                  }}
-                >
-                  <div className='relative flex flex-col'>
-                    <div className="bg-white popup-3d text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
-                      $250
-                    </div>
-                    {popupOpen[locationId] && (
-                      <Popup
-                      key={locationId}
-                      latitude={location.latitude}
-                      longitude={location.longitude}
-                      closeOnClick={false}
-                      closeButton={false}
-                      anchor='right'
-                      offset={90}
+            {continent && data && data.length > 0 && data[0]?.countries.map((country: Country) => {
+              return country.destinations.map((destination) => {
+                if (destination.latitude !== undefined && destination.longitude !== undefined) {
+                  return (
+                    <Marker
+                      key={destination.id}
+                      latitude={destination.latitude}
+                      longitude={destination.longitude}
+                      onClick={(e) => {
+                        e.originalEvent.stopPropagation();
+                        setPopupOpen({ [destination.id]: true });
+                      }}
                     >
-                      <div className="popup-3d bg-slate-50 w-[305px] h-[240px] absolute z-50 mt-2 text-black font-bold text-base rounded-t-2xl rounded-b-2xl">
-                        <div className='w-full'>
-                          <Image src={HawaiImage} alt={`image of ${location.country}`} className='rounded-t-2xl h-[160px]' width={305} height={160} 
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+                      <div className='relative flex flex-col'>
+                        <div className="bg-white popup-3d text-black p-1 px-2 font-bold text-base rounded-2xl transform hover:scale-125 transition-transform duration-500 ease-in-out cursor-pointer">
+                          ${destination.price}
                         </div>
-                        <div className='flex flex-col px-4 py-2 gap-2'>
-                          <div className='flex justify-between items-center'>
-                            <div className='text-xl'>{location.country}</div>
-                            <div className="bg-green-400 z-10 text-black p-1 px-2 font-semibold text-sm rounded-2xl transform hover:scale-110 transition-transform duration-500 ease-in-out cursor-pointer">
-                              Check Out
+                        {popupOpen[destination.id] && (
+                          <Popup
+                            key={destination.id}
+                            latitude={destination.latitude}
+                            longitude={destination.longitude}
+                            closeOnClick={false}
+                            closeButton={false}
+                            anchor='right'
+                            offset={90}
+                          >
+                            <div className="popup-3d bg-slate-50 w-[305px] h-[240px] absolute z-50 mt-2 text-black font-bold text-base rounded-t-2xl rounded-b-2xl">
+                              <div className='w-full'>
+                                <Image src={HawaiImage} alt={`image of ${destination.countryName}`} className='rounded-t-2xl h-[160px]' width={305} height={160} 
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+                              </div>
+                              <div className='flex flex-col px-4 py-2 gap-2'>
+                                <div className='flex justify-between items-center'>
+                                  <div className='text-xl'>{destination.countryName}</div>
+                                  <div className="bg-green-400 z-10 text-black p-1 px-2 font-semibold text-sm rounded-2xl transform hover:scale-110 transition-transform duration-500 ease-in-out cursor-pointer">
+                                    Check Out
+                                  </div>
+                                </div>
+                                <div className='flex gap-1'>
+                                  <p className='text-gray-500 font-semibold'>{destination.city}</p>
+                                  <p className='text-gray-500 font-semibold'> · JUN 24 - 29</p>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div className='flex gap-1'>
-                            <p className='text-black font-bold text-base'>$396</p>
-                            <p className='text-gray-500 font-semibold'> · {location.city}</p>
-                            <p className='text-gray-500 font-semibold'> · JUN 24 - 29</p>
-                          </div>
-                        </div>
+                          </Popup>
+                        )}
                       </div>
-                    </Popup>
-                    )}
-                  </div>
-                </Marker>
-              )};
+                    </Marker>
+                  );
+                }
+              });
             })}
           </Map>
         </div>

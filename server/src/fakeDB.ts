@@ -11,10 +11,11 @@ export const locations: Record<string, Record<string, {
   longitude: number;
   price: number;
   imageUrl: string;
+  dateRange: string;
   days: number;
   description: string;
   tripRoute: string;
-  travelPlans:  TravelPlan[];
+  travelPlan:  TravelPlan[];
   includedIn: string;
 }>> = {
   'Europe': {
@@ -26,10 +27,11 @@ export const locations: Record<string, Record<string, {
       longitude: 2.3522,
       price: 2000,
       imageUrl: '///',
+      dateRange: 'JUN 2-12',
       days: 10,
       description: 'Explore the romantic ambiance of Paris, indulge in the exquisite cuisine of Lyon, wander through the vineyards of Bordeaux, and relax on the picturesque beaches of the French Riviera.',
       tripRoute: 'Belgrade → Paris → Lyon → Bordeaux → French Riviera (Nice, Cannes, Monaco) → Belgrade',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Paris. Check into the hotel and rest. Guided tour of Paris, including the Eiffel Tower and Louvre Museum.'
@@ -74,10 +76,11 @@ export const locations: Record<string, Record<string, {
       longitude: -0.1278,
       price: 1500,
       imageUrl: '//',
+      dateRange: 'JAN 12-22',
       days: 10,
       description: 'Explore the vibrant cities, stunning countryside, and rich history of the United Kingdom. From the bustling streets of London to the picturesque landscapes of the Scottish Highlands, this journey offers a diverse and unforgettable experience.',
       tripRoute: 'Belgrade (Serbia) -> London (UK) -> Edinburgh (Scotland) -> Inverness (Scotland) -> Glasgow (Scotland) -> Manchester (England) -> Oxford (England) -> Bath (England) -> London (UK) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in London. Check into the hotel and rest. Guided tour of London, including Buckingham Palace and Tower of London.'
@@ -123,10 +126,11 @@ export const locations: Record<string, Record<string, {
       longitude: 12.4964,
       price: 1200,
       imageUrl: '/',
+      dateRange: 'OCT 5-13',
       days: 8,
       description: 'Discover the enchanting beauty, rich history, and delectable cuisine of Italy. From the romantic canals of Venice to the ancient ruins of Rome, this journey promises an unforgettable Italian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Venice (Italy) -> Florence (Italy) -> Rome (Italy) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Venice. Check into the hotel and rest. Explore the canals and landmarks of Venice.'
@@ -164,10 +168,11 @@ export const locations: Record<string, Record<string, {
       longitude: -3.7038,
       price: 1400,
       imageUrl: '/',
+      dateRange: 'DEC 1-12',
       days: 12,
       description: 'Immerse yourself in the vibrant culture, stunning landscapes, and rich history of Spain. From the bustling streets of Madrid to the beautiful beaches of Barcelona, this journey offers a diverse and unforgettable Spanish experience.',
       tripRoute: 'Belgrade (Serbia) -> Madrid (Spain) -> Seville (Spain) -> Granada (Spain) -> Valencia (Spain) -> Barcelona (Spain) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Madrid. Check into the hotel and rest. Guided tour of Madrid, including the Royal Palace and Prado Museum.'
@@ -225,10 +230,11 @@ export const locations: Record<string, Record<string, {
       longitude: 15.9819,
       price: 1000,
       imageUrl: '/',
+      dateRange: 'AUG 23-30',
       days: 7,
       description: 'Experience the beauty, history, and culture of Croatia. From the medieval streets of Dubrovnik to the stunning waterfalls of Plitvice Lakes National Park, this journey offers a memorable exploration of Croatia\'s diverse landscapes and heritage.',
       tripRoute: 'Belgrade (Serbia) -> Zagreb (Croatia) -> Plitvice Lakes National Park (Croatia) -> Split (Croatia) -> Dubrovnik (Croatia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Zagreb. Check into the hotel and rest. Guided tour of Zagreb, including the Upper Town and St. Mark\'s Church.'
@@ -266,10 +272,11 @@ export const locations: Record<string, Record<string, {
       longitude: 13.4050,
       price: 1300,
       imageUrl: '/',
+      dateRange: 'MAY 31-9',
       days: 9,
       description: 'Explore the rich history, vibrant culture, and picturesque landscapes of Germany. From the bustling streets of Berlin to the fairytale castles of Bavaria, this journey offers a diverse and unforgettable German experience.',
       tripRoute: 'Belgrade (Serbia) -> Berlin (Germany) -> Dresden (Germany) -> Nuremberg (Germany) -> Munich (Germany) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Berlin. Check into the hotel and rest. Guided tour of Berlin, including the Brandenburg Gate and Berlin Wall.'
@@ -315,10 +322,11 @@ export const locations: Record<string, Record<string, {
       longitude: 23.7275,
       price: 1500,
       imageUrl: '/',
+      dateRange: 'FEB 7-17',
       days: 10,
       description: 'Embark on a journey to discover the ancient history, stunning landscapes, and vibrant culture of Greece. From the iconic landmarks of Athens to the breathtaking islands of Santorini and Mykonos, this trip promises an unforgettable Greek adventure.',
       tripRoute: 'Belgrade (Serbia) -> Athens (Greece) -> Santorini (Greece) -> Mykonos (Greece) -> Athens (Greece) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Athens. Check into the hotel and rest. Guided tour of Athens, including the Acropolis and Parthenon.'
@@ -369,10 +377,11 @@ export const locations: Record<string, Record<string, {
       longitude: 4.9041,
       price: 1100,
       imageUrl: '/',
+      dateRange: 'NOV 2-10',
       days: 8,
       description: 'Explore the charming canals, historic landmarks, and vibrant culture of the Netherlands. From the picturesque streets of Amsterdam to the iconic windmills of the countryside, this journey offers a memorable Dutch experience.',
       tripRoute: 'Belgrade (Serbia) -> Amsterdam (Netherlands) -> Rotterdam (Netherlands) -> The Hague (Netherlands) -> Utrecht (Netherlands) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Amsterdam. Check into the hotel and rest. Guided canal cruise and city tour of Amsterdam.'
@@ -414,10 +423,11 @@ export const locations: Record<string, Record<string, {
       longitude: 16.363449,
       price: 2000,
       imageUrl: '/',
+      dateRange: 'FEB 13-23',
       days: 10,
       description: 'Explore the breathtaking landscapes, natural wonders, and unique culture of Iceland. From the stunning waterfalls and geysers to the captivating Northern Lights, this journey promises an unforgettable Icelandic adventure.',
       tripRoute: 'Belgrade (Serbia) -> Reykjavik (Iceland) -> Golden Circle (Iceland) -> South Coast (Iceland) -> Jökulsárlón Glacier Lagoon (Iceland) -> Reykjavik (Iceland) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Vienna. Check into the hotel and rest. Guided tour of Vienna, including Schönbrunn Palace and St. Stephen\'s Cathedral.'
@@ -468,10 +478,11 @@ export const locations: Record<string, Record<string, {
       longitude: 37.6176,
       price: 1800,
       imageUrl: '/',
+      dateRange: 'JUL 4-16',
       days: 12,
       description: 'Delve into the rich history, magnificent architecture, and cultural treasures of Russia. From the grandeur of Moscow to the imperial splendor of St. Petersburg, this journey promises an unforgettable Russian experience.',
       tripRoute: 'Belgrade (Serbia) -> Moscow (Russia) -> St. Petersburg (Russia) -> Veliky Novgorod (Russia) -> Moscow (Russia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Moscow. Check into the hotel and rest. Optional evening city tour.'
@@ -529,10 +540,11 @@ export const locations: Record<string, Record<string, {
       longitude: 7.4474,
       price: 1600,
       imageUrl: '/',
+      dateRange: 'SEP 27-7',
       days: 10,
       description: 'Immerse yourself in the stunning alpine landscapes, charming villages, and cultural treasures of Switzerland. From the majestic peaks of the Swiss Alps to the serene lakeside towns, this journey promises an unforgettable Swiss experience.',
       tripRoute: 'Belgrade (Serbia) -> Zurich (Switzerland) -> Lucerne (Switzerland) -> Interlaken (Switzerland) -> Zermatt (Switzerland) -> Geneva (Switzerland) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Zurich. Check into the hotel and rest. Guided tour of Zurich, including the Old Town and Lake Zurich.'
@@ -578,10 +590,11 @@ export const locations: Record<string, Record<string, {
       longitude: 10.7522,
       price: 1800,
       imageUrl: '/',
+      dateRange: 'APR 2-13',
       days: 11,
       description: 'Embark on a journey to explore the majestic fjords, scenic landscapes, and vibrant cities of Norway. From the iconic sights of Oslo to the breathtaking natural beauty of the fjords, this trip promises an unforgettable Norwegian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Oslo (Norway) -> Bergen (Norway) -> Flam (Norway) -> Geiranger (Norway) -> Oslo (Norway) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Oslo. Check into the hotel and rest. Guided tour of Oslo, including the Viking Ship Museum and Holmenkollen Ski Jump.'
@@ -639,10 +652,11 @@ export const locations: Record<string, Record<string, {
       longitude: 20.4489,
       price: 800,
       imageUrl: '/',
+      dateRange: 'SEP 10-7',
       days: 7,
       description: 'Discover the rich history, cultural heritage, and natural beauty of Serbia. From the vibrant capital city of Belgrade to the serene landscapes of rural Serbia, this journey promises an authentic Serbian experience.',
       tripRoute: 'Belgrade (Serbia) -> Novi Sad (Serbia) -> Niš (Serbia) -> Užice (Serbia) -> Kragujevac (Serbia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Belgrade. Check into the hotel and rest. Guided tour of Belgrade, including Kalemegdan Fortress and Skadarlija.'
@@ -681,10 +695,11 @@ export const locations: Record<string, Record<string, {
       longitude: 31.233334,
       price: 1500,
       imageUrl: '/',
+      dateRange: 'SEP 20-30',
       days: 10,
       description: 'Immerse yourself in the ancient wonders, vibrant culture, and stunning landscapes of Egypt. From the iconic pyramids of Giza to the bustling streets of Cairo and the tranquil waters of the Nile, this journey promises an unforgettable Egyptian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Cairo (Egypt) -> Luxor (Egypt) -> Aswan (Egypt) -> Nile River Cruise -> Cairo (Egypt) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Cairo. Check into the hotel and rest. Guided tour of the Great Pyramids of Giza and the Sphinx.'
@@ -742,10 +757,11 @@ export const locations: Record<string, Record<string, {
       longitude: 36.8172,
       price: 2000,
       imageUrl: '/',
+      dateRange: 'AUG 10-22',
       days: 12,
       description: 'Experience the diverse landscapes, incredible wildlife, and rich culture of Kenya. From the vast savannahs of the Maasai Mara to the pristine beaches of the Kenyan coast, this journey promises an unforgettable Kenyan adventure.',
       tripRoute: 'Belgrade (Serbia) -> Nairobi (Kenya) -> Maasai Mara National Reserve (Kenya) -> Lake Nakuru National Park (Kenya) -> Amboseli National Park (Kenya) -> Nairobi (Kenya) -> Mombasa (Kenya) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Nairobi. Check into the hotel and rest. Visit the David Sheldrick Wildlife Trust and Giraffe Centre.'
@@ -800,10 +816,11 @@ export const locations: Record<string, Record<string, {
       longitude: 47.5079,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'NOV 2-16',
       days: 14,
       description: 'Explore the unique biodiversity, stunning landscapes, and fascinating culture of Madagascar. From the lush rainforests of Andasibe to the otherworldly rock formations of Tsingy de Bemaraha, this journey promises an unforgettable Madagascan adventure.',
       tripRoute: 'Belgrade (Serbia) -> Antananarivo (Madagascar) -> Andasibe-Mantadia National Park (Madagascar) -> Morondava (Madagascar) -> Tsingy de Bemaraha National Park (Madagascar) -> Avenue of the Baobabs (Madagascar) -> Antananarivo (Madagascar) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Antananarivo. Check into the hotel and rest. Visit the Lemur Park and Tsimbazaza Zoo.'
@@ -861,10 +878,11 @@ export const locations: Record<string, Record<string, {
       longitude: -6.841650,
       price: 1700,
       imageUrl: '/',
+      dateRange: 'FEB 19-29',
       days: 10,
       description: 'Immerse yourself in the vibrant colors, rich history, and exotic culture of Morocco. From the bustling markets of Marrakech to the stunning landscapes of the Sahara Desert, this journey promises an unforgettable Moroccan adventure.',
       tripRoute: 'Belgrade (Serbia) -> Marrakech (Morocco) -> Essaouira (Morocco) -> Fes (Morocco) -> Sahara Desert (Morocco) -> Marrakech (Morocco) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Marrakech. Check into the riad and rest. Explore the bustling Djemaa el Fna square.'
@@ -918,10 +936,11 @@ export const locations: Record<string, Record<string, {
       longitude: 18.4904,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'JAN 1-14',
       days: 14,
       description: 'Discover the rugged beauty, diverse wildlife, and vast landscapes of Namibia. From the towering sand dunes of Sossusvlei to the wildlife-rich plains of Etosha National Park, this journey promises an unforgettable Namibian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Windhoek (Namibia) -> Sossusvlei (Namibia) -> Swakopmund (Namibia) -> Damaraland (Namibia) -> Etosha National Park (Namibia) -> Windhoek (Namibia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Windhoek. Check into the lodge and rest. Explore the city center and National Botanical Garden.'
@@ -979,10 +998,11 @@ export const locations: Record<string, Record<string, {
       longitude: 18.423300,
       price: 2800,
       imageUrl: '/',
+      dateRange: 'JUN 10-24',
       days: 14,
       description: 'Explore the diverse landscapes, rich wildlife, and vibrant culture of South Africa. From the iconic Table Mountain in Cape Town to the thrilling safari experiences in Kruger National Park, this journey promises an unforgettable South African adventure.',
       tripRoute: 'Belgrade (Serbia) -> Cape Town (South Africa) -> Garden Route (South Africa) -> Knysna (South Africa) -> Port Elizabeth (South Africa) -> Johannesburg (South Africa) -> Kruger National Park (South Africa) -> Johannesburg (South Africa) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Cape Town. Check into the hotel and rest. Explore the V&A Waterfront and Table Mountain.'
@@ -1048,10 +1068,11 @@ export const locations: Record<string, Record<string, {
       longitude: 39.2026,
       price: 2000,
       imageUrl: '/',
+      dateRange: 'JUL 20-28',
       days: 8,
       description: 'Relax on the pristine beaches, explore the rich culture, and indulge in the exotic flavors of Zanzibar. From the historic Stone Town to the idyllic beaches of Nungwi and Kendwa, this journey promises an unforgettable Zanzibari escape.',
       tripRoute: 'Belgrade (Serbia) -> Zanzibar (Tanzania) -> Stone Town (Zanzibar) -> Nungwi (Zanzibar) -> Kendwa (Zanzibar) -> Stone Town (Zanzibar) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Zanzibar. Check into the beach resort and rest. Explore Stone Town and its historic sites.'
@@ -1098,10 +1119,11 @@ export const locations: Record<string, Record<string, {
       longitude: 32.5825,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'MAY 5-17',
       days: 12,
       description: 'Embark on a safari adventure and trek through lush jungles to encounter gorillas and chimpanzees in their natural habitat in Uganda. From the breathtaking landscapes of Bwindi Impenetrable National Park to the tranquil waters of the Nile River, this journey promises an unforgettable Ugandan experience.',
       tripRoute: 'Belgrade (Serbia) -> Entebbe (Uganda) -> Bwindi Impenetrable National Park (Uganda) -> Queen Elizabeth National Park (Uganda) -> Kibale National Park (Uganda) -> Murchison Falls National Park (Uganda) -> Kampala (Uganda) -> Entebbe (Uganda) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Entebbe. Transfer to Bwindi Impenetrable National Park.'
@@ -1162,10 +1184,11 @@ export const locations: Record<string, Record<string, {
       longitude: 114.177216,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'AUG 8-22',
       days: 14,
       description: 'Explore the ancient landmarks, vibrant cities, and breathtaking landscapes of China. From the iconic Great Wall and Forbidden City in Beijing to the picturesque karst mountains of Guilin and the modern metropolis of Shanghai, this journey promises an unforgettable Chinese adventure.',
       tripRoute: 'Belgrade (Serbia) -> Beijing (China) -> Xi\'an (China) -> Guilin (China) -> Yangshuo (China) -> Shanghai (China) -> Suzhou (China) -> Hangzhou (China) -> Beijing (China) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Beijing. Transfer to your hotel and settle in.'
@@ -1227,10 +1250,11 @@ export const locations: Record<string, Record<string, {
       longitude: 116.4074,
       price: 1800,
       imageUrl: '/',
+      dateRange: 'FEB 20-27',
       days: 7,
       description: 'Experience the vibrant fusion of Eastern and Western cultures in the dazzling metropolis of Hong Kong. From towering skyscrapers and bustling street markets to tranquil temples and scenic harbors, this itinerary offers an exciting exploration of Hong Kong\'s dynamic cityscape.',
       tripRoute: 'Belgrade (Serbia) -> Hong Kong (China) -> Lantau Island (Hong Kong) -> Kowloon (Hong Kong) -> Hong Kong Island (Hong Kong) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Hong Kong. Transfer to your hotel and settle in.'
@@ -1268,10 +1292,11 @@ export const locations: Record<string, Record<string, {
       longitude: 78.9629,
       price: 2200,
       imageUrl: '/',
+      dateRange: 'OCT 20-1',
       days: 12,
       description: 'Discover the vibrant culture, rich history, and diverse landscapes of India. From the majestic Taj Mahal in Agra to the bustling streets of Delhi and the serene backwaters of Kerala, this journey promises an unforgettable Indian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Delhi (India) -> Agra (India) -> Jaipur (India) -> Udaipur (India) -> Kochi (India) -> Alleppey (India) -> Kochi (India) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrival in Delhi. Transfer to hotel. Rest and relaxation.'
@@ -1321,10 +1346,11 @@ export const locations: Record<string, Record<string, {
       longitude: 53.6880,
       price: 2000,
       imageUrl: '/',
+      dateRange: 'MAY 28-7',
       days: 10,
       description: 'Discover the rich history, stunning architecture, and vibrant culture of Iran. From the ancient ruins of Persepolis to the beautiful mosques of Isfahan and the bustling bazaars of Tehran, this journey promises an unforgettable Iranian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Tehran (Iran) -> Isfahan (Iran) -> Shiraz (Iran) -> Yazd (Iran) -> Tehran (Iran) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Tehran. Transfer to your hotel and settle in.'
@@ -1378,10 +1404,11 @@ export const locations: Record<string, Record<string, {
       longitude: 79.861244,
       price: 1900,
       imageUrl: '/',
+      dateRange: 'SEP 10-19',
       days: 9,
       description: 'Embark on a journey through the tropical paradise of Sri Lanka, where ancient ruins, lush tea plantations, and pristine beaches await. From the cultural treasures of Kandy and Sigiriya to the scenic train ride through the hill country and the relaxing shores of Bentota, this itinerary offers an immersive Sri Lankan experience.',
       tripRoute: 'Belgrade (Serbia) -> Colombo (Sri Lanka) -> Kandy (Sri Lanka) -> Sigiriya (Sri Lanka) -> Ella (Sri Lanka) -> Bentota (Sri Lanka) -> Colombo (Sri Lanka) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Colombo. Transfer to your hotel and settle in.'
@@ -1423,10 +1450,11 @@ export const locations: Record<string, Record<string, {
       longitude: 139.6917,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'APR 1-14',
       days: 14,
       description: 'Immerse yourself in the unique blend of tradition and modernity in Japan. From the bustling streets of Tokyo to the serene temples of Kyoto and the scenic landscapes of Hakone, this journey promises an unforgettable Japanese adventure.',
       tripRoute: 'Belgrade (Serbia) -> Tokyo (Japan) -> Hakone (Japan) -> Kyoto (Japan) -> Nara (Japan) -> Osaka (Japan) -> Hiroshima (Japan) -> Miyajima (Japan) -> Tokyo (Japan) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Tokyo. Transfer to your hotel and settle in.'
@@ -1484,10 +1512,11 @@ export const locations: Record<string, Record<string, {
       longitude: 44.3661,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'MAR 20-30',
       days: 10,
       description: 'Explore the ancient ruins, stunning desert landscapes, and vibrant culture of Iraq. From the iconic sites to the breathtaking views, this journey promises an unforgettable Iraqi adventure.',
       tripRoute: 'Belgrade (Serbia) -> Baghdad (Iraq) -> Babylon (Iraq) -> Erbil (Iraq) -> Mosul (Iraq) -> Kirkuk (Iraq) -> Baghdad (Iraq) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Baghdad. Transfer to your hotel and settle in.'
@@ -1537,10 +1566,11 @@ export const locations: Record<string, Record<string, {
       longitude: 84.1240,
       price: 1800,
       imageUrl: '/',
+      dateRange: 'SEP 24-6',
       days: 12,
       description: 'Immerse yourself in the breathtaking landscapes, rich culture, and spiritual heritage of Nepal. From the majestic Himalayas to the ancient temples of Kathmandu and the tranquil lakes of Pokhara, this journey promises an unforgettable Nepalese adventure.',
       tripRoute: 'Belgrade (Serbia) -> Kathmandu (Nepal) -> Bhaktapur (Nepal) -> Pokhara (Nepal) -> Chitwan National Park (Nepal) -> Kathmandu (Nepal) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Kathmandu. Transfer to your hotel and settle in.'
@@ -1594,10 +1624,11 @@ export const locations: Record<string, Record<string, {
       longitude: 126.9780,
       price: 2200,
       imageUrl: '/',
+      dateRange: 'DEC 2-12',
       days: 10,
       description: 'Explore the vibrant cities, ancient palaces, and scenic landscapes of South Korea. From the bustling streets of Seoul to the historic sites of Gyeongju and the stunning beaches of Busan, this journey promises an unforgettable Korean adventure',
       tripRoute: 'Belgrade (Serbia) -> Seoul (South Korea) -> Gyeongju (South Korea) -> Busan (South Korea) -> Seoul (South Korea) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Seoul. Transfer to your hotel and settle in.'
@@ -1647,10 +1678,11 @@ export const locations: Record<string, Record<string, {
       longitude: 100.5018,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'JUL 12-26',
       days: 14,
       description: 'Immerse yourself in the vibrant culture, stunning beaches, and rich history of Thailand. From the bustling streets of Bangkok to the tranquil islands of Phuket and Krabi, this journey promises an unforgettable Thai adventure.',
       tripRoute: 'Belgrade (Serbia) -> Bangkok (Thailand) -> Ayutthaya (Thailand) -> Chiang Mai (Thailand) -> Phuket (Thailand) -> Krabi (Thailand) -> Bangkok (Thailand) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
             'day': '1',
             'description': 'Arrive in Bangkok. Transfer to your hotel and settle in.'
@@ -1708,10 +1740,11 @@ export const locations: Record<string, Record<string, {
       longitude: 106.918556,
       price: 2200,
       imageUrl: '/',
+      dateRange: 'SEP 24-4',
       days: 10,
       description: 'Embark on an extraordinary journey through the rugged landscapes, nomadic culture, and ancient history of Mongolia. From the vast steppes and towering mountains to the nomadic yurts and historic monasteries, this itinerary promises an unforgettable Mongolian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Ulaanbaatar (Mongolia) -> Terelj National Park (Mongolia) -> Kharkhorin (Mongolia) -> Orkhon Valley (Mongolia) -> Ulaanbaatar (Mongolia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
             'day': '1',
             'description': 'Arrive in Ulaanbaatar. Transfer to your ger camp and settle in.'
@@ -1769,10 +1802,11 @@ export const locations: Record<string, Record<string, {
       longitude: 53.8478,
       price: 2800,
       imageUrl: '/',
+      dateRange: 'DEC 23-2',
       days: 10,
       description: 'Experience the luxury, modernity, and cultural richness of the United Arab Emirates. From the dazzling skyscrapers of Dubai to the cultural heritage of Abu Dhabi and the serene desert landscapes of the Liwa Oasis, this journey promises an unforgettable Emirati adventure.',
       tripRoute: 'Belgrade (Serbia) -> Dubai (UAE) -> Abu Dhabi (UAE) -> Liwa Oasis (UAE) -> Dubai (UAE) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Dubai. Transfer to your luxury hotel and settle in.'
@@ -1831,10 +1865,11 @@ export const locations: Record<string, Record<string, {
       longitude: 108.2772,
       price: 2000,
       imageUrl: '/',
+      dateRange: 'APR 20-2',
       days: 12,
       description: 'Discover the rich history, stunning landscapes, and vibrant culture of Vietnam. From the bustling streets of Hanoi to the picturesque landscapes of Halong Bay and the ancient town of Hoi An, this journey promises an unforgettable Vietnamese adventure.',
       tripRoute: 'Belgrade (Serbia) -> Hanoi (Vietnam) -> Halong Bay (Vietnam) -> Hanoi (Vietnam) -> Hue (Vietnam) -> Hoi An (Vietnam) -> Ho Chi Minh City (Vietnam) -> Mekong Delta (Vietnam) -> Ho Chi Minh City (Vietnam) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Hanoi. Transfer to your hotel and settle in. Explore the cultural landmarks of Hanoi, including Hoan Kiem Lake, the Old Quarter, and the Temple of Literature.'
@@ -1891,10 +1926,11 @@ export const locations: Record<string, Record<string, {
       longitude: 147.15089,
       price: 3500,
       imageUrl: '/',
+      dateRange: 'OCT 5-17',
       days: 12,
       description: 'Embark on an adventure to discover the vibrant culture, pristine nature, and unique traditions of Papua New Guinea. From trekking in the highlands to immersing yourself in local villages and witnessing colorful tribal festivals, this trip promises an unforgettable journey into the heart of Melanesia.',
       tripRoute: 'Belgrade (Serbia) -> Port Moresby (Papua New Guinea) -> Mount Hagen (Papua New Guinea) -> Goroka (Papua New Guinea) -> Tari (Papua New Guinea) -> Mount Hagen (Papua New Guinea) -> Port Moresby (Papua New Guinea) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1-2',
           'description': 'Arrive in Port Moresby. Transfer to your accommodation and settle in. Embark on a trekking adventure in the highlands near Port Moresby.'
@@ -1946,10 +1982,11 @@ export const locations: Record<string, Record<string, {
       longitude: 131.0369,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'AUG 20-25',
       days: 5,
       description: 'Explore the iconic red rock formations and sacred Aboriginal sites of Uluru and Kata Tjuta in the heart of Australia\'s Red Centre. Witness breathtaking sunrises and sunsets over the desert landscape, and learn about the rich cultural significance of this UNESCO World Heritage Site.',
       tripRoute: 'Belgrade (Serbia) -> Alice Springs (Australia) -> Uluru (Australia) -> Kata Tjuta (Australia) -> Alice Springs (Australia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Alice Springs. Transfer to your accommodation near Uluru.'
@@ -1983,10 +2020,11 @@ export const locations: Record<string, Record<string, {
       longitude: 160.1562,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'MAY 4-14',
       days: 10,
       description: 'Venture to the Solomon Islands, a hidden gem in the South Pacific known for its pristine beaches, vibrant coral reefs, and rich cultural heritage. Explore remote islands, dive among colorful marine life, and immerse yourself in the warm hospitality of the Melanesian people.',
       tripRoute: 'Belgrade (Serbia) -> Honiara (Solomon Islands) -> Guadalcanal (Solomon Islands) -> Western Province (Solomon Islands) -> Honiara (Solomon Islands) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Honiara. Transfer to your accommodation and settle in.'
@@ -2037,10 +2075,11 @@ export const locations: Record<string, Record<string, {
       longitude: 149.128998,
       price: 3500,
       imageUrl: '/',
+      dateRange: 'JUN 7-21',
       days: 14,
       description: 'Explore the diverse landscapes, vibrant cities, and unique wildlife of Australia. From the iconic landmarks of Sydney and Melbourne to the ancient wonders of the Outback and the pristine beaches of the Whitsunday Islands, this journey promises an unforgettable Australian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Sydney (Australia) -> Cairns (Australia) -> Great Barrier Reef (Australia) -> Ayers Rock (Australia) -> Melbourne (Australia) -> Whitsunday Islands (Australia) -> Sydney (Australia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Sydney. Transfer to your accommodation and settle in.'
@@ -2107,10 +2146,11 @@ export const locations: Record<string, Record<string, {
       longitude: 174.7762,
       price: 4000,
       imageUrl: '/',
+      dateRange: 'NOV 1-14',
       days: 14,
       description: 'Immerse yourself in the breathtaking landscapes, Maori culture, and outdoor adventures of New Zealand. From the snow-capped peaks of the Southern Alps to the geothermal wonders of Rotorua and the pristine fjords of Milford Sound, this journey promises an unforgettable Kiwi adventure.',
       tripRoute: 'Belgrade (Serbia) -> Auckland (New Zealand) -> Rotorua (New Zealand) -> Taupo (New Zealand) -> Wellington (New Zealand) -> Christchurch (New Zealand) -> Queenstown (New Zealand) -> Milford Sound (New Zealand) -> Queenstown (New Zealand) -> Auckland (New Zealand) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Auckland. Transfer to your accommodation and settle in.'
@@ -2169,10 +2209,11 @@ export const locations: Record<string, Record<string, {
       longitude: 147.485962,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'APR 20-27',
       days: 7,
       description: 'Embark on a journey to explore the mesmerizing beauty and marine biodiversity of the Great Barrier Reef. From snorkeling among vibrant coral gardens to diving alongside majestic marine creatures, this trip promises an unforgettable aquatic adventure.',
       tripRoute: 'Belgrade (Serbia) -> Cairns (Australia) -> Great Barrier Reef (Australia) -> Cairns (Australia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Cairns. Transfer to your accommodation.'
@@ -2215,10 +2256,11 @@ export const locations: Record<string, Record<string, {
       longitude: 178.065033,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'SEP 4-14',
       days: 10,
       description: 'Escape to the idyllic paradise of Fiji, where pristine beaches, crystal-clear waters, and warm hospitality await. From luxurious overwater bungalows and vibrant coral reefs to cultural villages and lush rainforests, this itinerary promises an unforgettable island getaway in the heart of the South Pacific.',
       tripRoute: 'Belgrade (Serbia) -> Nadi (Fiji) -> Mamanuca Islands (Fiji) -> Coral Coast (Fiji) -> Suva (Fiji) -> Nadi (Fiji) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Nadi. Transfer to your beachfront resort.'
@@ -2266,10 +2308,11 @@ export const locations: Record<string, Record<string, {
       longitude: -58.3816,
       price: 3800,
       imageUrl: '/',
+      dateRange: 'JUN 20-2',
       days: 12,
       description: 'Embark on an adventure to explore the vibrant culture, stunning landscapes, and rich heritage of Argentina. From the bustling streets of Buenos Aires to the awe-inspiring natural wonders of Patagonia and the majestic Iguazu Falls, this journey promises an unforgettable Argentinean experience.',
       tripRoute: 'Belgrade (Serbia) -> Buenos Aires (Argentina) -> El Calafate (Argentina) -> Perito Moreno Glacier (Argentina) -> Ushuaia (Argentina) -> Buenos Aires (Argentina) -> Iguazu Falls (Argentina) -> Buenos Aires (Argentina) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Buenos Aires. Transfer to your accommodation and settle in.'
@@ -2316,10 +2359,11 @@ export const locations: Record<string, Record<string, {
       longitude: -70.6693,
       price: 3500,
       imageUrl: '/',
+      dateRange: 'JUN 2-12',
       days: 10,
       description: 'Explore the diverse landscapes, vibrant cities, and rich culture of Chile. From the bustling streets of Santiago to the breathtaking landscapes of the Atacama Desert and the stunning fjords of Patagonia, this journey promises an unforgettable Chilean adventure.',
       tripRoute: 'Belgrade (Serbia) -> Santiago (Chile) -> Atacama Desert (Chile) -> Santiago (Chile) -> Puerto Varas (Chile) -> Torres del Paine National Park (Chile) -> Santiago (Chile) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Santiago. Transfer to your accommodation and settle in.'
@@ -2370,10 +2414,11 @@ export const locations: Record<string, Record<string, {
       longitude: -47.9218,
       price: 1000,
       imageUrl: '/',
+      dateRange: 'AUG 4-11',
       days: 7,
       description: 'Discover the vibrant culture, stunning landscapes, and diverse ecosystems of Brazil. From the bustling streets of Rio de Janeiro to the pristine beaches of Fernando de Noronha and the lush Amazon rainforest, this journey promises an unforgettable Brazilian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Rio de Janeiro (Brazil) -> Paraty (Brazil) -> Ilha Grande (Brazil) -> Rio de Janeiro (Brazil) -> Manaus (Brazil) -> Amazon Rainforest (Brazil) -> Manaus (Brazil) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Rio de Janeiro. Transfer to your accommodation and settle in.'
@@ -2412,10 +2457,11 @@ export const locations: Record<string, Record<string, {
       longitude: -77.0428,
       price: 3200,
       imageUrl: '/',
+      dateRange: 'OCT 14-26',
       days: 12,
       description: 'Embark on an adventure to explore the ancient civilizations, breathtaking landscapes, and vibrant culture of Peru. From the iconic ruins of Machu Picchu to the colonial charm of Cusco and the mysterious Nazca Lines, this journey promises an unforgettable Peruvian experience.',
       tripRoute: 'Belgrade (Serbia) -> Lima (Peru) -> Cusco (Peru) -> Sacred Valley (Peru) -> Machu Picchu (Peru) -> Cusco (Peru) -> Nazca (Peru) -> Lima (Peru) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Lima. Transfer to your accommodation and settle in.'
@@ -2466,10 +2512,11 @@ export const locations: Record<string, Record<string, {
       longitude: -66.9036,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'JAN 20-30',
       days: 10,
       description: 'Embark on an adventure to explore the natural wonders, cultural heritage, and vibrant cities of Venezuela. From the majestic Angel Falls to the colorful streets of Caracas and the pristine beaches of Los Roques, this journey promises an unforgettable Venezuelan experience.',
       tripRoute: 'Belgrade (Serbia) -> Caracas (Venezuela) -> Canaima National Park (Venezuela) -> Angel Falls (Venezuela) -> Los Roques Archipelago (Venezuela) -> Caracas (Venezuela) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Caracas. Transfer to your accommodation and settle in.'
@@ -2512,10 +2559,11 @@ export const locations: Record<string, Record<string, {
       longitude: -74.0721,
       price: 3200,
       imageUrl: '/',
+      dateRange: 'NOV 11-23',
       days: 12,
       description: 'Discover the vibrant culture, colonial heritage, and stunning landscapes of Colombia. From the historic streets of Bogotá to the coffee plantations of the Zona Cafetera and the Caribbean beaches of Cartagena, this journey promises an unforgettable Colombian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Bogotá (Colombia) -> Coffee Triangle (Colombia) -> Medellín (Colombia) -> Cartagena (Colombia) -> Bogotá (Colombia) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Bogotá. Transfer to your accommodation and settle in.'
@@ -2566,10 +2614,11 @@ export const locations: Record<string, Record<string, {
       longitude: -60.126648,
       price: 2500,
       imageUrl: '/',
+      dateRange: 'MAY 28-5',
       days: 8,
       description: 'Embark on an immersive adventure into the heart of the Amazon Rainforest, the world\'s largest tropical rainforest teeming with unparalleled biodiversity. From winding river tributaries and lush jungle canopies to encounters with indigenous tribes and exotic wildlife, this journey promises an unforgettable exploration of the Amazon\'s natural wonders.',
       tripRoute: 'Belgrade (Serbia) -> Manaus (Brazil) -> Amazon Rainforest (Brazil) -> Manaus (Brazil) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Manaus. Transfer to your accommodation and settle in.'
@@ -2614,10 +2663,11 @@ export const locations: Record<string, Record<string, {
       longitude: -119.4179,
       price: 4000,
       imageUrl: '/',
+      dateRange: 'NOV 13-27',
       days: 14,
       description: 'Explore the diverse landscapes, iconic cities, and cultural attractions of California. From the stunning coastline of Big Sur to the bustling streets of San Francisco and the majestic beauty of Yosemite National Park, this journey promises an unforgettable Californian adventure.',
       tripRoute: 'Belgrade (Serbia) -> San Francisco (California) -> Big Sur (California) -> Monterey (California) -> Carmel-by-the-Sea (California) -> Yosemite National Park (California) -> Napa Valley (California) -> San Francisco (California) -> Los Angeles (California) -> Santa Barbara (California) -> Los Angeles (California) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in San Francisco. Transfer to your accommodation and settle in.'
@@ -2667,10 +2717,11 @@ export const locations: Record<string, Record<string, {
       longitude: -74.0060,
       price: 4500,
       imageUrl: '/',
+      dateRange: 'OCT 5-15',
       days: 10,
       description: 'Discover the iconic landmarks, world-class museums, and vibrant culture of New York City. From the bright lights of Times Square to the historic streets of Greenwich Village and the stunning views from the top of the Empire State Building, this journey promises an unforgettable New York experience.',
       tripRoute: 'Belgrade (Serbia) -> New York City (New York) -> Brooklyn (New York) -> Queens (New York) -> Staten Island (New York) -> New York City (New York) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in New York City. Transfer to your accommodation and settle in.'
@@ -2716,10 +2767,11 @@ export const locations: Record<string, Record<string, {
       longitude: -79.347015,
       price: 3800,
       imageUrl: '/',
+      dateRange: 'OCT 10-22',
       days: 12,
       description: 'Explore the stunning natural landscapes, vibrant cities, and rich cultural heritage of Canada. From the bustling streets of Toronto to the majestic beauty of the Canadian Rockies and the charming coastal towns of Nova Scotia, this journey promises an unforgettable Canadian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Toronto (Ontario, Canada) -> Niagara Falls (Ontario, Canada) -> Ottawa (Ontario, Canada) -> Montreal (Quebec, Canada) -> Quebec City (Quebec, Canada) -> Calgary (Alberta, Canada) -> Banff National Park (Alberta, Canada) -> Jasper National Park (Alberta, Canada) -> Vancouver (British Columbia, Canada) -> Victoria (British Columbia, Canada) -> Vancouver (British Columbia, Canada) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Toronto. Transfer to your accommodation and settle in.'
@@ -2766,10 +2818,11 @@ export const locations: Record<string, Record<string, {
       longitude: -81.7603,
       price: 2000,
       imageUrl: '/',
+      dateRange: 'SEP 21-28',
       days: 7,
       description: 'Experience the magic of Florida with its world-renowned theme parks, beautiful beaches, and vibrant cities. From the excitement of Orlando to the relaxation of Miami Beach, this trip offers a perfect blend of adventure and relaxation.',
       tripRoute: 'Belgrade (Serbia) -> Orlando (Florida) -> Miami (Florida) -> Key West (Florida) -> Everglades National Park (Florida) -> Orlando (Florida) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Orlando. Transfer to your accommodation and settle in.'
@@ -2807,10 +2860,11 @@ export const locations: Record<string, Record<string, {
       longitude: -77.2975,
       price: 3000,
       imageUrl: '/',
+      dateRange: 'MAR 6-14',
       days: 8,
       description: 'Immerse yourself in the vibrant culture, stunning beaches, and lush landscapes of Jamaica. From the reggae beats of Kingston to the pristine shores of Negril and the majestic waterfalls of Ocho Rios, this journey promises an unforgettable Jamaican experience.',
       tripRoute: 'Belgrade (Serbia) -> Kingston (Jamaica) -> Negril (Jamaica) -> Montego Bay (Jamaica) -> Ocho Rios (Jamaica) -> Kingston (Jamaica) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Kingston. Transfer to your accommodation and settle in.'
@@ -2848,10 +2902,11 @@ export const locations: Record<string, Record<string, {
       longitude: -82.3666,
       price: 3200,
       imageUrl: '/',
+      dateRange: 'OCT 21-31',
       days: 10,
       description: 'Discover the rich history, vibrant culture, and stunning architecture of Cuba. From the colorful streets of Havana to the lush tobacco fields of Viñales and the beautiful beaches of Varadero, this journey promises an unforgettable Cuban adventure.',
       tripRoute: 'Belgrade (Serbia) -> Havana (Cuba) -> Viñales (Cuba) -> Cienfuegos (Cuba) -> Trinidad (Cuba) -> Varadero (Cuba) -> Havana (Cuba) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Havana. Transfer to your accommodation and settle in.'
@@ -2893,10 +2948,11 @@ export const locations: Record<string, Record<string, {
       longitude: -102.5528,
       price: 3500,
       imageUrl: '/',
+      dateRange: 'AUG 10-20',
       days: 10,
       description: 'Immerse yourself in the rich history, vibrant culture, and stunning landscapes of Mexico. From the ancient ruins of Teotihuacan to the colorful streets of Mexico City and the pristine beaches of the Riviera Maya, this journey promises an unforgettable Mexican adventure.',
       tripRoute: 'Belgrade (Serbia) -> Mexico City (Mexico) -> Teotihuacan (Mexico) -> Puebla (Mexico) -> Oaxaca (Mexico) -> Riviera Maya (Mexico) -> Cancún (Mexico) -> Mexico City (Mexico) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Mexico City. Transfer to your accommodation and settle in.'
@@ -2939,10 +2995,11 @@ export const locations: Record<string, Record<string, {
       longitude: -77.009056,
       price: 3800,
       imageUrl: '/',
+      dateRange: 'DEC 2-12',
       days: 10,
       description: 'Discover the historic landmarks, vibrant culture, and natural beauty of Washington State. From the iconic monuments of Washington, D.C. to the lush forests of Olympic National Park and the charming waterfront of Seattle, this journey promises an unforgettable Washingtonian adventure.',
       tripRoute: 'Belgrade (Serbia) -> Washington, D.C. (USA) -> Shenandoah National Park (Virginia, USA) -> Baltimore (Maryland, USA) -> Annapolis (Maryland, USA) -> Washington, D.C. (USA) -> Seattle (Washington, USA) -> Olympic National Park (Washington, USA) -> Mount Rainier National Park (Washington, USA) -> Seattle (Washington, USA) -> Belgrade (Serbia)',
-      travelPlans: [
+      travelPlan: [
         {
           'day': '1',
           'description': 'Arrive in Washington, D.C. Transfer to your accommodation and settle in.'

@@ -82,8 +82,8 @@ async function seedData() {
           // Check for existing destination using a unique constraint filter
           const existingDestination = await prisma.destination.findFirst({
             where: {
-              countryName: countryName,  // Assuming country name is unique
-              city: destinationDetails.city,  // Additional field for uniqueness (optional)
+              countryName: countryName,
+              city: destinationDetails.city,
             },
           });
       
@@ -98,39 +98,15 @@ async function seedData() {
                 longitude: destinationDetails.longitude,
                 price: destinationDetails.price,
                 imageUrl: destinationDetails.imageUrl,
+                dateRange: destinationDetails.dateRange,
                 durationDays: destinationDetails.days,
                 description: destinationDetails.description,
                 tripRoute: destinationDetails.tripRoute,
+                travelPlans: destinationDetails.travelPlan,
                 includedIn: destinationDetails.includedIn,
               },
             });
 
-            const travelPlans = destinationDetails.travelPlans;
-
-            if (travelPlans) {
-              for (const travelPlan of travelPlans) {
-                // Check for existing travel plan for this destination and day
-                const existingTravelPlan = await prisma.travelPlan.findFirst({
-                  where: {
-                    destinationId: destination.id,
-                    day: travelPlan.day,
-                  },
-                });
-          
-                if (!existingTravelPlan) {
-                  // Create travel plan if it doesn't exist
-                  await prisma.travelPlan.create({
-                    data: {
-                      destination: { connect: { id: destination.id } },
-                      day: travelPlan.day,
-                      description: travelPlan.description,
-                    },
-                  });
-                } else {
-                    console.log(`Travel plan for day ${travelPlan.day} already exists, skipping...`);
-                }
-              }
-            }
           } else {
             console.log(`Destination '${destinationDetails.city}' already exists, skipping...`);
           }
@@ -153,7 +129,6 @@ seedData()
 async function deleteAllData() {
   // Define deletion order (important for relationships)
   const deletionOrder = [
-    'TravelPlan',
     'Destination',
     'Country',
     'Continent',

@@ -41,17 +41,10 @@ model Destination {
   latitude     Float
   longitude    Float
   imageUrl     String  @db.VarChar(255)
+  dateRange    String
   durationDays Int
   description  String  @db.Text
   tripRoute    String  @db.Text
-  travelPlan  TravelPlan[]
+  travelPlans  Json
   includedIn   String        @db.Text
-}
-
-model TravelPlan {
-  id             Int          @id @default(autoincrement())
-  destination    Destination  @relation(fields: [destinationId], references: [id])
-  destinationId  Int
-  day            String
-  description    String       @db.Text
 }
