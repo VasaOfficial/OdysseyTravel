@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import OtherInfo from './OtherInfo';
 import { type Data, type CurrentSlideData } from '../ContinentSlider';
 
@@ -15,10 +16,11 @@ function SlideInfo({ transitionData, currentSlideData }: Props) {
         data={transitionData ? transitionData : currentSlideData.data}
       />
       <motion.div layout className="mt-5 flex items-center gap-3">
-        <button
+        <Link
+          href={`/pages/shop?continent=${transitionData.title}`}
           className="w-fit rounded-full border-[1px] border-[#ffffff8f] px-6 py-3 text-lg mt-3 font-extralight transition duration-300 ease-in-out hover:bg-white hover:text-black">
           DISCOVER LOCATION
-        </button>
+        </Link>
       </motion.div>
     </>
   );

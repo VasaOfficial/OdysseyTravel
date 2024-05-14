@@ -1,6 +1,5 @@
 'use client'
-
-import { useState } from 'react';
+import { useState} from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Controls from './ui/Controls';
 import SlideInfo from './ui/SlideInfo';
@@ -25,7 +24,7 @@ function ContinentSlider() {
       data: initData,
       index: 0,
     });
-  
+
     return (
       <section
         className='relative min-h-screen select-none overflow-hidden text-white from-neutral-200 to-neutral-500 antialiased'>
