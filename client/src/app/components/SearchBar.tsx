@@ -143,14 +143,21 @@ function SearchBar() {
                 />
               </div>
             </div>
-            <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform" onClick={handleSearch}>
-              <Image
-                alt="search button"
-                src={SearchIcon}
-                height={40}
-                width={40}
-              />
-            </div>
+            {loading ? (
+              <div className="mr-2 rounded-full ">
+                <Spinner />
+              </div>
+            ) : (
+              <div className="mr-2 rounded-full bg-black p-3 cursor-pointer hover:scale-110 transition-transform transform" onClick={handleSearch}>
+                <Image
+                  alt="search button"
+                  src={SearchIcon}
+                  height={40}
+                  width={40}
+                />
+              </div>
+            )}
+            
           </div>
           {destination && (
           <div
@@ -245,9 +252,6 @@ function SearchBar() {
             <DateRangeComp />
           </div>
         )}
-        <div className="ml-10">
-          {loading && <Spinner />}
-        </div>
       </div>
     </div>
   );

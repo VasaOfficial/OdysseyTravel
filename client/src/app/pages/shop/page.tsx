@@ -2,17 +2,19 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, Suspense} from 'react';
 import Map, { Marker, Popup } from 'react-map-gl';
+import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios';
+import { type ContinentTypes, type Country} from '@/types';
+
 import Navbar from '@/src/app/components/Navbar';
 import SearchBar from '@/src/app/components/SearchBar';
 import Footer from '@/src/app/components/Footer';
 import PriceFilterDropdown from './ui/priceDropdown';
 import ItemCard from '@/src/app/components/ShopCard';
 import {Pagination} from '@nextui-org/react';
-import Image from 'next/image';
 import HawaiImage from '@/public/popup/ea.webp'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios';
-import { type ContinentTypes, type Country} from '@/types';
+import Loading from '@/src/app/loading';
 
 type Coordinates = {
   latitude: number;
@@ -24,11 +26,12 @@ type Continent = 'Africa' | 'Asia' | 'Europe' | 'North America' | 'South America
 
 function ShopSuspense() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Shop />
     </Suspense>
   );
 }
+
 function Shop() {
   const searchParams = useSearchParams();
   const [continent, setContinent] = useState('');
@@ -54,13 +57,6 @@ function Shop() {
       throw error; // Re-throw for handling in useQuery
     }
   }
-
-  useEffect(() => {
-    if (data) {
-      console.log('Data:', data); 
-    }
-  }, [data]);
-  
 
   useEffect(() => {
     // let maxPrice = searchParams.get("maxPrice");
@@ -101,8 +97,7 @@ function Shop() {
       setPopupOpen(popupState);
     }
   };
-  
-  
+
   return (
     <div className="h-auto w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
     <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]"></div>
@@ -195,7 +190,7 @@ function Shop() {
                                 </div>
                                 <div className='flex gap-1'>
                                   <p className='text-gray-500 font-semibold'>{destination.city}</p>
-                                  <p className='text-gray-500 font-semibold'> · JUN 24 - 29</p>
+                                  <p className='text-gray-500 font-semibold'> · {destination.dateRange}</p>
                                 </div>
                               </div>
                             </div>
