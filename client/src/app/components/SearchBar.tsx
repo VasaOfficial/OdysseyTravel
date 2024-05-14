@@ -157,7 +157,6 @@ function SearchBar() {
                 />
               </div>
             )}
-            
           </div>
           {destination && (
           <div
