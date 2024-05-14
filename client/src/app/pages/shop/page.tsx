@@ -42,7 +42,7 @@ function Shop() {
     zoom: 1,
   });
   const [popupOpen, setPopupOpen] = useState<Record<number, boolean>>({});
-  const { isPending, isError, data } = useQuery({ 
+  const { isError, data } = useQuery({ 
     queryKey: ['continents', continent], 
     queryFn: fetchContinents,
     retry: 3,

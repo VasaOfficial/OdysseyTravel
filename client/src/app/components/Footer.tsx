@@ -6,7 +6,7 @@ function Footer() {
   return ( 
     <footer className="h-auto w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
       <div className="absolute z-10 pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]"></div>
-      <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
+      <div className="mx-auto max-w-screen-2xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className='z-20'>
             <div className="flex justify-center text-teal-600 sm:justify-start dark:text-teal-300">
@@ -109,28 +109,28 @@ function Footer() {
                   <Link
                     className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75 z-20"
                     href="#">
-                    Web Development
+                    Booking Flights
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75 z-20"
                     href="#">
-                    Web Design
+                    Accommodation Arrangements
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75 z-20"
                     href="#">
-                    Marketing
+                    Transportation Arrangements
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75 z-20"
                     href="#">
-                    Google Ads
+                    Travel Packages and Tours
                   </Link>
                 </li>
               </ul>
