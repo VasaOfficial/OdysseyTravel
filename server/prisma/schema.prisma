@@ -24,11 +24,11 @@ model Continent {
 }
 
 model Country {
-  id          Int           @id @default(autoincrement())
-  name        String
-  continent   Continent     @relation(fields: [continentId], references: [id])
-  continentId Int
-  destinations Destination[]
+  id            Int           @id @default(autoincrement())
+  name          String
+  continent     Continent     @relation(fields: [continentId], references: [id])
+  continentId   Int
+  destinations  Destination[]
 }
 
 model Destination {
@@ -40,11 +40,26 @@ model Destination {
   price        Int
   latitude     Float
   longitude    Float
-  imageUrl     String  @db.VarChar(255)
+  imageUrl     String        @db.VarChar(255)
   dateRange    String
   durationDays Int
-  description  String  @db.Text
-  tripRoute    String  @db.Text
+  description  String        @db.Text
+  tripRoute    String        @db.Text
   travelPlans  Json
   includedIn   String        @db.Text
+}
+
+model TopOffers {
+  id                Int       @id @default(autoincrement())
+  countryName       String 
+  city              String    @db.VarChar(100)
+  price             Int
+  imageUrl          String    @db.VarChar(255)
+  shortDescription  String    @db.Text
+  description       String    @db.Text
+  durationDays      Int
+  tripRoute         String    @db.Text
+  travelPlans       Json
+  includedIn        String    @db.Text
+  dateRange         String
 }

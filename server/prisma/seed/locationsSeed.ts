@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { locations } from '../src/fakeDB'
+import { locations } from '../../data/destinationsData'
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,6 @@ async function createContinentsIfNotExists(locations: any) {
     });
 
     if (!existingContinent) {
-      console.log(`Creating continent: ${continentName}`);
       await prisma.continent.create({
         data: {
           name: continentName,

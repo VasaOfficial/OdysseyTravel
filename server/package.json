@@ -10,7 +10,8 @@
     "dev": "ts-node-dev --poll src/server.ts",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/server.js",
-    "seed": "ts-node-dev prisma/seed.ts"
+    "seed-destinations": "ts-node-dev prisma/seed/locationsSeed.ts",
+    "seed-top-offers": "ts-node-dev prisma/seed/topOffersSeed.ts"
   },
   "keywords": [],
   "author": "",
