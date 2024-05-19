@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { locations } from '../../data/destinationsData'
-
-const prisma = new PrismaClient();
+import prisma from '../prisma'
 
 async function createContinentsIfNotExists(locations: any) {
   const continentNames = Object.keys(locations); // Get all continent names

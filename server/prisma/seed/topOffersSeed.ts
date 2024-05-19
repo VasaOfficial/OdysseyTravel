@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { TopOffer, topOffersData } from "../../data/topOffersData";
-
-const prisma = new PrismaClient()
+import prisma from '../prisma'
 
 async function seedData() {
   const topOffersNames = Object.keys(topOffersData); // Get all top offers names

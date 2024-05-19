@@ -2,26 +2,36 @@ import '@/src/styles/favorites-heart.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import AddToFavoritesBtn from './ui/favorites-btn';
-import CartBtn from './ui/cart-btn';
 import EgyptIcon from '@/public/popup/ea.webp'
+import { type Destination } from '@/types';
+import { type FC } from 'react';
 
-function ShopCard() {
+interface ShopCardProps {
+  destination: Destination;
+}
+
+const ShopCard: FC<ShopCardProps> = ({ destination }) => {
   return ( 
     <Link href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-100 bg-slate-200">
-      <Image
-        alt=""
-        src={EgyptIcon}
-        className="rounded-md object-cover"
-      />
+      <div className="relative">
+        <Image
+          alt="////"
+          src={EgyptIcon}
+          className="rounded-md object-cover"
+        />
+        <AddToFavoritesBtn />
+      </div>
       <div className="mt-2">
-        <dl>
-          <div>
-            <dt className="sr-only">Price</dt>
-            <dd className="text-sm text-gray-500">$240,000</dd>
-          </div>
-          <div>
-            <dt className="sr-only">Address</dt>
-            <dd className="font-medium">123 Wallaby Avenue, Park Road</dd>
+        <dl className='flex justify-between w-full'>
+          <div className='flex flex-col'>
+            <div>
+              <dt className="sr-only">Price</dt>
+              <dd className="text-sm text-gray-500">${destination.price}</dd>
+            </div>
+            <div>
+              <dt className="sr-only">Address</dt>
+              <dd className="font-medium">{destination.city}, {destination.countryName}</dd>
+            </div>
           </div>
         </dl>
         <div className="mt-6 flex items-center gap-8 text-xs">

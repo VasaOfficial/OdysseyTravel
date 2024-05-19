@@ -5,17 +5,17 @@ import Map, { Marker, Popup } from 'react-map-gl';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios';
-import { type ContinentTypes, type Country} from '@/types';
+import { type ContinentTypes, type Country, type Destination} from '@/types';
 
 import Navbar from '@/src/app/components/Navbar';
 import SearchBar from '@/src/app/components/SearchBar';
 import Footer from '@/src/app/components/Footer';
 import PriceFilterDropdown from './ui/priceDropdown';
-import ItemCard from '@/src/app/components/ShopCard';
 import {Pagination} from '@nextui-org/react';
 import HawaiImage from '@/public/popup/ea.webp'
 import Loading from '@/src/app/loading';
 import ErrorPopup from '../../components/ui/error';
+import ShopCard from '@/src/app/components/ShopCard';
 
 type Coordinates = {
   latitude: number;
@@ -48,10 +48,12 @@ function Shop() {
     retry: 3,
     retryDelay: 1000,
   })
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   async function fetchContinents() {
     try {
-      const response = await axios.get(`http://localhost:8000/api/data/${continent}`);
+      const response = await axios.get(`http://localhost:8000/api/data/locations/${continent}`);
   
       if (response.status !== 200) {
         throw new Error('API request failed');
@@ -104,6 +106,10 @@ function Shop() {
     }
   };
 
+  const paginatedItems = data && data.length > 0
+    ? data[0]?.countries.flatMap((country) => country.destinations).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : [];
+
   if (isError) {
     return (<div className='flex items-center justify-center w-full h-full fixed top-0 left-0 z-50'><ErrorPopup /></div>)
   } else {
@@ -123,20 +129,23 @@ function Shop() {
                 <PriceFilterDropdown />
               </div>
               <div className='flex flex-col items-center z-20'>
-                <div className="flex gap-3 mt-5">
-                  <ItemCard />
-                  <ItemCard />
+                <div className="grid grid-cols-3 gap-4 mt-5">
+                  {paginatedItems?.map((destination: Destination) => (
+                    <ShopCard key={destination.id} destination={destination} />
+                  ))}
                 </div>
-                <div className="flex gap-3 mt-5">
-                  <ItemCard />
-                  <ItemCard />
-                </div>
-                <div className="flex gap-3 mt-5">
-                  <ItemCard />
-                  <ItemCard />
-                </div>
-                {/** Pagination Here */}
-                <Pagination showControls total={3} initialPage={1} className='mt-10' color='success' variant='faded' size='lg' showShadow />
+                <Pagination
+                  showControls
+                  total={Math.ceil((data?.[0]?.countries.flatMap((country) => country.destinations).length ?? 0) / itemsPerPage)}
+                  initialPage={1}
+                  page={currentPage}
+                  onChange={(page) => setCurrentPage(page)}
+                  className='mt-10'
+                  color='success'
+                  variant='faded'
+                  size='lg'
+                  showShadow
+                />
               </div>
             </div>
             {/** Mapbox here */}

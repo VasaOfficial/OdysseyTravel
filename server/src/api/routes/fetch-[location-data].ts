@@ -1,10 +1,9 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../../prisma/prisma'
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
-router.get('/api/data/:continent', async (req, res) => {
+router.get('/locations/:continent', async (req, res) => {
     try {
         // Extract the continent parameter from the request
         const { continent } = req.params;
