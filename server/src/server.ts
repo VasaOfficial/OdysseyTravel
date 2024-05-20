@@ -1,8 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import fetchLocationDataRouter from './api/routes/fetch-[location-data]';
-import topOffersRouter from './api/routes/fetch-[top-offers]'
+import { LocationDataRoute, TopOffersRoute } from './api/routes';
 
 dotenv.config();
 const app = express();
@@ -17,7 +16,7 @@ app.use(cors(options));
 app.use(express.json());
 
 // Mount the router for handling location data fetch
-app.use('/api/data', fetchLocationDataRouter);
-app.use('/api/data', topOffersRouter);
+app.use('/api/data', LocationDataRoute);
+app.use('/api/data', TopOffersRoute);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

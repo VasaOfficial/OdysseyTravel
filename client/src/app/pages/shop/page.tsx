@@ -42,7 +42,7 @@ function Shop() {
     zoom: 1,
   });
   const [popupOpen, setPopupOpen] = useState<Record<number, boolean>>({});
-  const { isError, data } = useQuery({ 
+  const { isError, data, isPending } = useQuery({ 
     queryKey: ['continents', continent], 
     queryFn: fetchContinents,
     retry: 3,
@@ -110,10 +110,15 @@ function Shop() {
     ? data[0]?.countries.flatMap((country) => country.destinations).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
     : [];
 
-  if (isError) {
-    return (<div className='flex items-center justify-center w-full h-full fixed top-0 left-0 z-50'><ErrorPopup /></div>)
-  } else {
-    return (
+    <div className='flex items-center justify-center w-full h-full fixed top-0 left-0 z-50'><ErrorPopup /></div>
+    
+  return (
+    <>
+    {isPending ? (
+      <div>Loading....</div>
+    ) : isError ? (
+      <div className='flex items-center justify-center w-full h-full fixed top-0 left-0 z-50'><ErrorPopup /></div>
+    ) : (
       <div className="h-auto w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]"></div>
         <div className="flex justify-center">
@@ -129,7 +134,7 @@ function Shop() {
                 <PriceFilterDropdown />
               </div>
               <div className='flex flex-col items-center z-20'>
-                <div className="grid grid-cols-3 gap-4 mt-5">
+                <div className="grid grid-cols-2 gap-4 mt-5">
                   {paginatedItems?.map((destination: Destination) => (
                     <ShopCard key={destination.id} destination={destination} />
                   ))}
@@ -225,8 +230,9 @@ function Shop() {
           </div>
         <Footer />
       </div>
-    );
-  }
+    )}
+    </>
+  );
 }
 
 export default ShopSuspense;
