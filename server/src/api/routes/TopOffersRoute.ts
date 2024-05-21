@@ -1,7 +1,7 @@
-import express from 'express';
+import { Router } from 'express';
 import { getTopOffersData} from '../controllers/TopOffersController';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/topOffers', getTopOffersData);
 

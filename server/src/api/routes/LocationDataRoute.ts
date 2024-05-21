@@ -1,7 +1,7 @@
-import express from 'express';
+import { Router } from 'express';
 import { getLocationsByContinent } from '../controllers/LocationsController';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/locations/:continent', getLocationsByContinent);
 
