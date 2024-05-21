@@ -3,11 +3,13 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from "helmet";
 import logger from './log/logger';
+import compression from 'compression'
 import { LocationDataRoute, TopOffersRoute } from './api/routes';
 
 dotenv.config();
 const app = express();
 app.use(helmet());
+app.use(compression());
 const PORT = process.env.PORT || 8000;
 
 // Middleware to log requests
