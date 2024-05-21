@@ -1,5 +1,4 @@
 'use client'
-
 import '@/src/styles/blue-button.css'
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,8 +12,8 @@ import { useRouter } from 'next/navigation';
 import { auth } from '../../../lib/firebase/config';
 import { UserAuth } from '../../../context/AuthContext';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
-import axios from 'axios'
-import { type AxiosResponse } from 'axios';
+import axios, { type AxiosResponse }  from 'axios';
+import logger from '@/src/log/logger';
 
 import EverestImage from '@/public/assets/auth/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -49,10 +48,10 @@ export default function Login() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       const res = await signInWithEmailAndPassword(auth, email, password)
-      console.log('User was successfully signed in')
+      logger.info('User was successfully signed in:');
       router.push('/')
     } catch (error) {
-      console.error('Login error:', error);
+      logger.error('Login error:', error);
       setincorrectCredentials('Invalid email or password. Please try again.');
       throw error;
     }
@@ -98,13 +97,13 @@ export default function Login() {
         try {
           mutate(data); // Trigger the mutation with form data
         } catch (error) {
-          console.error('Error submitting form:', error);
+          logger.error('Error submitting form:', error);
         }
       } else {
-        console.error('reCAPTCHA verification failed');
+        logger.warn('reCAPTCHA verification failed');
       }
     } catch (error) {
-      console.error('Error verifying reCAPTCHA:', error);
+      logger.error('Error verifying reCAPTCHA:', error);
     }
   };
 
@@ -113,11 +112,9 @@ export default function Login() {
       if (GoogleSignIn) {
         await GoogleSignIn();
         router.push('/')
-      } else {
-        console.error('logOut function is not defined.');
       }
     } catch (error) {
-      console.log(error);
+      logger.error('Error signing in with google:', error);
     }
   };
 
@@ -126,11 +123,9 @@ export default function Login() {
       if (GithubSignIn) {
         await GithubSignIn();
         router.push('/')
-      } else {
-        console.error('logOut function is not defined.');
       }
     } catch (error) {
-      console.log(error);
+      logger.error('Error signing in with github:', error);
     }
   };
 
@@ -143,7 +138,7 @@ export default function Login() {
       // Close the modal
       setShowForgotPasswordModal(false);
     } catch (error) {
-      console.error('Error sending password reset email:', error);
+      logger.error('Error sending password reset email:', error);
     }
   };
   

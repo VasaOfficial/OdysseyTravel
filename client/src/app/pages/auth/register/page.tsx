@@ -12,10 +12,10 @@ import { auth } from '../../../lib/firebase/config';
 import { UserAuth } from '../../../context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
-import axios from 'axios'
-import { type AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios'
 import { sendEmailVerification, createUserWithEmailAndPassword} from 'firebase/auth';
 import EmailVerificationCard from '../../../components/ui/email-verification';
+import logger from '@/src/log/logger';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -54,17 +54,17 @@ export default function SignUp() {
       if (res?.user) { // Add null check for res and res.user
         await sendEmailVerification(res.user);
         setVerificationSent(true);
-        console.log('Verification successfully sent');
+        logger.info('Verification successfully sent');
       } else {
-        console.error('Verification failed');
+        logger.warn('Verification failed');
       }
-      console.log('Registration successful');
+      logger.info('Registration successful');
     } catch (err) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (err.code === 'auth/email-already-in-use') {
         alert('This email is already in use. Please use a different email address.');
       } else {
-        console.error('Registration error:', err);
+        logger.info('Registration error:', err);
       }
     }
   };
@@ -109,13 +109,13 @@ export default function SignUp() {
         try {
           mutate(data); // Trigger the mutation with form data
         } catch (error) {
-          console.log(error)
+          logger.error(error)
         }
       } else {
-        console.error('reCAPTCHA verification failed');
+        logger.warn('reCAPTCHA verification failed')
       }
     } catch (error) {
-      console.error('Error verifying reCAPTCHA:', error);
+      logger.warn('Error verifying reCAPTCHA:', error)
     }
   };
 
@@ -125,10 +125,10 @@ export default function SignUp() {
         await GoogleSignIn();
         router.push('/')
       } else {
-        console.error('Google Sign In failed.');
+        logger.warn('Google Sign in failed')
       }
     } catch (error) {
-      console.log(error);
+      logger.error(error)
     }
   };
 
@@ -138,10 +138,10 @@ export default function SignUp() {
         await GithubSignIn();
         router.push('/')
       } else {
-        console.error('Github Sign In failed.');
+        logger.warn('Github Sign In failed.')
       }
     } catch (error) {
-      console.log(error);
+      logger.error(error)
     }
   }
 

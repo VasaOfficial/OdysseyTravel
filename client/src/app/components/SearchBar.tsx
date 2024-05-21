@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation'
 import { useSearchStore } from '@/src/state/store';
+import logger from '@/src/log/logger';
 
 import DateRangeComp from './DateRangeComp';
 import Spinner from './ui/spinner';
@@ -105,7 +106,7 @@ function SearchBar() {
       );
   
     } catch (error) {
-      console.error('Error during search:', error);
+      logger.error('Error during search:', error)
     } finally {
       setLoading(false);
     }

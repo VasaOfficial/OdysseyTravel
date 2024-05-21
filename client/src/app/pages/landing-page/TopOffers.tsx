@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { BentoGrid, BentoGridItem } from '../../components/ui/bento-grid';
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios';
+import logger from '@/src/log/logger';
 
 export type TravelPlan = {
   day: string;
@@ -40,17 +41,13 @@ export default function BentoGridDemo() {
         throw new Error('API request failed');
       }
 
-      console.log(response.data)
+      logger.info('Fetched top offers successfully:', response.data);
       return response.data as TopOffer[];
     } catch (error) {
-      console.error('Error fetching continents:', error);
+      logger.error('Error fetching continents:', error);
       throw error; // Re-throw for handling in useQuery
     }
   }
-
-  useEffect(() => {
-    console.log(data)
-  },[]);
 
   if (isError) {
     return <div>Error fetching data</div>;

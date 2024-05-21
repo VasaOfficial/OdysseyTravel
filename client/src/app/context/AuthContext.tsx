@@ -2,6 +2,7 @@
 import { useContext, createContext, useState, useEffect, type ReactNode } from 'react';
 import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, type User } from 'firebase/auth';
 import { auth } from '../lib/firebase/config';
+import logger from '@/src/log/logger';
 
 interface AuthContextType {
   user: User | null;
@@ -21,11 +22,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      // Handle successful sign-in here (e.g., navigate to a different page)
-      console.log(result);
     } catch (error) {
-      // Handle errors here
-      console.error(error);
+      logger.error(error)
     }
   };
 
@@ -33,11 +31,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     const provider = new GithubAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      // Handle successful sign-in here (e.g., navigate to a different page)
-      console.log(result);
     } catch (error) {
-      // Handle errors here
-      console.error(error);
+      logger.error(error)
     }
   };
 
