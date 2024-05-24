@@ -13,7 +13,6 @@ import { auth } from '../../../lib/firebase/config';
 import { UserAuth } from '../../../context/AuthContext';
 import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios, { type AxiosResponse }  from 'axios';
-import logger from '@/src/log/logger';
 
 import EverestImage from '@/public/assets/auth/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -48,10 +47,9 @@ export default function Login() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       const res = await signInWithEmailAndPassword(auth, email, password)
-      logger.info('User was successfully signed in:');
+      alert('User was successfully signed in:');
       router.push('/')
     } catch (error) {
-      logger.error('Login error:', error);
       setincorrectCredentials('Invalid email or password. Please try again.');
       throw error;
     }
@@ -97,13 +95,13 @@ export default function Login() {
         try {
           mutate(data); // Trigger the mutation with form data
         } catch (error) {
-          logger.error('Error submitting form:', error);
+          alert('An error occurred during form submission.')
         }
       } else {
-        logger.warn('reCAPTCHA verification failed');
+        alert('reCAPTCHA verification failed')
       }
     } catch (error) {
-      logger.error('Error verifying reCAPTCHA:', error);
+      alert('Error verifying reCAPTCHA')
     }
   };
 
@@ -114,7 +112,7 @@ export default function Login() {
         router.push('/')
       }
     } catch (error) {
-      logger.error('Error signing in with google:', error);
+      alert('An error occurred during Google sign-in. Please try again later.');
     }
   };
 
@@ -125,7 +123,7 @@ export default function Login() {
         router.push('/')
       }
     } catch (error) {
-      logger.error('Error signing in with github:', error);
+      alert('An error occurred during GitHub sign-in. Please try again later.');
     }
   };
 
@@ -138,7 +136,7 @@ export default function Login() {
       // Close the modal
       setShowForgotPasswordModal(false);
     } catch (error) {
-      logger.error('Error sending password reset email:', error);
+      alert('Error sending password reset email:');
     }
   };
   

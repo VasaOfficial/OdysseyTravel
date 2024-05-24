@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios';
 import { type ContinentTypes, type Country, type Destination} from '@/types';
-import logger from '@/src/log/logger';
 
 import Navbar from '@/src/app/components/Navbar';
 import SearchBar from '@/src/app/components/SearchBar';
@@ -60,10 +59,8 @@ function Shop() {
         throw new Error('API request failed');
       }
 
-      logger.info('Fetched continents successfully:', response.data);
       return response.data as ContinentTypes;
     } catch (error) {
-      logger.error('Error fetching continents:', error);
       throw error; // Re-throw for handling in useQuery
     }
   }

@@ -15,7 +15,6 @@ import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
 import axios, { type AxiosResponse } from 'axios'
 import { sendEmailVerification, createUserWithEmailAndPassword} from 'firebase/auth';
 import EmailVerificationCard from '../../../components/ui/email-verification';
-import logger from '@/src/log/logger';
 
 import EverestImage from '@/public/assets/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -47,6 +46,7 @@ export default function SignUp() {
   const router = useRouter()
   const { executeRecaptcha } = useGoogleReCaptcha()
 
+  // register and verify user via email
   const registerMutation = async (data: IFormInput) => {
     const { email, password } = data
     try {
@@ -54,17 +54,13 @@ export default function SignUp() {
       if (res?.user) { // Add null check for res and res.user
         await sendEmailVerification(res.user);
         setVerificationSent(true);
-        logger.info('Verification successfully sent');
       } else {
-        logger.warn('Verification failed');
+        alert('Verification failed')
       }
-      logger.info('Registration successful');
     } catch (err) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (err.code === 'auth/email-already-in-use') {
         alert('This email is already in use. Please use a different email address.');
-      } else {
-        logger.info('Registration error:', err);
       }
     }
   };
@@ -79,6 +75,8 @@ export default function SignUp() {
     setHoneypotFieldName(fieldName);
   }, []);
   
+
+  // register form submit
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     // adds honeypots against bots
     if (honeypotValue) { 
@@ -109,13 +107,13 @@ export default function SignUp() {
         try {
           mutate(data); // Trigger the mutation with form data
         } catch (error) {
-          logger.error(error)
+          alert('An error occurred during form submission.')
         }
       } else {
-        logger.warn('reCAPTCHA verification failed')
+        alert('reCAPTCHA verification failed')
       }
     } catch (error) {
-      logger.warn('Error verifying reCAPTCHA:', error)
+      alert('Error verifying reCAPTCHA')
     }
   };
 
@@ -125,10 +123,10 @@ export default function SignUp() {
         await GoogleSignIn();
         router.push('/')
       } else {
-        logger.warn('Google Sign in failed')
+        alert('Google Sign in failed')
       }
     } catch (error) {
-      logger.error(error)
+      alert('An error occurred during Google sign-in. Please try again later.');
     }
   };
 
@@ -138,10 +136,10 @@ export default function SignUp() {
         await GithubSignIn();
         router.push('/')
       } else {
-        logger.warn('Github Sign In failed.')
+        alert('Github Sign In failed.')
       }
     } catch (error) {
-      logger.error(error)
+      alert('An error occurred during GitHub sign-in. Please try again later.');
     }
   }
 
