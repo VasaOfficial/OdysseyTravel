@@ -4,27 +4,27 @@ import cors from 'cors';
 import helmet from "helmet";
 import logger from './log/logger';
 import compression from 'compression'
+import cookieParser from 'cookie-parser'
 import { LocationDataRoute, TopOffersRoute } from './api/routes';
 
 dotenv.config();
 const app = express();
 app.use(helmet());
 app.use(compression());
-const PORT = process.env.PORT || 8000;
+app.use(express.json());
+app.use(cookieParser())
+
+const allowedOrigins = ['http://localhost:3000'];
+const options: cors.CorsOptions = {
+    origin: allowedOrigins
+};
+app.use(cors(options));
 
 // Middleware to log requests
 app.use((req: Request, res: Response, next: NextFunction) => {
     logger.info(`${req.method} ${req.url}`);
     next();
 });
-
-const allowedOrigins = ['http://localhost:3000'];
-const options: cors.CorsOptions = {
-    origin: allowedOrigins
-};
-
-app.use(cors(options));
-app.use(express.json());
 
 // Mount the router for handling location data fetch
 app.use('/api/data', LocationDataRoute);
@@ -36,6 +36,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).send('Something broke!');
 });
 
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`);
 });

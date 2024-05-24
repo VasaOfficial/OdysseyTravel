@@ -29,4 +29,6 @@ COPY --from=development /app/dist ./dist
 
 EXPOSE 8000
 
+USER node
+
 CMD [ "node", "dist/server.js" ]
