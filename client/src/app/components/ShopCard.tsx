@@ -23,16 +23,14 @@ const ShopCard: FC<ShopCardProps> = ({ destination }) => {
       </div>
       <div className="mt-2">
         <dl className='flex justify-between w-full'>
-          <div className='flex flex-col'>
+            <div>
+              <dt className="sr-only">Address</dt>
+              <dd className="font-medium">{destination.countryName}</dd>
             <div>
               <dt className="sr-only">Price</dt>
               <dd className="text-sm text-gray-500">${destination.price}</dd>
             </div>
-            <div>
-              <dt className="sr-only">Address</dt>
-              <dd className="font-medium">{destination.city}, {destination.countryName}</dd>
             </div>
-          </div>
         </dl>
         <div className="mt-6 flex items-center gap-8 text-xs">
           <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
@@ -51,8 +49,8 @@ const ShopCard: FC<ShopCardProps> = ({ destination }) => {
               />
             </svg>
             <div className="mt-1.5 sm:mt-0">
-              <p className="text-gray-500">Parking</p>
-              <p className="font-medium">2 spaces</p>
+              <p className="text-gray-500">Destination</p>
+              <p className="font-medium">{destination.city}</p>
             </div>
           </div>
           <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
@@ -71,8 +69,8 @@ const ShopCard: FC<ShopCardProps> = ({ destination }) => {
               />
             </svg>
             <div className="mt-1.5 sm:mt-0">
-              <p className="text-gray-500">Bathroom</p>
-              <p className="font-medium">2 rooms</p>
+              <p className="text-gray-500">Date range</p>
+              <p className="font-medium">{destination.dateRange}</p>
             </div>
           </div>
           <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
@@ -91,8 +89,8 @@ const ShopCard: FC<ShopCardProps> = ({ destination }) => {
               />
             </svg>
             <div className="mt-1.5 sm:mt-0">
-              <p className="text-gray-500">Bedroom</p>
-              <p className="font-medium">4 rooms</p>
+              <p className="text-gray-500">Days</p>
+              <p className="font-medium">{destination.durationDays}</p>
             </div>
           </div>
         </div>

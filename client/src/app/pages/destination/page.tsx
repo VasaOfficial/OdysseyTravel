@@ -7,16 +7,13 @@ import FoodIcon from '@/public/assets/destination/food.webp'
 import PlaneIcon from '@/public/assets/destination/plane.webp'
 import BedIcon from '@/public/assets/destination/bed.webp'
 
-import CartBtn from '../../components/ui/cart-btn';
-
 import AddToFavorites from '../../components/ui/add-to-favorites';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 function Location() {
   return ( 
-    <div className="h-auto w-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]"></div>
-        <Navbar />
+    <>
+      <Navbar />
       <div className="max-w-[75%] flex flex-col m-auto">
         <div className="relative flex flex-col mt-40">
             <Image src={Hawaii} alt="hawait image" className="rounded w-full"/>
@@ -36,7 +33,7 @@ function Location() {
             </div>
           </div>
           <div className="flex flex-col gap-5 items-end">
-            <CartBtn />
+            <p className='p-4 text-white rounded border'>Book now</p>
             <AddToFavorites />
           </div>
         </div>
@@ -139,7 +136,7 @@ function Location() {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
    );
 }
 
