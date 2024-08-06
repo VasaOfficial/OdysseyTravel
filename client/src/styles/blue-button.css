@@ -40,7 +40,7 @@
 }
 
 .blue-btn::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100px;
   height: 100%;

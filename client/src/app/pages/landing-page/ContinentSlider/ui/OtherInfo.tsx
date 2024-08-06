@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { type Data } from '../ContinentSlider';
+import { motion } from 'framer-motion'
+import { type Data } from '../ContinentSlider'
 
 type Props = {
-  data: Data;
-};
+  data: Data
+}
 
 const item = {
   hidden: {
@@ -14,7 +14,7 @@ const item = {
     y: 0,
     transition: { ease: [0.455, 0.03, 0.515, 0.955], duration: 0.75 },
   },
-};
+}
 
 function OtherInfo({ data }: Props) {
   return (
@@ -23,23 +23,14 @@ function OtherInfo({ data }: Props) {
         className="my-1 text-4xl font-semibold md:my-3 md:text-8xl md:leading-[100px]"
         data={data?.title}
       />
-      <AnimatedText
-        className="text-sm mt-4 text-[#D5D5D6]"
-        data={data?.description}
-      />
+      <AnimatedText className="mt-4 text-sm text-[#D5D5D6]" data={data?.description} />
     </motion.div>
-  );
+  )
 }
 
-export default OtherInfo;
+export default OtherInfo
 
-const AnimatedText = ({
-  data,
-  className,
-}: {
-  data?: string;
-  className?: string;
-}) => {
+const AnimatedText = ({ data, className }: { data?: string; className?: string }) => {
   return (
     <span
       style={{
@@ -51,5 +42,5 @@ const AnimatedText = ({
         {data}
       </motion.p>
     </span>
-  );
-};
+  )
+}

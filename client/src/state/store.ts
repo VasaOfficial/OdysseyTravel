@@ -1,20 +1,20 @@
-import { create } from 'zustand';
+import { create } from 'zustand'
 import { addDays } from 'date-fns'
 
 type RangeItem = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-  key: string;
-};
+  startDate: Date | undefined
+  endDate: Date | undefined
+  key: string
+}
 
 type SearchState = {
-  selectedContinent: string;
-  selectedDateRange: RangeItem[];
-  maxPrice: number;
-  setContinent: (continent: string) => void;
-  setDateRange: (dateRange: RangeItem[]) => void;
-  setMaxPrice: (price: number) => void;
-};
+  selectedContinent: string
+  selectedDateRange: RangeItem[]
+  maxPrice: number
+  setContinent: (continent: string) => void
+  setDateRange: (dateRange: RangeItem[]) => void
+  setMaxPrice: (price: number) => void
+}
 
 export const useSearchStore = create<SearchState>((set) => ({
   selectedContinent: '',
@@ -29,4 +29,4 @@ export const useSearchStore = create<SearchState>((set) => ({
   setContinent: (continent) => set({ selectedContinent: continent }),
   setDateRange: (dateRange) => set({ selectedDateRange: dateRange }),
   setMaxPrice: (price) => set({ maxPrice: price }),
-}));
+}))

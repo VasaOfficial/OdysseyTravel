@@ -1,15 +1,15 @@
-import '../styles/globals.css';
+import '../styles/globals.css'
 
 import React from 'react'
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { Providers } from './providers';
+import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import { Providers } from './providers'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
-});
+})
 
 export const metadata: Metadata = {
   generator: 'Next.js',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Odyssey Travel - Your Gateway to Unforgettable Journeys',
   creator: 'Vasilije',
   description:
-  'Embark on a journey of a lifetime with Odyssey Travel. Discover amazing destinations, plan unforgettable vacations, and create lasting memories with our expert travel services. Explore our curated tours and personalized packages.',
+    'Embark on a journey of a lifetime with Odyssey Travel. Discover amazing destinations, plan unforgettable vacations, and create lasting memories with our expert travel services. Explore our curated tours and personalized packages.',
   icons: [
     {
       rel: 'apple-touch-icon',
@@ -41,20 +41,14 @@ export const metadata: Metadata = {
       url: '/favicons/favicon.ico',
     },
   ],
-};
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
-  );
+  )
 }

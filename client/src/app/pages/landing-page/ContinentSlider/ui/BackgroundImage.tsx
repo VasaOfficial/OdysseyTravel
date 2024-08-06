@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import { type Data, type CurrentSlideData } from '../ContinentSlider';
+import { motion } from 'framer-motion'
+import { type Data, type CurrentSlideData } from '../ContinentSlider'
 
 type Props = {
-  transitionData: Data;
-  currentSlideData: CurrentSlideData;
-};
+  transitionData: Data
+  currentSlideData: CurrentSlideData
+}
 
 function BackgroundImage({ transitionData, currentSlideData }: Props) {
   return (
@@ -29,7 +29,7 @@ function BackgroundImage({ transitionData, currentSlideData }: Props) {
         className=" absolute left-0 top-0 h-full w-full object-cover brightness-50"
       />
     </>
-  );
+  )
 }
 
-export default BackgroundImage;
+export default BackgroundImage

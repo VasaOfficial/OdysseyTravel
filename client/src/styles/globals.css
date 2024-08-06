@@ -8,9 +8,10 @@
 }
 
 .shadow-3d {
-  box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
-              0 0  0 2px rgb(190, 190, 190),
-              0.3em 0.3em 1em rgba(0,0,0,0.3);
+  box-shadow:
+    inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 .card.hover-scale:hover {
@@ -22,16 +23,16 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.grecaptcha-badge { 
+.grecaptcha-badge {
   visibility: hidden !important;
 }
 
-.mapboxgl-popup-content{
+.mapboxgl-popup-content {
   background: transparent;
   padding: 0;
   width: 50px;
 }
 
-  .mapboxgl-popup-tip{
+.mapboxgl-popup-tip {
   visibility: hidden;
 }

@@ -1,36 +1,32 @@
 import '@/src/styles/favorites-heart.css'
-import Image from 'next/image';
-import Link from 'next/link';
-import AddToFavoritesBtn from './ui/favorites-btn';
+import Image from 'next/image'
+import Link from 'next/link'
+import AddToFavoritesBtn from './ui/favorites-btn'
 import EgyptIcon from '@/public/popup/ea.webp'
-import { type Destination } from '@/types';
-import { type FC } from 'react';
+import { type Destination } from '@/types'
+import { type FC } from 'react'
 
 interface ShopCardProps {
-  destination: Destination;
+  destination: Destination
 }
 
 const ShopCard: FC<ShopCardProps> = ({ destination }) => {
-  return ( 
-    <Link href="#" className="block rounded-lg p-4 shadow-sm shadow-indigo-100 bg-slate-200">
+  return (
+    <Link href="#" className="block rounded-lg bg-slate-200 p-4 shadow-sm shadow-indigo-100">
       <div className="relative">
-        <Image
-          alt="////"
-          src={EgyptIcon}
-          className="rounded-md object-cover"
-        />
+        <Image alt="////" src={EgyptIcon} className="rounded-md object-cover" />
         <AddToFavoritesBtn />
       </div>
       <div className="mt-2">
-        <dl className='flex justify-between w-full'>
-            <div>
-              <dt className="sr-only">Address</dt>
-              <dd className="font-medium">{destination.countryName}</dd>
+        <dl className="flex w-full justify-between">
+          <div>
+            <dt className="sr-only">Address</dt>
+            <dd className="font-medium">{destination.countryName}</dd>
             <div>
               <dt className="sr-only">Price</dt>
               <dd className="text-sm text-gray-500">${destination.price}</dd>
             </div>
-            </div>
+          </div>
         </dl>
         <div className="mt-6 flex items-center gap-8 text-xs">
           <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
@@ -96,7 +92,7 @@ const ShopCard: FC<ShopCardProps> = ({ destination }) => {
         </div>
       </div>
     </Link>
-  );
+  )
 }
 
-export default ShopCard;
+export default ShopCard

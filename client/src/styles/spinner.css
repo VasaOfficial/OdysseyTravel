@@ -88,7 +88,7 @@
 
 @keyframes ringStroke42 {
   from,
-	to {
+  to {
     stroke-dashoffset: 452;
     transform: rotate(-45deg);
   }
@@ -101,14 +101,14 @@
 
 @keyframes tick42 {
   from,
-	3%,
-	47%,
-	to {
+  3%,
+  47%,
+  to {
     stroke-dashoffset: -12;
   }
 
   14%,
-	36% {
+  36% {
     stroke-dashoffset: 0;
   }
 }

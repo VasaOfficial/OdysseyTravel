@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion'
 
 type Props = {
-  curIndex: number;
-  length: number;
-};
+  curIndex: number
+  length: number
+}
 
 function Progress({ curIndex, length }: Props) {
   return (
@@ -41,7 +41,7 @@ function Progress({ curIndex, length }: Props) {
         </motion.div>
       </span>
     </>
-  );
+  )
 }
 
-export default Progress;
+export default Progress

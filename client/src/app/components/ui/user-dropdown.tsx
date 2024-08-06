@@ -22,36 +22,40 @@ export function DropdownMenuCheckboxes() {
   const handleSignOut = async () => {
     try {
       if (logOut) {
-        await logOut();
+        await logOut()
       } else {
-        console.error('logOut function is not defined.');
+        console.error('logOut function is not defined.')
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size='icon' className="rounded-full">
-          <Image src={UserLogo} width={40} height={40} alt="Avatar" className="overflow-hidden"/>
+        <Button size="icon" className="rounded-full">
+          <Image src={UserLogo} width={40} height={40} alt="Avatar" className="overflow-hidden" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
           Account <br />
-          <p className='text-gray-400 text-xs'>{user?.displayName ? user.displayName : user?.email}</p>
-        </DropdownMenuLabel> 
+          <p className="text-xs text-gray-400">
+            {user?.displayName ? user.displayName : user?.email}
+          </p>
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-          <Link href='/pages/auth/protected/saved-destinations'>
-            <DropdownMenuItem className='cursor-pointer'>Saved</DropdownMenuItem>
-          </Link>
-          <Link href="/pages/auth/protected/cart">
-            <DropdownMenuItem className="cursor-pointer">Cart</DropdownMenuItem>
-          </Link>
+        <Link href="/pages/auth/protected/saved-destinations">
+          <DropdownMenuItem className="cursor-pointer">Saved</DropdownMenuItem>
+        </Link>
+        <Link href="/pages/auth/protected/cart">
+          <DropdownMenuItem className="cursor-pointer">Cart</DropdownMenuItem>
+        </Link>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className='cursor-pointer' onClick={handleSignOut}>Logout</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer" onClick={handleSignOut}>
+          Logout
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

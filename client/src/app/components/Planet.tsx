@@ -1,10 +1,10 @@
-'use client';
-import React from 'react';
-import dynamic from 'next/dynamic';
+'use client'
+import React from 'react'
+import dynamic from 'next/dynamic'
 
 const World = dynamic(() => import('./ui/globe').then((m) => m.World), {
   ssr: false,
-});
+})
 
 export function GlobeDemo() {
   const globeConfig = {
@@ -28,8 +28,8 @@ export function GlobeDemo() {
     initialPosition: { lat: 22.3193, lng: 114.1694 },
     autoRotate: true,
     autoRotateSpeed: 0.5,
-  };
-  const colors = ['#06b6d4', '#3b82f6', '#6366f1'];
+  }
+  const colors = ['#06b6d4', '#3b82f6', '#6366f1']
   const sampleArcs = [
     {
       order: 1,
@@ -391,13 +391,13 @@ export function GlobeDemo() {
       arcAlt: 0.3,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
-  ];
+  ]
 
   return (
     <>
-    <div className='h-[800px] w-full -bottom-20 z-10'>
-      <World data={sampleArcs} globeConfig={globeConfig} />
-    </div>
+      <div className="-bottom-20 z-10 h-[800px] w-full">
+        <World data={sampleArcs} globeConfig={globeConfig} />
+      </div>
     </>
-  );
+  )
 }
