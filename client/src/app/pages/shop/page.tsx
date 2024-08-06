@@ -42,8 +42,8 @@ function Shop() {
     zoom: 1,
   });
   const [popupOpen, setPopupOpen] = useState<Record<number, boolean>>({});
-  const { isError, data, isPending } = useQuery({ 
-    queryKey: ['continents', continent], 
+  const { isError, data, isPending } = useQuery({
+    queryKey: ['continents', continent],
     queryFn: fetchContinents,
     retry: 3,
     retryDelay: 1000,
@@ -53,8 +53,8 @@ function Shop() {
 
   async function fetchContinents() {
     try {
-      const response = await axios.get(`http://localhost:8000/api/data/locations/${continent}`);
-  
+      const response = await axios.get(`http://localhost:8001/api/data/locations/${continent}`);
+
       if (response.status !== 200) {
         throw new Error('API request failed');
       }
@@ -100,7 +100,7 @@ function Shop() {
         });
         return acc;
       }, {});
-  
+
       setPopupOpen(popupState);
     }
   };
@@ -110,7 +110,7 @@ function Shop() {
     : [];
 
     <div className='flex items-center justify-center w-full h-full fixed top-0 left-0 z-50'><ErrorPopup /></div>
-    
+
   return (
     <>
     {isPending ? (
@@ -199,7 +199,7 @@ function Shop() {
                               >
                                 <div className="popup-3d bg-slate-50 w-[305px] h-[240px] absolute z-50 mt-2 text-black font-bold text-base rounded-t-2xl rounded-b-2xl">
                                   <div className='w-full'>
-                                    <Image src={HawaiImage} alt={`image of ${destination.countryName}`} className='rounded-t-2xl h-[160px]' width={305} height={160} 
+                                    <Image src={HawaiImage} alt={`image of ${destination.countryName}`} className='rounded-t-2xl h-[160px]' width={305} height={160}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
                                   </div>
                                   <div className='flex flex-col px-4 py-2 gap-2'>

@@ -20,7 +20,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const GoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
+
     } catch (error) {
       alert('Google Sign in failed')
     }
@@ -29,7 +30,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const GithubSignIn = async () => {
     const provider = new GithubAuthProvider();
     try {
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
+
     } catch (error) {
       alert('Github Sign in failed')
     }
@@ -37,7 +39,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const logOut = async () => {
     await signOut(auth);
-  };  
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

@@ -11,15 +11,12 @@ import { useMutation } from '@tanstack/react-query';
 import { auth } from '../../../lib/firebase/config';
 import { UserAuth } from '../../../context/AuthContext';
 import { useRouter } from 'next/navigation';
-import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
-import axios, { type AxiosResponse } from 'axios'
-import { sendEmailVerification, createUserWithEmailAndPassword} from 'firebase/auth';
-import EmailVerificationCard from '../../../components/ui/email-verification';
+import { createUserWithEmailAndPassword} from 'firebase/auth';
 
-import EverestImage from '@/public/assets/Everest.webp'
+import EverestImage from '@/public/assets/auth/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
-import GithubIcon from '@/public/assets/github.webp'
-import GoogleIcon from '@/public/assets/google-icon.webp'
+import GithubIcon from '@/public/assets/auth/github.webp'
+import GoogleIcon from '@/public/assets/auth/google-icon.webp'
 
 const signUpSchema = z.object({
   email: z.string().min(5, { message: 'Email is required' }).email({ message: 'Must be a valid email'}),
@@ -33,30 +30,19 @@ const signUpSchema = z.object({
 
 type IFormInput = z.infer<typeof signUpSchema>;
 
-type RecaptchaResponse = {
-  success: boolean;
-}
-
 export default function SignUp() {
   const { register, formState: { errors, isValid }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)});
   const [honeypotValue, setHoneypotValue] = useState('');
-  const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
-  const [verificationSent, setVerificationSent] = useState(false);
+  const [honeypotFieldName, setHoneypotFieldName] = useState('');
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const router = useRouter()
-  const { executeRecaptcha } = useGoogleReCaptcha()
 
   // register and verify user via email
   const registerMutation = async (data: IFormInput) => {
     const { email, password } = data
     try {
-      const res = await createUserWithEmailAndPassword(auth, email, password)
-      if (res?.user) { // Add null check for res and res.user
-        await sendEmailVerification(res.user);
-        setVerificationSent(true);
-      } else {
-        alert('Verification failed')
-      }
+      await createUserWithEmailAndPassword(auth, email, password)
+      router.push('/')
     } catch (err) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (err.code === 'auth/email-already-in-use') {
@@ -74,46 +60,19 @@ export default function SignUp() {
     const fieldName = Math.random().toString(36).substring(7);
     setHoneypotFieldName(fieldName);
   }, []);
-  
+
 
   // register form submit
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     // adds honeypots against bots
-    if (honeypotValue) { 
+    if (honeypotValue) {
       return;
     }
 
-    if (!executeRecaptcha) {
-      return
-    }
-
     try {
-      const gRecaptchaToken = await executeRecaptcha('registerSubmit');
-
-      const response: AxiosResponse<RecaptchaResponse> = await axios({
-        method: 'post',
-        url: '/api/recaptcha',
-        data: {
-          gRecaptchaToken,
-        },
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response?.data?.success === true) {
-        // If reCAPTCHA verification is successful, proceed with form submission
-        try {
-          mutate(data); // Trigger the mutation with form data
-        } catch (error) {
-          alert('An error occurred during form submission.')
-        }
-      } else {
-        alert('reCAPTCHA verification failed')
-      }
+      mutate(data); // Trigger the mutation with form data
     } catch (error) {
-      alert('Error verifying reCAPTCHA')
+      alert('An error occurred during form submission.')
     }
   };
 
@@ -244,7 +203,7 @@ export default function SignUp() {
                 <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
                 onClick={handleGoogleSignIn}>
                   <Image src={GoogleIcon} alt='google button' width={20} height={20}/>
-                  Google 
+                  Google
                 </button>
                 <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
                 onClick={handleGithubSignIn}>
@@ -254,13 +213,6 @@ export default function SignUp() {
               </div>
           </div>
         </div>
-        {verificationSent && (
-          <div className="fixed inset-0 flex items-center justify-center">
-            <div className="z-50">
-              <EmailVerificationCard />
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

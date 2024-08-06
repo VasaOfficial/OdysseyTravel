@@ -25,8 +25,8 @@ export type TopOffer = {
 }
 
 export default function BentoGridDemo() {
-  const { isError, data, isPending } = useQuery({ 
-    queryKey: ['topOffers'], 
+  const { isError, data, isPending } = useQuery({
+    queryKey: ['topOffers'],
     queryFn: fetchOffers,
     retry: 3,
     retryDelay: 1000,
@@ -34,8 +34,8 @@ export default function BentoGridDemo() {
 
   async function fetchOffers() {
     try {
-      const response = await axios.get('http://localhost:8000/api/data/TopOffers');
-  
+      const response = await axios.get('http://localhost:8001/api/data/TopOffers');
+
       if (response.status !== 200) {
         throw new Error('API request failed');
       }

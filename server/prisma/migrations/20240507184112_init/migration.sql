@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "TravelPlan" ALTER COLUMN "day" SET DATA TYPE TEXT;

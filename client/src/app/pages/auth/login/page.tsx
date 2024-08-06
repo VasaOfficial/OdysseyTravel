@@ -11,8 +11,6 @@ import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/aut
 import { useRouter } from 'next/navigation';
 import { auth } from '../../../lib/firebase/config';
 import { UserAuth } from '../../../context/AuthContext';
-import { useGoogleReCaptcha} from 'react-google-recaptcha-v3';
-import axios, { type AxiosResponse }  from 'axios';
 
 import EverestImage from '@/public/assets/auth/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -21,14 +19,10 @@ import GoogleIcon from '@/public/assets/auth/google-icon.webp'
 
 const signUpSchema = z.object({
   email: z.string().min(5, { message: 'Email is required' }).email({ message: 'Must be a valid email'}),
-  password: z.string().min(8, { message: 'Password must be atleast 8 characters' }).max(25),
+  password: z.string().min(8, { message: 'Password must be at least 8 characters' }).max(25),
 })
 
 type IFormInput = z.infer<typeof signUpSchema>;
-
-type RecaptchaResponse = {
-  success: boolean;
-}
 
 export default function Login() {
   const { register, formState: { errors, isValid }, handleSubmit } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema)})
@@ -36,8 +30,7 @@ export default function Login() {
   const router = useRouter()
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const [honeypotValue, setHoneypotValue] = useState('');
-  const [honeypotFieldName, setHoneypotFieldName] = useState(''); 
-  const { executeRecaptcha } = useGoogleReCaptcha()
+  const [honeypotFieldName, setHoneypotFieldName] = useState('');
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
   const [incorrectCredentials, setincorrectCredentials] = useState('');
@@ -46,9 +39,9 @@ export default function Login() {
     const { email, password } = data;
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-      const res = await signInWithEmailAndPassword(auth, email, password)
-      alert('User was successfully signed in:');
+      await signInWithEmailAndPassword(auth, email, password)
       router.push('/')
+      alert('User was successfully signed in!');
     } catch (error) {
       setincorrectCredentials('Invalid email or password. Please try again.');
       throw error;
@@ -64,44 +57,17 @@ export default function Login() {
     const fieldName = Math.random().toString(36).substring(7);
     setHoneypotFieldName(fieldName);
   }, []);
-  
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     // adds honeypots against bots
-    if (honeypotValue) { 
+    if (honeypotValue) {
       return;
     }
 
-    if (!executeRecaptcha) {
-      return
-    }
-    
     try {
-      const gRecaptchaToken = await executeRecaptcha('registerSubmit');
-
-      const response: AxiosResponse<RecaptchaResponse> = await axios({
-        method: 'post',
-        url: '/api/recaptcha',
-        data: {
-          gRecaptchaToken,
-        },
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response?.data?.success === true) {
-        // If reCAPTCHA verification is successful, proceed with form submission
-        try {
-          mutate(data); // Trigger the mutation with form data
-        } catch (error) {
-          alert('An error occurred during form submission.')
-        }
-      } else {
-        alert('reCAPTCHA verification failed')
-      }
+      mutate(data); // Trigger the mutation with form data
     } catch (error) {
-      alert('Error verifying reCAPTCHA')
+      alert('An error occurred during form submission.')
     }
   };
 
@@ -139,7 +105,7 @@ export default function Login() {
       alert('Error sending password reset email:');
     }
   };
-  
+
   return (
     <section className="relative h-screen w-full">
       <div className="relative h-full w-full">
@@ -209,7 +175,7 @@ export default function Login() {
                   </svg>
                 </button>
               </div>
-              <p className="text-center text-black text-sm mb-5">Don't have an account? 
+              <p className="text-center text-black text-sm mb-5">Don't have an account?
                 <Link href='/pages/auth/register' className="text-sm ml-1 font-medium cursor-pointer text-sky-600">Sign Up</Link>
               </p>
               <p className="text-center text-black text-sm my-1">Or With</p>
@@ -225,12 +191,12 @@ export default function Login() {
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
               onClick={handleGoogleSignIn}>
                 <Image src={GoogleIcon} alt='google button' width={20} height={20}/>
-                Google 
+                Google
               </button>
               <button className="mt-2 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2 border bg-white cursor-pointer text-black border-gray-300 hover:border-blue-500 transition-all duration-200 ease-in-out"
               onClick={handleGithubSignIn}>
                 <Image src={GithubIcon} alt='github button' width={20} height={20}/>
-                Github 
+                Github
               </button>
             </div>
             {/* PASSWORD RESET FORM */}
