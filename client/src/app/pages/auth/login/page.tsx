@@ -50,13 +50,12 @@ export default function Login() {
       const user = userCredential.user;
       const token = await user.getIdToken();
 
-      const response = await fetch('bla', {
+      const response = await fetch('ba', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ email }),
       });
 
       await response.json();
@@ -90,6 +89,19 @@ export default function Login() {
     }
   }
 
+  // Reset user password
+  const handleForgotPasswordSubmit = async () => {
+    try {
+      await sendPasswordResetEmail(auth, forgotPasswordEmail)
+      // Notify the user that a password reset email has been sent
+      alert('A password reset email has been sent to your email address.')
+      // Close the modal
+      setShowForgotPasswordModal(false)
+    } catch (error) {
+      alert('Error sending password reset email:')
+    }
+  }
+
   const handleGoogleSignIn = async () => {
     try {
       if (GoogleSignIn) {
@@ -109,19 +121,6 @@ export default function Login() {
       }
     } catch (error) {
       alert('An error occurred during GitHub sign-in. Please try again later.')
-    }
-  }
-
-  // Reset user password
-  const handleForgotPasswordSubmit = async () => {
-    try {
-      await sendPasswordResetEmail(auth, forgotPasswordEmail)
-      // Notify the user that a password reset email has been sent
-      alert('A password reset email has been sent to your email address.')
-      // Close the modal
-      setShowForgotPasswordModal(false)
-    } catch (error) {
-      alert('Error sending password reset email:')
     }
   }
 
@@ -249,7 +248,7 @@ export default function Login() {
             {showForgotPasswordModal && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <div className="rounded-lg bg-white p-6 shadow-lg">
-                  <h2 className="mb-4 text-lg font-semibold">Forgot Password</h2>
+                  <h2 className="mb-4 text-black text-lg font-semibold">Change Password</h2>
                   <input
                     type="email"
                     value={forgotPasswordEmail}

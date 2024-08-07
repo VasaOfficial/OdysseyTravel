@@ -23,8 +23,6 @@ export function DropdownMenuCheckboxes() {
     try {
       if (logOut) {
         await logOut()
-      } else {
-        console.error('logOut function is not defined.')
       }
     } catch (error) {
       console.log(error)

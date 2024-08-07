@@ -55,7 +55,7 @@ export default function SignUp() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       const user = userCredential.user
 
-      const response = await fetch('bla', {
+      const response = await fetch('ba', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
