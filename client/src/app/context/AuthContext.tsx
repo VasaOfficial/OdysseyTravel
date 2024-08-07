@@ -27,7 +27,22 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const GoogleSignIn = async () => {
     const provider = new GoogleAuthProvider()
     try {
-      await signInWithPopup(auth, provider)
+      const result = await signInWithPopup(auth, provider)
+      const user = result.user;
+      const token = await user.getIdToken();
+      const email = user.email;
+
+      // Send token to the backend
+      const response = await fetch('bla', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ email, uid: user.uid }),
+      });
+
+      await response.json();
     } catch (error) {
       alert('Google Sign in failed')
     }
@@ -36,7 +51,22 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const GithubSignIn = async () => {
     const provider = new GithubAuthProvider()
     try {
-      await signInWithPopup(auth, provider)
+      const result = await signInWithPopup(auth, provider)
+      const user = result.user;
+      const token = await user.getIdToken();
+      const email = user.email;
+
+      // Send token to the backend
+      const response = await fetch('bla', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ email, uid: user.uid }),
+      });
+
+      await response.json();
     } catch (error) {
       alert('Github Sign in failed')
     }

@@ -9,8 +9,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { auth } from '../../../lib/firebase/config'
-import { UserAuth } from '../../../context/AuthContext'
+import { auth } from '@/src/app/lib/firebase/config'
+import { UserAuth } from '@/src/app/context/AuthContext'
 
 import EverestImage from '@/public/assets/auth/Everest.webp'
 import Logo from '@/public/assets/logoWhite.webp'
@@ -33,7 +33,6 @@ export default function Login() {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm<IFormInput>({ resolver: zodResolver(signUpSchema) })
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const router = useRouter()
   const { GithubSignIn, GoogleSignIn } = UserAuth()
   const [honeypotValue, setHoneypotValue] = useState('')
